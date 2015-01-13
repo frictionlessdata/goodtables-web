@@ -4,7 +4,7 @@ from ..commons import views
 
 class Index(views.APIView):
 
-    """Returns a detail view for a given Account."""
+    """Index of all API endpoints."""
 
     def data(self, **kwargs):
         data = super(Index, self).data(**kwargs)
@@ -16,7 +16,7 @@ class Index(views.APIView):
 
 class Submit(views.APIView):
 
-    """Returns a detail view for a given Account."""
+    """Submit data for validation."""
 
     def data(self, **kwargs):
         data = super(Submit, self).data(**kwargs)
