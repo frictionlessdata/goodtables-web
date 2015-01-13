@@ -89,15 +89,14 @@ class BaseView(views.MethodView):
 
     def get_flash_categories(self):
         """Returns the available message flash categories."""
-        return app.config['TABLE_VALIDATION_FLASH_CATEGORIES']
+        return app.config['TABULAR_VALIDATOR_FLASH_CATEGORIES']
 
     def response(self, msg=None, msg_cat=None, success=False, **data):
         """Returns the response object for the request."""
         return self._prepared_response(msg=msg, msg_cat=msg_cat,
                                        success=success, **data)
 
-    def _prepared_response(self, msg=None, msg_cat=None, success=False,
-                           **data):
+    def _prepared_response(self, msg=None, msg_cat=None, success=False, **data):
         """Prepares the response object to be returned.
 
         This method performs content negotiation, based on whether the

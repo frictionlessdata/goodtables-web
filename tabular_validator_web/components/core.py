@@ -1,5 +1,5 @@
 # from flask.ext.babel import Babel
 
 
-# queue = deferred
+# queue = celery instance
 # trans = Babel()

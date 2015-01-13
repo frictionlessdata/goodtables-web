@@ -10,8 +10,8 @@ class Index(views.APIView):
         data = super(Index, self).data(**kwargs)
         return data
 
-    def post(self, data, **kwargs):
-        return True
+    # def post(self, data, **kwargs):
+    #     return True
 
 
 class Submit(views.APIView):
@@ -22,5 +22,5 @@ class Submit(views.APIView):
         data = super(Submit, self).data(**kwargs)
         return data
 
-    def post(self, data, **kwargs):
-        return True
+    # def post(self, data, **kwargs):
+    #     return True

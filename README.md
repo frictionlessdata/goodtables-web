@@ -1,11 +1,8 @@
-Table Validation Web API
-========================
+# Tabular Validator Web App
 
 A web API for validating data tables against a validation pipeline.
 
-This package is part of a suite of table validation tools.
-
-The goal is to provide a lightweight web interface to a [table validation pipeline](https://github.com/okfn/table-validation-pipeline).
+This package is part of a suite of table validation tools, providing a lightweight web interface to [Tabular Validator](https://github.com/okfn/tabular-validator).
 
 Additionally, the Web API will provide mechanisms for storing source and transformed data.
 

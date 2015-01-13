@@ -1,7 +1,7 @@
 import os
 import json
-from table_validation import factory
-from table_validation.config import default
+from tabular_validator_web import factory
+from tabular_validator_web.config import default
 
 
 app = factory.create_app(default)
