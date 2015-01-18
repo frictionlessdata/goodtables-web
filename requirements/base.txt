@@ -6,3 +6,4 @@ SQLAlchemy==0.9.8
 gunicorn==19.1.1
 pytz
 git+https://github.com/okfn/tabular-validator.git#egg=tabular_validator
+git+https://github.com/okfn/reporter.git#egg=reporter

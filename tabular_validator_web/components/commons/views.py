@@ -59,9 +59,10 @@ class BaseView(views.MethodView):
 
         """
 
-        if request.method == 'GET':
-            return True
-        return False
+        # if request.method == 'GET':
+        #     return True
+        # return False
+        return True
 
     def options(self, **kwargs):
         """Sets the OPTIONS method on the response headers."""
@@ -108,10 +109,10 @@ class BaseView(views.MethodView):
         if self.is_xhr:
             if request.method in ('POST', 'PUT', 'PATCH'):
                 serializable = {
-                    'msg': msg,
-                    'msg_cat': msg_cat,
-                    # 'data': data['forms'][self.form_key].data,
-                    # 'errors': data['forms'][self.form_key].errors
+                    'success': success,
+                    # 'msg': msg,
+                    # 'msg_cat': msg_cat,
+                    'data': data
                 }
             else:
                 serializable = data
