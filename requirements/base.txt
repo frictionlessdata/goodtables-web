@@ -1,7 +1,8 @@
 Flask==0.10.1
-Celery==3.1.17
-gunicorn==19.1.1
-Click==3.3
-SQLAlchemy==0.9.8
 Flask-Babel==0.9
+Flask-WTF==0.10.3
+Celery==3.1.17
+SQLAlchemy==0.9.8
+gunicorn==19.1.1
 pytz
+git+https://github.com/okfn/tabular-validator.git#egg=tabular_validator
