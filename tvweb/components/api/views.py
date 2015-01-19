@@ -1,5 +1,7 @@
 import os
 import io
+import uuid
+from werkzeug.datastructures import FileStorage
 from flask import current_app as app, url_for, request
 from tabular_validator.pipeline import ValidationPipeline
 from ..commons import views
@@ -27,13 +29,33 @@ class JobList(views.APIView):
 
     def post(self, data, **kwargs):
 
-        temp = os.path.join(app.config['TMP_DIR'], 'temp')
+        # the workspace for all job-related data files
+        workspace = os.path.join(app.config['TMP_DIR'], 'workspace')
 
-        with io.open(temp, mode='w+b') as f:
-            request.files['data_source'].save(f)
+        # job identifier for this run.
+        job_id = request.form.get('job_id') or uuid.uuid4().hex
 
-        data_source = io.open(temp, mode='r+t', encoding='utf-8')
-        pipeline = ValidationPipeline(data_source=data_source)
+        # pass the data source
+        # TODO: properly handle file uploads
+        if isinstance(request.form.get('data_source'), FileStorage):
+            data_source = request.form.get('data_source').stream()
+        else:
+            data_source = request.form.get('data_source')
+
+        # if dry_run, then any files will not be persisted after the job run
+        dry_run = request.form.get('dry_run')
+
+        # instantiating the pipeline:
+        #     * checks any files are validly formed
+        #     * persists them in the workspace under job_id
+        # TODO: handling errors raised from instantiating the pipeline
+        pipeline = ValidationPipeline(data_source=data_source,
+                                      job_id=job_id, dry_run=dry_run,
+                                      workspace=workspace)
+
+        # anything after here will be queued in most cases.
+        # when queued, the return value will be a Job ID.
+
         valid, report = pipeline.run()
         data['report'] = report
         data['success'] = valid
