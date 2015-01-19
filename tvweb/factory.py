@@ -14,7 +14,7 @@ def create_app(config):
     from .components.commons import context_processors, encoders
 
     # Construct the app object
-    app = Flask('tabular_validator', static_url_path='/static')
+    app = Flask('tvweb', static_url_path='/static')
 
     # Configure the app with the default configuration
     app.config.from_object(config)

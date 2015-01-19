@@ -1,7 +1,5 @@
-import os
-import json
-from tabular_validator_web import factory
-from tabular_validator_web.config import default
+from tvweb import factory
+from tvweb.config import default
 
 
 app = factory.create_app(default)
