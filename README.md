@@ -18,5 +18,5 @@ Built around Flask, Celery, and SQL Alchemy.
 python main.py
 
 # run the tests
-python -m unittest tests
+./test.sh
 ```

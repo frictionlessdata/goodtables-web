@@ -6,3 +6,5 @@
 *.sublime-workspace
 __pycache__/
 *.py[cod]
+.coverage
+shippable/*

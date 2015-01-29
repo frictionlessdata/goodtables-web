@@ -2,3 +2,6 @@
 
 requests==2.5.1
 coverage
+pytest
+pytest-cov
+git+https://github.com/mverteuil/pytest-ipdb.git
