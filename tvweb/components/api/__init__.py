@@ -78,7 +78,7 @@ class JobList(restful.Resource):
         except Exception as e:
             data = {
                 'status': 400,
-                'message': 'Could not create a pipeline instance'
+                'message': 'Failed to instantiate the pipeline: {0}'.format(e)
             }
             return data, 400
 
