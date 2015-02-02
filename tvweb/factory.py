@@ -17,7 +17,7 @@ def create_app(config):
 
     import os
     from flask import Flask
-    from .components import api
+    from .components import core, api
     from .components.commons import context_processors, encoders
 
     # Construct the app object
@@ -27,16 +27,10 @@ def create_app(config):
     app.config.from_object(config)
 
     # Initialize core services on the app object
-    # core.trans.init_app(app)
-
-    # Register routable app components as blueprints on the app
-    app.register_blueprint(api.blueprint)
-
-    # Set additional jinja2 extensions
-    # app.jinja_env.add_extension('jinja2.ext.do')
+    core.api.init_app(app)
 
     # Set custom context processors
-    # app.context_processor(context_processors.inject_app_data)
+    app.context_processor(context_processors.inject_app_data)
 
     # Set custom encoders
     app.json_encoder = encoders.JSONEncoder

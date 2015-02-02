@@ -4,8 +4,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-# from flask.ext.babel import Babel
+from flask.ext.restful import Api
 
 
-# queue = celery instance
-# trans = Babel()
+api = Api()
