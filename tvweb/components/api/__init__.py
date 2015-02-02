@@ -60,7 +60,7 @@ class JobList(restful.Resource):
         table_schema_source = request.form.get('table_schema_source', None)
 
         # if dry_run, no files will be persisted
-        dry_run = request.form.get('dry_run', True)
+        dry_run = True  # request.form.get('dry_run', True)
 
         # build out the options object
         options = {
@@ -69,9 +69,13 @@ class JobList(restful.Resource):
             }
         }
 
+        # the validators in the pipeline
+        validators = ('structure', 'tableschema')
+
         # build and run a validation pipeline
         try:
-            validator = pipeline.ValidationPipeline(data_source=data_source,
+            validator = pipeline.ValidationPipeline(validators=validators,
+                                                    data_source=data_source,
                                                     dry_run=dry_run,
                                                     options=options,
                                                     workspace=workspace)
