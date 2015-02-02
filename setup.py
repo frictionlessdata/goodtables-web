@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='Tabular Validator Web',
+    name='tvweb',
     version='0.1.1-alpha',
     packages=find_packages(),
     include_package_data=True,
@@ -19,9 +19,7 @@ setup(
         'Celery==3.1.17',
         'SQLAlchemy==0.9.8',
         'gunicorn==19.1.1',
-        'pytz'
+        'pytz',
+        # 'git+https://github.com/okfn/tabular-validator.git#egg=tabular_validator'
     ],
-    dependency_links=[
-        'git+https://github.com/okfn/tabular-validator.git#egg=tabular_validator'
-    ]
 )
