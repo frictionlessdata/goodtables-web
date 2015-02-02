@@ -24,14 +24,14 @@ def examples(instance_url, payload):
     payloads = {
         'one': {
             'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator-web/master/examples/valid.csv',
-            'schema_spec_source': ''
+            'table_schema_source': ''
         },
         'two': {
             'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
-            'table_schema_source': 'https://github.com/okfn/tabular-validator/blob/master/examples/contacts/schema_valid.json'
+            #'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_valid.csv'
         },
         'three': {
-            'data_source': 'https://github.com/okfn/tabular-validator/blob/master/examples/contacts/people.csv',
+            'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
             'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_invalid.json'
         },
         'four': {
