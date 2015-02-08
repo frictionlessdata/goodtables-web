@@ -28,19 +28,11 @@ def examples(instance_url, payload):
         },
         'two': {
             'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
-            #'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_valid.csv'
+            'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_valid.json'
         },
         'three': {
             'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
             'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_invalid.json'
-        },
-        'four': {
-            'data_source': '',
-            'table_schema_source': ''
-        },
-        'five': {
-            'data_source': '',
-            'table_schema_source': ''
         }
     }
 
