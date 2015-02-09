@@ -1,6 +1,8 @@
 # Tabular Validator Web
 
 [![Build Status](https://api.shippable.com/projects/54b903605ab6cc135288d4de/badge?branchName=master)](https://app.shippable.com/projects/54b903605ab6cc135288d4de/builds/latest)
+[![Travis Build Status](https://travis-ci.org/okfn/tabular-validator-web.svg?branch=master)](https://travis-ci.org/okfn/tabular-validator-web)
+[![Coverage Status](https://coveralls.io/repos/okfn/tabular-validator-web/badge.svg)](https://coveralls.io/r/okfn/tabular-validator-web)
 
 A web API for validating data tables against a validation pipeline.
 
