@@ -17,17 +17,30 @@ def create_app(config):
 
     import os
     from flask import Flask
-    from .components import core, api
+    from flask.ext.babel import Babel
+    from .components import api, pages
     from .components.commons import context_processors, encoders
 
-    # Construct the app object
-    app = Flask('tvweb', static_url_path='/static')
+    app_label = 'tvweb'
 
-    # Configure the app with the default configuration
+    # Get the static and template folder for the passed theme
+    static_folder = os.path.join('theme', 'static')
+    template_folder = os.path.join('theme', 'templates')
+
+    # Construct app and service objects
+    app = Flask(app_label, template_folder=template_folder,
+                static_folder=static_folder, static_url_path='/static')
+    trans = Babel()
+
+    # Configure the app with defaults
     app.config.from_object(config)
 
-    # Initialize core services on the app object
-    core.api.init_app(app)
+    # Set app core services
+    trans.init_app(app)
+
+    # Register routable components
+    app.register_blueprint(api.blueprint)
+    app.register_blueprint(pages.blueprint)
 
     # Set custom context processors
     app.context_processor(context_processors.inject_app_data)
