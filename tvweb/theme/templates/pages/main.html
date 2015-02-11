@@ -1,20 +1,61 @@
 {% extends 'base.html' %}
+{% from "macros/form.html" import render_form, render_field %}
 
 
 {% block content %}
-<section id="form-section">
-    <form role="form">
-        <input type="text" placeholder="put it" />
-        <input type="text" placeholder="put it" />
-        <input type="text" placeholder="put it" />
-        <input type="text" placeholder="put it" />
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
+<section id="welcome-section" class="row">
+    <div class="col-md-12">
+        <h1>{{ name }}</h1>
+        <p>{{ name }} {% trans %}is a free hosted service for validating tabular data.{% endtrans %}</p>
+    </div>
 </section>
-<section id="docs-section">
-    <h2>Quickstart</h2>
-    <p>Hey, get started with this stuff like this....</p>
-    <h3>Report problems</h3>
-    <p>Report any and all problems here please.</p>
+<section id="form-section" class="row">
+    <div class="col-md-6">
+        {{ render_form(form, 'run_form', request.url, with_files=True) }}
+    </div>
+    <div class="col-md-6">
+
+        {% if report %}
+        <h2>{% trans %}Report{% endtrans %}</h2>
+        <p>
+            {% if report.success %}{% trans %}valid{% endtrans %}{% else %}{% trans %}invalid{% endtrans %}{% endif %}
+        </p>
+        <h4>{% trans %}Summary{% endtrans %}</h4>
+        {% if generate_report %}
+        <div>
+            <a href="{{ generate_report }}" title="Generate a live report for this data">Generate a live report for this data</a>
+        </div>
+        {% endif %}
+        <div>
+            {{ report }}
+        </div>
+        {% endif %}
+
+        <p>&nbsp;</p>
+        <h4>{% trans %}Problem?{% endtrans %}</h4>
+        <p>
+            {% trans -%}
+            This is alpha software, and we expect bugs and weirdness. You can help by opening an issue for us to report any problems.
+            {%- endtrans %}
+            <br />
+            <a target="_blank" href="{{ new_issue }}">{% trans %}Report an issue{% endtrans %}</a>
+        </p>
+    </div>
+</section>
+<section id="docs-section" class="row">
+    <div class="col-md-12">
+        <h2>{% trans %}Documentation{% endtrans %}</h2>
+        <p>
+            {% trans %}An overview of what you can do here.{% endtrans %}
+        </p>
+        <h3>{% trans %}UI{% endtrans %}</h3>
+        <p>
+            {% trans %}Stuff exposed over UI{% endtrans %}
+        </p>
+        <h3>{% trans %}API{% endtrans %}</h3>
+        <p>
+            {% trans %}Stuff exposed by working with the API{% endtrans %}
+        </p>
+    </div>
 </section>
 {% endblock content %}

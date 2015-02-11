@@ -39,3 +39,7 @@ code {
 #main {
   margin-top: 60px;
 }
+
+.error {
+  color: red;
+}

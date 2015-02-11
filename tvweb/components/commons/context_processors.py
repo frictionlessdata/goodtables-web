@@ -11,5 +11,6 @@ def inject_app_data():
     return {
         'name': app.config['TVWEB_NAME'],
         'domain': app.config['TVWEB_DOMAIN'],
-        'sponsor': app.config['TVWEB_SPONSOR']
+        'sponsor': app.config['TVWEB_SPONSOR'],
+        'new_issue': app.config['TVWEB_REPORT_ISSUE']
     }

@@ -1,0 +1,282 @@
+{#
+
+    Form Macros
+    ===========
+
+    Overview
+    --------
+
+    These form macros provide a flexible form rendering API with minimal code.
+
+    3 renders are available:
+
+    * render_field
+    * render_action
+    * render_form
+
+    These macros output HTML based on Bootstrap 3 form styles.
+
+    Below are some simple examples of how to use these renderers in a Jinja
+    template:
+
+    Examples
+    --------
+
+    Example 1. Customized form layout with renderers per field.
+
+    {% from "macros/form.html" import render_field, render_action %}
+    <div id="account_form_container">
+        {% with form=some_form %}
+        <form id="some_form" method="POST" action="">
+            {{ render_field(form.email, placeholder="Enter a valid email") }}
+            {{ render_field(form.phone) }}
+            {{ render_action('Submit') }}
+        </form>
+        {% endwith %}
+    </div>
+
+    Example 2. Default form layout
+
+    {% from "macros/form.html" import render_form %}
+    {{ render_form(some_form, 'some_form', action_type='Submit',
+                   action_class='warning') }}
+
+    Example 3. Using the form renderer with some customization
+
+    Using Jinja2's call function, it is possible to use the form render to
+    remove boilerplate, *and* customize fields, like so:
+
+    {% from "macros/form.html" import render_form %}
+    {% call render_form(some_form, 'some_form', action_type='Submit',
+                        action_class='warning') %}
+        {{ render_field(some_form.email, placeholder="Enter a valid email") }}
+        {{ render_field(some_form.phone) }}
+    {% endcall %}
+
+    Credits
+    -------
+
+    * render_field is based on https://gist.github.com/pwalsh/d3eb06ad098abcc9cb1d
+
+#}
+
+{% macro render_field(field) -%}
+{% set with_label = kwargs.pop('with_label', True) %}
+{% set placeholder = field.description.placeholder or
+                     kwargs.pop('placeholder', None) or
+                     field.label.text %}
+{% set hint = field.description.hint or kwargs.pop('hint', None) %}
+{% set class_ = kwargs.pop('class_', '') %}
+
+{% if field.flags.required %}
+{% set class_ = class_ + ' required' %}
+{% endif %}
+
+<div class="form-group form-group-{{ field.id }}">
+    {% if with_label %}
+    {% if field.type in ('CSRFTokenField', 'HiddenField', 'BooleanField',
+                         'FormField', 'FieldList', 'DisplayField') %}
+    {% else %}
+    <label for="{{ field.id }}"
+           class="control-label{% if field.flags.required %} required{% endif %}{% if field.errors %} marked-required {% endif %}">
+        {{ field.label.text }}
+    </label>
+    {% endif %}
+    {% endif %}
+
+    {% if field.type == 'BooleanField' %}
+    <label>
+        {{ field.label.text|safe }}
+    </label>
+    <span class="checkbox">
+        {{ field(class_=class_, **kwargs) }}
+        <label for="{{ field.name|safe }}" class="description">{% if field.description.placeholder %}{{field.description.placeholder|safe}}{% endif %}</label>
+    </span>
+    {% else %}
+
+    {% if field.type in ('StringField', 'TextAreaField', 'PasswordField',
+                         'IntegerField', 'DateField', 'DateTimeField',
+                         'FormField') %}
+
+    {% set class_ = class_ + ' form-control' %}
+
+    {% elif field.type == 'FileField' %}
+
+    {% set class_ = class_ + ' input-file form-control' %}
+
+    {% elif field.type == 'DisplayField' %}
+
+    {% set class_ = class_ + ' form-display-field' %}
+
+    {% endif %}
+
+    {% if field.type == 'SelectField' %}
+    {{ field(class_=class_+' selectpicker', **kwargs) }}
+
+    {% elif field.type == 'FormField' %}
+    {% for field in field.form %}
+    {{ render_field(field) }}
+    {% endfor %}
+
+    {% elif field.type == 'FieldList' %}
+    {#
+        FieldList is a field enclosure that embeds a list of fields. So,
+        call render_field on each field in the list.
+    #}
+    {% for field in field %}
+    {{ render_field(field) }}
+    {% endfor %}
+
+    {% else  %}
+
+    {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+
+    {% endif %}
+
+    {% endif %}
+
+    {% if field.errors %}
+    <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+    {% endif %}
+
+    {% if field.description.hint %}
+    <p class="help-block">{{ field.description.hint|safe }}</p>
+    {% endif %}
+
+</div>
+{%- endmacro %}
+
+
+{% macro render_action(name='Submit', type='submit', value='', class='default',
+                       extra_classes='') -%}
+{#
+    The HTML button spec allows 'submit', 'button', and 'reset' types for
+    buttons. 'submit' is for form submit actions, 'button' is for other
+    actions like 'cancel this form' and 'reset' re-inits all the field values.
+#}
+
+<button name="form_action" value="{{ value }}" type="{{ type }}"
+        class="btn btn-{{ class }} {{ extra_classes }}">
+    {% trans %}{{ name }}{% endtrans %}
+</button>
+{%- endmacro %}
+
+
+{% macro render_form(form, form_name, action='', method='POST', as_xhr=False,
+                     with_labels=False, actions=None, form_name_uniquify=None,
+                     hide_action=False, data=None, with_files=False) -%}
+
+{#
+    Docs:
+    * form: the form object in the request. Accessed by form.{form_key}
+    * form_name: the name and id given to the form
+    * action: The action URL for the form
+    * method: The HTTP method for the form data
+    * as_xhr: A boolean to submit via XHR or not. The reference implementation
+    requires jQuery
+    * with_labels: A boolean for displaying labels on form fields
+    * actions: a list of actions to supply, each rendering a form button.
+    See render_action
+    * form_name_uniquify: pass any string that is guranteed unique for each
+    instance of this form in the request context. Required when as_xhr is True,
+    and multiple instances of the same form exist. As convention, it is recommended
+    to use the lookup of the obj the form is editing.
+    * data: Pass data into a form on render. Extends flexibility of the form API
+    for customization of forms by template developers
+#}
+
+{% if form_name_uniquify %}
+{% set form_identifier = '{0}_{1}'.format(form_name, form_name_uniquify) %}
+{% else %}
+{% set form_identifier = form_name %}
+{% endif %}
+<div class="{{ form_name }}_container" >
+    {% from "macros/form.html" import render_field, render_action %}
+    <form role="form" id="{{ form_identifier }}" name="{{ form_identifier }}"
+          method="{{ method }}" action="{{ action }}" {% if with_files %}enctype="multipart/form-data"{% endif %}>
+        {% if as_xhr %}
+        <div class="local-messages alert"></div>
+        {% endif %}
+
+        {% if caller %}
+
+            {% for field in form %}
+            {#
+                We want to let the caller pass in the fields, but still,
+                hidden fields, etc. should come from the server.
+            #}
+            {% if field.type in ('CSRFTokenField', 'HiddenField', 'DisplayField') %}
+            {{ render_field(field) }}
+            {% endif %}
+            {% endfor %}
+            {{ caller() }}
+
+        {% else %}
+
+            {% for field in form %}
+
+                {#
+                    In certain situations, it is handy to allow form population
+                    from the template, and not from the view. render_form
+                    supports a data argument to this end, and if
+                    the data object has data for a given field, it is passed
+                    in as the value of that field.
+                #}
+
+                {% if data %}
+
+                {% set field_data = data.get(field.name, None) %}
+                {% if field_data %}
+
+                {{ render_field(field, with_label=False, value=field_data) }}
+
+                {% else %}
+
+                {{ render_field(field, with_label=False) }}
+
+                {% endif %}
+
+                {% else %}
+
+                {{ render_field(field) }}
+
+                {% endif %}
+
+            {% endfor %}
+        {% endif %}
+
+        {% if actions %}
+        <div class="form-footer row">
+            {% for action in actions %}
+            {{ render_action(**action) }}
+            {% endfor %}
+        </div>
+        <div class="clearfix"></div>
+        {% elif hide_action %}
+
+        {% else %}
+        {# if no action was passed, just render a default action for the form #}
+        {{ render_action() }}
+        {% endif %}
+
+        <script>
+            var ${{ form_identifier }} = $('#{{ form_identifier }}'),
+                $form_action = $('#{{ form_identifier }} :submit');
+
+            {% if as_xhr %}
+            $form_action.on('click', function(event) {
+                event.preventDefault();
+                MacroFormPreSubmitProcessor(${{ form_identifier }});
+                MacroFormHandler(${{ form_identifier }}, event.target);
+            });
+            {% else %}
+            ${{ form_identifier }}.submit(function(event) {
+                MacroFormPreSubmitProcessor(${{ form_identifier }});
+                return true;
+            });
+            {% endif %}
+        </script>
+
+    </form>
+</div>
+{%- endmacro %}

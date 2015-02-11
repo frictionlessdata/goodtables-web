@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import os
 import io
 import uuid
@@ -5,7 +11,7 @@ from werkzeug.datastructures import FileStorage
 from flask import current_app as app, request, url_for
 from flask.ext import restful
 from flask.ext.restful import inputs, reqparse
-from tabular_validator import pipeline
+from ..commons import utilities
 
 
 class Main(restful.Resource):
@@ -50,38 +56,15 @@ class Run(restful.Resource):
         else:
             data_source = request.form.get('data_source')
 
-        table_schema_source = request.form.get('table_schema_source', None)
-
-        # if dry_run, no files will be persisted
-        dry_run = True  # request.form.get('dry_run', True)
-
-        # build out the options object
-        options = {
-            'tableschema': {
-                'table_schema_source': table_schema_source
-            }
-        }
-
-        # the validators in the pipeline
-        validators = ('structure', 'tableschema')
-
         # build and run a validation pipeline
-        try:
-            validator = pipeline.ValidationPipeline(validators=validators,
-                                                    data_source=data_source,
-                                                    dry_run=dry_run,
-                                                    options=options,
-                                                    workspace=workspace)
-        except Exception as e:
-            data = {
-                'status': 400,
-                'message': 'Failed to instantiate the pipeline: {0}'.format(e)
-            }
-            return data, 400
+        pipeline = utilities.get_pipeline()  # config goes in too
+        if pipeline is None:
+            return app.config['PIPELINE_BUILD_ERROR_RESPONSE'], 400
 
-        valid, report = validator.run()
+        valid, report = pipeline.run()
         data = {
             'success': valid,
+            'status': 200,
             'report': report
         }
         return data
