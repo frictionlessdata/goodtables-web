@@ -1,0 +1,35 @@
+{% macro display_report(report) -%}
+{%- for key, value in report.items() recursive %}
+    {% if key == 'meta' %}
+        <h2>{% trans %}Summary{% endtrans %}</h2>
+        <p>Summary stuff</p>
+
+    {% elif key in ('structure', 'schema') %}
+        <h3>{{ key|capitalize }}</h3>
+
+        {% for key, value in value.items() %}
+            {% if key == 'results' and value is iterable %}
+                {% for result in value %}
+                    {% for key, value in result.items() %}
+                        <strong>{{ key }}:</strong> {{ value }}<br />
+                    {% endfor %}
+                    <br />
+                {% endfor %}
+            {% elif key == 'meta' %}
+                {# do nothing #}
+            {% else %}
+                {% if key == 'results' and value == None %}
+                    {% trans %}No results for this validator.{% endtrans %}
+                {% else %}
+                    {{ key }}: {{ value }}<br />
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+    {% else %}
+        {# don't expect to be here, but print something out so we know #}
+        {{ key }} {{ value }}
+
+    {% endif %}
+{%- endfor %}
+{%- endmacro %}

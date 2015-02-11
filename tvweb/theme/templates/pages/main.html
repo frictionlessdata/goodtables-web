@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% from "macros/form.html" import render_form, render_field %}
-
+{% from "macros/report.html" import display_report %}
 
 {% block content %}
 <section id="welcome-section" class="row">
@@ -16,18 +16,19 @@
     <div class="col-md-6">
 
         {% if report %}
-        <h2>{% trans %}Report{% endtrans %}</h2>
+        <h2>
+            {% trans %}Report{% endtrans %}
+            {% if generate_report %}
+            <span class="pull-right">
+                <a class="btn btn-primary" href="{{ generate_report }}" title="Generate a live report for this data">Report Link</a>
+            </span>
+            {% endif %}
+        </h2>
         <p>
-            {% if report.success %}{% trans %}valid{% endtrans %}{% else %}{% trans %}invalid{% endtrans %}{% endif %}
+            The data is <strong>{% if success %}{% trans %}valid{% endtrans %}{% else %}{% trans %}invalid{% endtrans %}{% endif %}</strong>.
         </p>
-        <h4>{% trans %}Summary{% endtrans %}</h4>
-        {% if generate_report %}
         <div>
-            <a href="{{ generate_report }}" title="Generate a live report for this data">Generate a live report for this data</a>
-        </div>
-        {% endif %}
-        <div>
-            {{ report }}
+            {{ display_report(report) }}
         </div>
         {% endif %}
 

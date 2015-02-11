@@ -39,7 +39,7 @@ class Main(views.MethodView):
             if pipeline is None:
                 data['report'] = app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']
             else:
-                valid, report = pipeline.run()
-                data.update({'success': valid, 'report': report, 'generate_report': generate_report})
+                success, report = pipeline.run()
+                data.update({'success': success, 'report': report, 'generate_report': generate_report})
 
         return render_template(self.template, **data)
