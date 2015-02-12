@@ -39,7 +39,7 @@ class BaseTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def _get(self, route_name, **route_kwargs):
+    def _get(self, route_name, data=None, **route_kwargs):
         """Factory for creating client get requests."""
 
         if route_kwargs:
@@ -48,7 +48,7 @@ class BaseTestCase(unittest.TestCase):
         else:
             url = url_for(route_name)
 
-        return self.client.get(url)
+        return self.client.get(url, query_string=data)
 
     def _post(self, route_name, data, with_files=True, **route_kwargs):
         """Factory for creating client post requests."""

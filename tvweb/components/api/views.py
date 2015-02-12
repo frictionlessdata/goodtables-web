@@ -32,10 +32,16 @@ class Run(restful.Resource):
     """GET a list of jobs, and POST to create a job."""
 
     def get(self):
+        # we allow GET requests for pipeline runs, so:
+        if request.args:
+            return self.run_pipeline()
         return {}
 
     def post(self):
         """POST a new job, which submits a data source for validation."""
+        return self.run_pipeline()
+
+    def run_pipeline(self):
 
         payload = utilities.clean_payload(utilities.get_runargs())
         data = {}
