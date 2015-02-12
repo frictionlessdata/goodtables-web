@@ -39,3 +39,18 @@ class TestAPIPost(base.BaseTestCase):
             resp = self._post('api.run', data, with_files=True)
             data = json.loads(str(resp.data, encoding='utf-8'))
             self.assertFalse(data['success'])
+
+    def test_row_limit_param_over_api(self):
+        with io.open(os.path.join(self.local_data, 'invalid.csv'), 'r+b') as stream:
+            data = {'data': (stream, 'file.csv'), 'row_limit': '1'}
+            resp = self._post('api.run', data)
+            data = json.loads(str(resp.data, encoding='utf-8'))
+            self.assertFalse(data['success'])
+            self.assertTrue(len(data['report']['structure']['results']) <= 1)
+
+    def test_report_limit_param_over_api(self):
+        with io.open(os.path.join(self.local_data, 'invalid.csv'), 'r+b') as stream:
+            data = {'data': (stream, 'file.csv'), 'report_limit': '1'}
+            resp = self._post('api.run', data)
+            data = json.loads(str(resp.data, encoding='utf-8'))
+            self.assertFalse(data['success'])
