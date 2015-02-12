@@ -10,6 +10,7 @@ import json
 from tests import base
 from tvweb import compat
 
+
 class TestAPIGet(base.BaseTestCase):
 
     def test_get_valid_url_upload(self):
