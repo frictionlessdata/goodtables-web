@@ -53,6 +53,8 @@ def get_runargs():
     parser.add_argument('schema_url', location=location)
     parser.add_argument('data_file', type=FileStorage, location=location)
     parser.add_argument('schema_file', type=FileStorage, location=location)
+    parser.add_argument('report_limit', type=int, default=1000)
+    parser.add_argument('row_limit', type=int, default=20000)
     return parser.parse_args()
 
 
