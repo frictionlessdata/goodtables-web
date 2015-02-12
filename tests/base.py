@@ -54,7 +54,7 @@ class BaseTestCase(unittest.TestCase):
         """Factory for creating client post requests."""
 
         if with_files:
-            mtype = 'application/form-data'
+            mtype = 'multipart/form-data'
         else:
             mtype = 'application/x-www-form-urlencoded'
 

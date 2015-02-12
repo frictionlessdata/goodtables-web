@@ -44,7 +44,7 @@ class Run(restful.Resource):
         workspace = os.path.join(app.config['TMP_DIR'])
 
         if isinstance(payload['data'], FileStorage):
-            payload['data'] = payload['data'].stream()
+            payload['data'] = payload['data'].read().decode('utf-8')
 
         # build and run a validation pipeline
         pipeline = utilities.get_pipeline(payload)
