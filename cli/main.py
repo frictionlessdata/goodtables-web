@@ -23,22 +23,22 @@ def examples(instance_url, payload):
 
     payloads = {
         'one': {
-            'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator-web/master/examples/valid.csv',
-            'table_schema_source': ''
+            'data': 'https://raw.githubusercontent.com/okfn/tabular-validator-web/master/examples/valid.csv',
+            'schema': ''
         },
         'two': {
-            'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
-            'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_valid.json'
+            'data': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
+            'schema': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_valid.json'
         },
         'three': {
-            'data_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
-            'table_schema_source': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_invalid.json'
+            'data': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/people.csv',
+            'schema': 'https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/contacts/schema_invalid.json'
         }
     }
 
     if payload in payloads.keys():
         payload = payloads[payload]
-        job_list = '/jobs'
+        job_list = '/api/run'
         endpoint = '{0}{1}'.format(instance_url, job_list)
         click.echo('Running example against {0}'.format(endpoint))
         response = requests.post(endpoint, payload)

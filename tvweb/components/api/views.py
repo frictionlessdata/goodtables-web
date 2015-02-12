@@ -37,34 +37,22 @@ class Run(restful.Resource):
     def post(self):
         """POST a new job, which submits a data source for validation."""
 
-        parser = reqparse.RequestParser()
-        parser.add_argument('data_source', required=True,
-                            type=inputs.url,
-                            help='data_source must be a valid URL.')
-        parser.add_argument('table_schema_source',  # type=inputs.url,
-                            help='table_schema_source must be a valid URL.')
-        parser.add_argument('dry_run', type=inputs.boolean,
-                            help='dry_run must be a boolean.')
-        args = parser.parse_args()
+        payload = utilities.clean_payload(utilities.get_runargs())
+        data = {}
 
         # the workspace for all job-related data files
         workspace = os.path.join(app.config['TMP_DIR'])
 
-        # pass the data source
-        if isinstance(request.form.get('data_source'), FileStorage):
-            data_source = request.form.get('data_source').stream()
-        else:
-            data_source = request.form.get('data_source')
+        if isinstance(payload['data'], FileStorage):
+            payload['data'] = payload['data'].stream()
 
         # build and run a validation pipeline
-        pipeline = utilities.get_pipeline()  # config goes in too
+        pipeline = utilities.get_pipeline(payload)
         if pipeline is None:
-            return app.config['PIPELINE_BUILD_ERROR_RESPONSE'], 400
+            data.update({'success': False,
+                         'report': app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']})
+        else:
+            success, report = pipeline.run()
+            data.update({'success': success, 'report': report})
 
-        valid, report = pipeline.run()
-        data = {
-            'success': valid,
-            'status': 200,
-            'report': report
-        }
         return data

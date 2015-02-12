@@ -27,14 +27,10 @@ class Main(views.MethodView):
 
     def post(self, **kwargs):
         data = self.get_data(**kwargs)
-        payload = utilities.get_runargs()
+        payload = utilities.clean_payload(utilities.get_runargs())
         generate_report = utilities.get_reporturl(payload)
 
         if data['form'].validate_on_submit():
-            pipeline_args = {
-                'data': utilities.resolve_payload('data', payload),
-                'schema': utilities.resolve_payload('schema', payload),
-            }
             pipeline = utilities.get_pipeline(pipeline_args)
             if pipeline is None:
                 data['report'] = app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']

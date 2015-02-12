@@ -47,6 +47,8 @@ def get_runargs():
     """Get valid args from request."""
     parser = reqparse.RequestParser()
     location = ['json', 'values', 'form', 'args', 'files']
+    parser.add_argument('data', location=location)
+    parser.add_argument('schema', location=location)
     parser.add_argument('data_url', location=location)
     parser.add_argument('schema_url', location=location)
     parser.add_argument('data_file', type=FileStorage, location=location)
@@ -54,10 +56,22 @@ def get_runargs():
     return parser.parse_args()
 
 
-def resolve_payload(key, payload):
+def clean_payload(payload):
+    payload['data'] = resolve_payload_item('data', payload)
+    payload['schema'] = resolve_payload_item('schema', payload)
+    del payload['data_url']
+    del payload['data_file']
+    del payload['schema_url']
+    del payload['schema_file']
+    return payload
+
+
+def resolve_payload_item(key, payload):
     """Resolve data or schema from request."""
     as_file = '{0}_file'.format(key)
     as_url = '{0}_url'.format(key)
+    if payload.get(key):
+        return payload[key]
     if payload.get(as_url):
         return payload[as_url]
     elif payload.get(as_file):
