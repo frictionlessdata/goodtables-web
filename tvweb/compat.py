@@ -25,7 +25,6 @@ if is_py2:
     basestring = basestring
     numeric_types = (int, long, float)
 
-
 elif is_py3:
     from urllib import parse
     from urllib.parse import urlencode
@@ -35,6 +34,17 @@ elif is_py3:
     basestring = (str, bytes)
     numeric_types = (int, float)
 
+
+def to_bytes(str):
+    """Convert a text string to a byte string"""
+    return str.encode('utf-8')
+
+def to_builtin_str(str):
+    """Convert a text string to the built-in `str` on the runtime."""
+    if is_py2:
+        return str.encode('utf-8')
+    else:
+        return str
 
 def NamedTemporaryFile(mode='w+t', encoding='utf-8', **kwargs):
     """Return a NamedTemporaryFile for the appropriate runtime."""

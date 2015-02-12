@@ -6,9 +6,8 @@ from __future__ import unicode_literals
 
 from flask import Blueprint
 from . import views
+from tvweb import compat
 
 
 blueprint = Blueprint('pages', __name__, url_prefix='')
-
-
-blueprint.add_url_rule('/', view_func=views.Main.as_view('main'))
+blueprint.add_url_rule('/', view_func=views.Main.as_view(compat.to_builtin_str('main')))

@@ -31,7 +31,7 @@ class Main(views.MethodView):
         generate_report = utilities.get_reporturl(payload)
 
         if data['form'].validate_on_submit():
-            pipeline = utilities.get_pipeline(pipeline_args)
+            pipeline = utilities.get_pipeline(payload)
             if pipeline is None:
                 data['report'] = app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']
             else:
