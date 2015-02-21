@@ -24,6 +24,7 @@ TVWEB_PIPELINE_DEFAULT_CONFIG = {
     },
     'workspace': None,
     'dry_run': True,
+    'fail_fast': True
 }
 TVWEB_PIPELINE_BUILD_ERROR_RESPONSE = {
     'success': False,

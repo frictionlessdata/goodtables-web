@@ -17,6 +17,7 @@ from tabular_validator import exceptions
 from tvweb import compat
 
 
+REMOTE_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 JSON_DATE_FORMAT = '%Y-%m-%d'
 JSON_TIME_FORMAT = '%H:%M:%S'
 JSON_DATETIME_FORMAT = '{0}T{1}'.format(JSON_DATE_FORMAT, JSON_TIME_FORMAT)
@@ -77,16 +78,21 @@ def resolve_payload_item(key, payload):
     if payload.get(as_url):
         return payload[as_url]
     elif payload.get(as_file):
-        return payload[as_file].read().decode('utf-8')
+        if key.startswith('data'):
+            return payload[as_file].stream
+        else:
+            return payload[as_file].read().decode('utf-8')
     else:
         return None
 
 
 def get_reporturl(payload):
-    if payload.get('data_url'):
-        if not payload.get('schema_file').filename:
+
+    if not isinstance(payload['data'], (io.IOBase, FileStorage)) and \
+           compat.parse.urlparse(payload['data']).scheme in REMOTE_SCHEMES:
+        if not hasattr(payload.get('schema'), 'filename'):
             domain = app.config['TVWEB_DOMAIN']
             run = url_for('api.run')
-            params = compat.urlencode({'data': payload['data_url'], 'schema': payload['schema_url']})
+            params = compat.urlencode({'data': payload['data'], 'schema': payload['schema'] or ''})
             return '{0}{1}?{2}'.format(domain, run, params)
     return None

@@ -7,4 +7,4 @@ click==3.3
 gunicorn==19.1.1
 requests==2.5.1
 pytz
-git+https://github.com/okfn/tabular-validator.git#egg=tabular_validator
+tabular-validator>=0.1.3

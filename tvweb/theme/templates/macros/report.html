@@ -1,8 +1,12 @@
 {% macro display_report(report) -%}
-{%- for key, value in report.items() recursive %}
-    {% if key == 'meta' %}
+{%- for key, value in report.items() %}
+    {% if key == 'summary' %}
         <h2>{% trans %}Summary{% endtrans %}</h2>
-        <p>Summary stuff</p>
+        <ul>
+            {% for key, value in value.items() %}
+            <li><strong>{{ key }}:</strong> {{ value}}</li>
+            {% endfor %}
+        </ul>
 
     {% elif key in ('structure', 'schema') %}
         <h3>{{ key|capitalize }}</h3>
