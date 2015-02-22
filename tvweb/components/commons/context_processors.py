@@ -10,7 +10,7 @@ from flask import current_app as app
 def inject_app_data():
     return {
         'name': app.config['TVWEB_NAME'],
-        'domain': app.config['TVWEB_DOMAIN'],
+        'domain': app.config['TVWEB_URL'],
         'sponsor': app.config['TVWEB_SPONSOR'],
         'new_issue': app.config['TVWEB_REPORT_ISSUE']
     }

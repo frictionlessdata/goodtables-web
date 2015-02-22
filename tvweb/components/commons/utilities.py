@@ -91,7 +91,7 @@ def get_reporturl(payload):
     if not isinstance(payload['data'], (io.IOBase, FileStorage)) and \
            compat.parse.urlparse(payload['data']).scheme in REMOTE_SCHEMES:
         if not hasattr(payload.get('schema'), 'filename'):
-            domain = app.config['TVWEB_DOMAIN']
+            domain = app.config['TVWEB_URL']
             run = url_for('api.run')
             params = compat.urlencode({'data': payload['data'], 'schema': payload['schema'] or ''})
             return '{0}{1}?{2}'.format(domain, run, params)
