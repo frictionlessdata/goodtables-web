@@ -32,11 +32,20 @@ Planned support for Python 2.7, 3.3 and 3.4. Some tests currently fail on 2.7. D
 ### `api/run` (Task Runner)
 
 * POST to validate data
-* GET to validate data *WIP*
+* GET to validate data
 
 ## Supported configuration parameters
 
 The API and UI support a subset of all parameters available in a [Tabular Validator](https://github.com/okfn/tabular-validator) pipeline. All possible arguments to a pipeline and individual validators can be found in the [Tabular Validator docs](http://tabular-validator.readthedocs.org/en/latest/).
+
+### API
+
+* `data`: (required) Any file, URL to a file, or string of data
+* `schema`: (default. None) This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator
+* `report_limit`: (default. 1000, max. 1000) An integer that sets a limit on the amount of report results a validator can generate. Validation will cease of this amount is reached
+* `row_limit`: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.
+* `fail_fast`: (default True) A boolean to set whether the run will fail on first error, or not.
+* `format`: (default 'csv') 'csv' or 'excel' - the format of the file.
 
 ### UI
 
@@ -45,13 +54,6 @@ The UI is a simple form for validation data, with an option schema, from either 
 * One of `data_url` or `data_file`: This gets turned into the `data` argument to the pipeline.
 * One of `schema_url` or `schema_file`: This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator.
 * Additional defaults are passed into the pipeline constructor. You can see the defaults at [`tvweb.config.defaults.TVWEB_PIPELINE_DEFAULT_CONFIG`](https://github.com/okfn/tabular-validator-web/blob/master/tvweb/config/default.py)
-
-### API
-
-* `data`: (required) Any file, URL to a file, or string of data
-* `schema`: (default. None) This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator
-* `report_limit`: (default. 1000, max. 1000) An integer that sets a limit on the amount of report results a validator can generate. Validation will cease of this amount is reached
-* `row_limit`: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.
 
 ## Examples
 
