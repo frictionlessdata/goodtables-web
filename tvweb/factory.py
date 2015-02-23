@@ -18,6 +18,7 @@ def create_app(config):
     import os
     from flask import Flask
     from flask.ext.babel import Babel
+    from flask.ext.cors import CORS
     from .components import api, pages
     from .components.commons import context_processors, encoders
 
@@ -31,12 +32,14 @@ def create_app(config):
     app = Flask(app_label, template_folder=template_folder,
                 static_folder=static_folder, static_url_path='/static')
     trans = Babel()
+    cors = CORS()
 
     # Configure the app with defaults
     app.config.from_object(config)
 
     # Set app core services
     trans.init_app(app)
+    cors.init_app(app)
 
     # Register routable components
     app.register_blueprint(api.blueprint)
