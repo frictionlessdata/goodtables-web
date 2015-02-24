@@ -7,17 +7,14 @@
 
 {% set summary = report.summary %}
 {% set columns = report.summary.columns %}
+{% set header_index = report.summary.header_index %}
 {% set total_row_count = summary.total_row_count %}
 {% set total_column_count = columns|length %}
 {% set bad_column_percent = ((summary.bad_column_count / total_column_count) * 100)|int %}
 {% set bad_row_percent = ((summary.bad_row_count / total_row_count) * 100)|int %}
-{% set bad_cell_count = 10 %}
-{% set results = [
-{'data': {'this': ['first', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']}},
-{'data': {'this': ['second', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']}},
-{'data': {'this': ['third', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']}}
-
-] %}
+{% set bad_cell_count = 'XX' %}
+{# MVP #}
+{% set results = report.structure.results + report.schema.results %}
 
 <h1>
     {% trans %}Report{% endtrans %}
@@ -93,10 +90,10 @@
         </p>
 
         <div id="results-sample" class="table-responsive">
-            <table class="table table-striped table-bordered">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>0</th>
+                        <th>{#{{ header_index }}#}</th>
                         {% for column in columns %}
                         <th>{{ column.name }} {#({{ column.index }})#}</th>
                         {% endfor %}
@@ -105,21 +102,29 @@
                 <tbody>
                     {% for result in results %}
 
-                    {# the tr spacing etc is not good semantic markup, but does the job #}
+                    {% if not result.column_index %}
+                    {% set row_class = 'bg-danger' %}
+                    {% else %}
+                    {% set row_class = '' %}
+                    {% endif %}
 
-                    <tr class="result-row-group">
+                    <tr class="result-row {{ row_class }}">
                         <td>{{ result.row_index }}</td>
-                        {% for cell in result.data.this %}
-                        {% if result.column_index and (loop.index == result.column_index) %}
+                        {% for cell in result.result_context %}
+                        {% if result.column_index and (loop.index0 == result.column_index) %}
                         {% set cell_class = 'bg-danger' %}
                         {% else %}
-                        {# the whole row is errored #}
-                        {% set cell_class = 'bg-warning' %}
+                        {% set cell_class = '' %}
                         {% endif %}
                         <td class="{{ cell_class }}">{{ cell }}</td>
                         {% endfor %}
                     </tr>
 
+                    <tr class="result-detail">
+                        <td rowspan="{{ columns|length }}"><strong>{{ result.result_type }}</strong>: {{ result.result_message }}</td>
+                    </tr>
+
+                    {# the tr spacing etc is not good semantic markup, but does the job #}
                     <tr class="result-row-spacer"><td></td></tr>
 
                     {% endfor %}
