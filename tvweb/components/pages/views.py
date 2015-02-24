@@ -52,3 +52,16 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         if data['form'].validate_on_submit():
             data.update(self.run_pipeline(with_permalinks=True))
         return render_template(self.template, **data)
+
+
+class Help(views.MethodView):
+
+    """Return a Help page."""
+
+    template = 'pages/help.html'
+
+    def get_data(self, **kwargs):
+        return {}
+
+    def get(self, **kwargs):
+        return render_template(self.template, **self.get_data(**kwargs))
