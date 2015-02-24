@@ -9,7 +9,7 @@ import os
 
 DEBUG = True
 SECRET_KEY = 'j$p^=yen)f#0lbfg#+*ip^2ufca4@8z1l2$jugael#z+n@ksasas2323h32'
-TVWEB_NAME = 'Table Validation'
+TVWEB_NAME = 'Tabulator'
 TVWEB_SCHEME = os.environ.get('TVWEB_SCHEME', 'http://')
 TVWEB_DOMAIN = os.environ.get('TVWEB_DOMAIN', '127.0.0.1:5000')
 TVWEB_URL = '{0}{1}'.format(TVWEB_SCHEME, TVWEB_DOMAIN)

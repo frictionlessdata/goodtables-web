@@ -1,39 +1,24 @@
 {% extends 'base.html' %}
 {% from "macros/form.html" import render_form, render_field %}
-{% from "macros/report.html" import display_report %}
 
 {% block content %}
-<section id="welcome-section" class="row">
+
+<section id="welcome" class="row">
     <div class="col-md-12">
         <h1>{{ name }}</h1>
-        <p>{{ name }} {% trans %}is a free hosted service for validating tabular data.{% endtrans %}</p>
+        <p>{{ name }} {% trans -%}is a free hosted service for validating tabular data. Add a data source (a CSV file), with an optional a schema, and click <strong>Validate</strong> to run the validation pipeline.{%- endtrans %}</p>
     </div>
 </section>
-<section id="form-section" class="row">
-    <div class="col-md-6">
-        {{ render_form(form, 'run_form', request.url, with_files=True) }}
+
+<section id="validate" class="row">
+    <div class="col-md-12">
+        {{ render_form(form, 'run_form', action='/reports', action_name='Validate', with_files=True) }}
     </div>
-    <div class="col-md-6">
+</section>
 
-        {% if report %}
-        <h2>
-            {% trans %}Report{% endtrans %}
-            {% if generate_report %}
-            <span class="pull-right">
-                <a class="btn btn-primary" href="{{ generate_report }}" title="Generate a live report for this data">Report Link</a>
-            </span>
-            {% endif %}
-        </h2>
-        <p>
-            The data is <strong>{% if success %}{% trans %}valid{% endtrans %}{% else %}{% trans %}invalid{% endtrans %}{% endif %}</strong>.
-        </p>
-        <div>
-            {{ display_report(report) }}
-        </div>
-        {% endif %}
-
-        <p>&nbsp;</p>
-        <h4>{% trans %}Problem?{% endtrans %}</h4>
+<section id="problem" class="row">
+    <div class="col-md-12">
+        <h2>{% trans %}Problem?{% endtrans %}</h2>
         <p>
             {% trans -%}
             This is alpha software, and we expect bugs and weirdness. You can help by opening an issue for us to report any problems.
@@ -43,20 +28,50 @@
         </p>
     </div>
 </section>
-<section id="docs-section" class="row">
+
+<section id="documentation" class="row">
     <div class="col-md-12">
         <h2>{% trans %}Documentation{% endtrans %}</h2>
         <p>
-            {% trans %}An overview of what you can do here.{% endtrans %}
+            {% trans %}What can you do here?{% endtrans %}
         </p>
         <h3>{% trans %}UI{% endtrans %}</h3>
         <p>
-            {% trans %}Stuff exposed over UI{% endtrans %}
+            {% trans -%}You can use the form above to validate a data source (CSV) with an optional schema. When the validation is complete, you'll recieve a report indicating whether the data is valid, with some detailed information on what exactly is wrong, and how you can fix it.{%- endtrans %}
+        </p>
+        <p>
+            {% trans -%}If you are validating data via a URL that is publicly accessible on the web, your report will also feature some links that can be used to share the report results with others.{%- endtrans %}
         </p>
         <h3>{% trans %}API{% endtrans %}</h3>
         <p>
-            {% trans %}Stuff exposed by working with the API{% endtrans %}
+            {% trans %}The API is for use by developers, and exposes some additional parameters for running data against a validation pipeline.{% endtrans %}
         </p>
+        <h4>{% trans %}Endpoints{% endtrans %}</h4>
+        <h5><code>/api</code> ({% trans %}API Index{% endtrans %})</h4>
+        <ul>
+            <li>{% trans %}A JSON object with an <code>endpoints</code> property that describes all API endpoints{% endtrans %}</li>
+        </ul>
+        <h5><code>/api/run</code> ({% trans %}Validation Runner{% endtrans %})</h4>
+        <ul>
+            <li><code>POST</code> to validate data</li>
+            <li><code>GET</code> to validate data</li>
+        </ul>
+        <p>
+            {% trans %}Both the <code>POST</code> and <code>GET</code> methods support the same parameters. These parameters are described below.{% endtrans %}
+        </p>
+        <h4>{% trans %}Configuration parameters{% endtrans %}</h4>
+        <p>
+            {% trans -%}The Web API supports a subset of all parameters supported by{% endtrans %} <a target="_blank" href="http://tabular-validator.readthedocs.org/en/latest/" title="{% trans %}Tabular Validator{% endtrans %}">{% trans %}Tabular Validator{% endtrans %}</a>
+        </p>
+        <ul>
+            <li><code>data</code>: (required) Any file, URL to a file, or string of data</li>
+            <li><code>schema</code>: (default. None) This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator</li>
+            <li><code>report_limit</code>: (default. 1000, max. 1000) An integer that sets a limit on the amount of report results a validator can generate. Validation will cease when this amount is reached</li>
+            <li><code>row_limit</code>: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.</li>
+            <li><code>fail_fast</code>: (default True) A boolean to set whether the run will fail on first error, or not.</li>
+            <li><code>format</code>: (default 'csv') 'csv' or 'excel' - the format of the file.</li>
+        </ul>
     </div>
 </section>
+
 {% endblock content %}

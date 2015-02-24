@@ -86,13 +86,20 @@ def resolve_payload_item(key, payload):
         return None
 
 
-def get_reporturl(payload):
+def get_report_permalinks(payload):
 
     if not isinstance(payload['data'], (io.IOBase, FileStorage)) and \
            compat.parse.urlparse(payload['data']).scheme in REMOTE_SCHEMES:
         if not hasattr(payload.get('schema'), 'filename'):
             domain = app.config['TVWEB_URL']
-            run = url_for('api.run')
+            api_fragment = url_for('api.run')
+            ui_fragment = url_for('pages.reports')
             params = compat.urlencode({'data': payload['data'], 'schema': payload['schema'] or ''})
-            return '{0}{1}?{2}'.format(domain, run, params)
-    return None
+            permalinks = {
+                'html': '{0}{1}?{2}'.format(domain, ui_fragment, params),
+                'json': '{0}{1}?{2}'.format(domain, api_fragment, params)
+            }
+
+            return permalinks
+
+    return {}

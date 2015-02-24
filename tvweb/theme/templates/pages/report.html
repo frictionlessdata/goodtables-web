@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% from "macros/report.html" import display_report %}
+
+
+{% block content %}
+
+{% if report %}
+<h1>
+    {% trans %}Report{% endtrans %}
+    {% if permalinks %}
+    <span class="pull-right">
+        <a class="btn btn-primary" href="{{ permalinks.json }}" title="">JSON Link</a>
+        <a class="btn btn-primary" href="{{ permalinks.html }}" title="">HTML Link</a>
+    </span>
+    {% endif %}
+</h1>
+
+<section id="report">
+    {{ display_report(report) }}
+</section>
+{% else %}
+<h1>
+    {% trans %}Oops{% endtrans %}.
+</h1>
+<p>
+    {% trans %}There is no report data to display{% endtrans %}.
+    <a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+</p>
+{% endif %}
+
+{% endblock content %}

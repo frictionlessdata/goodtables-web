@@ -164,7 +164,8 @@
 
 {% macro render_form(form, form_name, action='', method='POST', as_xhr=False,
                      with_labels=False, actions=None, form_name_uniquify=None,
-                     hide_action=False, data=None, with_files=False) -%}
+                     hide_action=False, action_name='Submit', action_class='success',
+                     data=None, with_files=False) -%}
 
 {#
     Docs:
@@ -256,7 +257,7 @@
 
         {% else %}
         {# if no action was passed, just render a default action for the form #}
-        {{ render_action() }}
+        {{ render_action(name=action_name, class=action_class) }}
         {% endif %}
 
         <script>
