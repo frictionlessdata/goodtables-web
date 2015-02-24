@@ -9,10 +9,12 @@ from flask import current_app as app
 
 
 def inject_app_data():
+    now = datetime.datetime.now()
     return {
         'name': app.config['TVWEB_NAME'],
         'domain': app.config['TVWEB_URL'],
         'sponsor': app.config['TVWEB_SPONSOR'],
         'new_issue': app.config['TVWEB_REPORT_ISSUE'],
-        'year': datetime.datetime.now().year
+        'datetime': now.strftime('%a %b %d at %I:%M %p'),
+        'year': now.year
     }

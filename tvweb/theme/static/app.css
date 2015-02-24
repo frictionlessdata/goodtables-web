@@ -44,3 +44,7 @@ code {
 .error {
   color: red;
 }
+
+.result-row-spacer {
+  height: 1.5em;
+}
