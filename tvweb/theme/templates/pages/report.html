@@ -5,17 +5,6 @@
 
 {% if report %}
 
-{% set summary = report.summary %}
-{% set columns = report.summary.columns %}
-{% set header_index = report.summary.header_index %}
-{% set total_row_count = summary.total_row_count %}
-{% set total_column_count = columns|length %}
-{% set bad_column_percent = ((summary.bad_column_count / total_column_count) * 100)|int %}
-{% set bad_row_percent = ((summary.bad_row_count / total_row_count) * 100)|int %}
-{% set bad_cell_count = 'XX' %}
-{# MVP #}
-{% set results = report.structure.results + report.schema.results %}
-
 <h1>
     {% trans %}Report{% endtrans %}
     {% if permalinks %}
@@ -52,14 +41,14 @@
         {% if success %}
 
         <p class="lead">
-            {% trans %}We processed a total of <strong>{{ total_row_count }}</strong> rows. Column-wise, we found <strong>{{ total_column_count }}</strong> columns. It's all good!{% endtrans %}
+            {% trans %}We processed a total of <strong>{{ row_count }}</strong> rows. Column-wise, we found <strong>{{ column_count }}</strong> columns. It's all good!{% endtrans %}
         </p>
 
         {% else %}
 
         <p class="lead">
-            {% trans %}We processed a total of <strong>{{ total_row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data.{% endtrans %}
-            {% trans %}When viewing the data column-wise, we found that out of the <strong>{{ total_column_count }}</strong> columns, <strong>{{ bad_column_percent }}%</strong> had invalid data.{% endtrans %}
+            {% trans %}We processed a total of <strong>{{ row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data.{% endtrans %}
+            {% trans %}When viewing the data column-wise, we found that out of the <strong>{{ column_count }}</strong> columns, <strong>{{ bad_column_percent }}%</strong> had invalid data.{% endtrans %}
         </p>
         <p class="lead">
             <u>{% trans %}All in all, a total of <strong>{{ bad_cell_count }}</strong> cells have invalid data. Let's have a look at the details.{% endtrans %}</u>
@@ -86,21 +75,21 @@
     <div id="detail">
         <h2>{% trans %}Details{% endtrans %}</h2>
         <p>
-            {% trans %}Below we have a snapshot of the first 20 errors found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
+            {% trans %}Below we have a snapshot of the {{ result_detail_phrase }} errors found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
         </p>
 
         <div id="results-sample" class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>{#{{ header_index }}#}</th>
+                        <th>INDEX{#{{ header_index }}#}</th>
                         {% for column in columns %}
                         <th>{{ column.name }} {#({{ column.index }})#}</th>
                         {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in results %}
+                    {% for result in flat_results %}
 
                     {% if not result.column_index %}
                     {% set row_class = 'bg-danger' %}
@@ -121,11 +110,15 @@
                     </tr>
 
                     <tr class="result-detail">
-                        <td rowspan="{{ columns|length }}"><strong>{{ result.result_type }}</strong>: {{ result.result_message }}</td>
+                        <td colspan="{{ column_count + 1 }}">
+                            <h4>{% trans %}Row results{% endtrans %}</h4>
+                            <h5>1. {{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</h5>
+                            <p>{{ result.result_message }}<br /><a class="label label-info" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a></p>
+                        </td>
                     </tr>
 
                     {# the tr spacing etc is not good semantic markup, but does the job #}
-                    <tr class="result-row-spacer"><td></td></tr>
+                    <tr class="result-row-spacer"><td colspan="{{ column_count + 1 }}"></td></tr>
 
                     {% endfor %}
                 </tbody>
