@@ -112,7 +112,7 @@
                             <h4>{% trans %}Row results{% endtrans %}</h4>
                             {% for k, v in result_group.items() %}
                             {% for result in v.results %}
-                            <h5>1. {{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</h5>
+                            <h5>{{ loop.index }}. {{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</h5>
                             <p>{{ result.result_message }}<br /><a target="_blank" class="label label-info" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a></p>
                             {% endfor %}
                             {% endfor %}
