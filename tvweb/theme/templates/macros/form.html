@@ -79,15 +79,17 @@
     {% else %}
     <label for="{{ field.id }}"
            class="control-label{% if field.flags.required %} required{% endif %}{% if field.errors %} marked-required {% endif %}">
-        {{ field.label.text }}
+        {{ field.label.text|safe }}
     </label>
     {% endif %}
     {% endif %}
 
     {% if field.type == 'BooleanField' %}
+    {% if with_label %}
     <label>
         {{ field.label.text|safe }}
     </label>
+    {% endif %}
     <span class="checkbox">
         {{ field(class_=class_, **kwargs) }}
         <label for="{{ field.name|safe }}" class="description">{% if field.description.placeholder %}{{field.description.placeholder|safe}}{% endif %}</label>

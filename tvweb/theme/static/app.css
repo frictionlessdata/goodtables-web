@@ -31,7 +31,15 @@ code {
 }
 .result-row-spacer {
   height: 1.5em;
-  background-color: #e5e5e5;
+}
+/* default form state */
+.form-wrap-schema-fields,
+.form-group-schema_file,
+.form-group-data_file {
+  display: none;
+}
+.bootstrap-select {
+  width: 80px !important;
 }
 /* footer */
 #footer {
@@ -39,7 +47,7 @@ code {
   width: 100%;
   position: relative;
   z-index: 99;
-  color: #ffffff;
+  color: white;
   margin-top: 20px;
 }
 #footer .container {
@@ -79,175 +87,7 @@ code {
   color: rgba(255, 255, 255, 0.6);
 }
 #footer .container a:hover {
-  color: #ffffff;
-}
-#footer .container a[rel~="external"]:after {
-  display: none;
-}
-#footer .container .footer-primary-links {
-  display: none;
-}
-#footer .container .footer-secondary-links li {
-  font-size: .8em;
-  font-weight: 400;
-}
-#footer .container .footer-secondary-links ul.footer-social {
-  padding-right: 0;
-}
-#footer .container .footer-secondary-links ul.footer-social li {
-  font-size: 1em;
-  padding-right: .7em;
-  display: inline-block;
-}
-#footer .container .footer-secondary-links ul.footer-social li:last-child {
-  padding-right: 0;
-}
-#footer .container .footer-secondary-links ul.footer-social img {
-  opacity: .7;
-  height: 1.6em;
-  padding: 1px;
-}
-#footer .container .footer-secondary-links ul.footer-social img:hover {
-  opacity: 1;
-}
-#footer hr {
-  border-color: rgba(255, 255, 255, 0.4);
-}
-#footer p {
-  font-size: 0.75em;
-  color: rgba(255, 255, 255, 0.4);
-}
-/* footer */
-#footer {
-  background: #333333;
-  width: 100%;
-  position: relative;
-  z-index: 99;
-  color: #ffffff;
-  margin-top: 20px;
-}
-#footer .container {
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-#footer .container > :last-child {
-  clear: both;
-}
-#footer .container .footer-logo {
-  display: block;
-  margin-top: 1em;
-}
-#footer .container .footer-logo img {
-  height: 2em;
-}
-#footer .container ul {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-left: 0;
-}
-@media (min-width: 992px) {
-  #footer .container ul {
-    text-align: right;
-  }
-}
-#footer .container ul li {
-  display: block;
-}
-@media (min-width: 992px) {
-  #footer .container ul li {
-    display: inline-block;
-    padding-right: 1em;
-  }
-}
-#footer .container a {
-  color: rgba(255, 255, 255, 0.6);
-}
-#footer .container a:hover {
-  color: #ffffff;
-}
-#footer .container a[rel~="external"]:after {
-  display: none;
-}
-#footer .container .footer-primary-links {
-  display: none;
-}
-#footer .container .footer-secondary-links li {
-  font-size: .8em;
-  font-weight: 400;
-}
-#footer .container .footer-secondary-links ul.footer-social {
-  padding-right: 0;
-}
-#footer .container .footer-secondary-links ul.footer-social li {
-  font-size: 1em;
-  padding-right: .7em;
-  display: inline-block;
-}
-#footer .container .footer-secondary-links ul.footer-social li:last-child {
-  padding-right: 0;
-}
-#footer .container .footer-secondary-links ul.footer-social img {
-  opacity: .7;
-  height: 1.6em;
-  padding: 1px;
-}
-#footer .container .footer-secondary-links ul.footer-social img:hover {
-  opacity: 1;
-}
-#footer hr {
-  border-color: rgba(255, 255, 255, 0.4);
-}
-#footer p {
-  font-size: 0.75em;
-  color: rgba(255, 255, 255, 0.4);
-}
-/* footer */
-#footer {
-  background: #333333;
-  width: 100%;
-  position: relative;
-  z-index: 99;
-  color: #ffffff;
-  margin-top: 20px;
-}
-#footer .container {
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-#footer .container > :last-child {
-  clear: both;
-}
-#footer .container .footer-logo {
-  display: block;
-  margin-top: 1em;
-}
-#footer .container .footer-logo img {
-  height: 2em;
-}
-#footer .container ul {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-left: 0;
-}
-@media (min-width: 992px) {
-  #footer .container ul {
-    text-align: right;
-  }
-}
-#footer .container ul li {
-  display: block;
-}
-@media (min-width: 992px) {
-  #footer .container ul li {
-    display: inline-block;
-    padding-right: 1em;
-  }
-}
-#footer .container a {
-  color: rgba(255, 255, 255, 0.6);
-}
-#footer .container a:hover {
-  color: #ffffff;
+  color: white;
 }
 #footer .container a[rel~="external"]:after {
   display: none;

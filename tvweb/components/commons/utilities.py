@@ -56,6 +56,8 @@ def get_runargs():
     parser.add_argument('schema_file', type=FileStorage, location=location)
     parser.add_argument('report_limit', type=int, default=1000)
     parser.add_argument('row_limit', type=int, default=20000)
+    parser.add_argument('fail_fast', type=bool)
+    parser.add_argument('format')
     return parser.parse_args()
 
 

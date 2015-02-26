@@ -32,14 +32,50 @@ class OnlyIfNot(object):
                 raise validators.ValidationError(self.message)
 
 
+data_url_args = {
+    'validators': [validators.URL(), OnlyIfNot('data_file'), validators.Optional()],
+    'description': {
+        'placeholder': 'Add your data source here.',
+        'hint': ''
+    }
+}
+data_file_args = data_url_args.copy()
+data_file_args['validators'] = [OnlyIfNot('data_file'), validators.Optional()]
+schema_url_args = {
+    'validators': [validators.URL(), OnlyIfNot('data_file'), validators.Optional()],
+    'description': {
+        'placeholder': 'Add your schema source here.',
+        'hint': ''
+    }
+}
+schema_file_args = schema_url_args.copy()
+schema_file_args['validators'] = [OnlyIfNot('schema_file'), validators.Optional()]
+format_args = {
+    'choices': [('csv', 'CSV'), ('excel', 'Excel'), ('json', 'JSON')],
+    'description': {
+        'placeholder': 'CSV',
+        'hint': ''
+    }
+}
+with_schema_args = {
+    'label': 'Add a schema?',
+    'description': {
+        'hint': ''
+    }
+}
+fail_fast_args = {
+    'label': 'Fail fast?',
+    'description': {
+        'hint': ''
+    }
+}
+
+
 class RunForm(Form):
-    data_url = fields.StringField(validators=[validators.URL(),
-                                              OnlyIfNot('data_file'),
-                                              validators.Optional()])
-    schema_url = fields.StringField(validators=[validators.URL(),
-                                                OnlyIfNot('schema_file'),
-                                                validators.Optional()])
-    data_file = fields.FileField(validators=[OnlyIfNot('data_url'),
-                                             validators.Optional()])
-    schema_file = fields.FileField(validators=[OnlyIfNot('schema_url'),
-                                               validators.Optional()])
+    data_url = fields.StringField(**data_url_args)
+    data_file = fields.FileField(**data_file_args)
+    format = fields.SelectField(**format_args)
+    with_schema = fields.BooleanField(default=False, **with_schema_args)
+    schema_url = fields.StringField(**schema_url_args)
+    schema_file = fields.FileField(**schema_file_args)
+    fail_fast = fields.BooleanField(default=True, **fail_fast_args)
