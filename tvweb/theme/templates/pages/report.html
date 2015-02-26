@@ -89,31 +89,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in flat_results %}
 
-                    {% if not result.column_index %}
-                    {% set row_class = 'bg-danger' %}
-                    {% else %}
-                    {% set row_class = '' %}
-                    {% endif %}
-
-                    <tr class="result-row {{ row_class }}">
-                        <td>{{ result.row_index }}</td>
-                        {% for cell in result.result_context %}
-                        {% if result.column_index and (loop.index0 == result.column_index) %}
-                        {% set cell_class = 'bg-danger' %}
-                        {% else %}
-                        {% set cell_class = '' %}
-                        {% endif %}
-                        <td class="{{ cell_class }}">{{ cell }}</td>
+                    {% for result_group in grouped_results %}
+                    <tr class="result-row">
+                        {% for k, v in result_group.items() %}
+                        <td>{{ k }}</td>
+                        {% for cell in v.result_context %}
+                            {% set cell_vars = {'class': ''} %}
+                            {% set cell_index = loop.index0 %}
+                            {% for result in v.results %}
+                                {% if result.column_index and (cell_index == result.column_index) %}
+                                    {{ cell_vars.update({'class': 'bg-danger'}) }}
+                                {% endif %}
+                            {% endfor %}
+                            <td class="{{ cell_vars.class }}">{{ cell }}</td>
+                        {% endfor %}
                         {% endfor %}
                     </tr>
 
                     <tr class="result-detail">
                         <td colspan="{{ column_count + 1 }}">
                             <h4>{% trans %}Row results{% endtrans %}</h4>
+                            {% for k, v in result_group.items() %}
+                            {% for result in v.results %}
                             <h5>1. {{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</h5>
                             <p>{{ result.result_message }}<br /><a class="label label-info" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a></p>
+                            {% endfor %}
+                            {% endfor %}
                         </td>
                     </tr>
 
@@ -121,6 +123,7 @@
                     <tr class="result-row-spacer"><td colspan="{{ column_count + 1 }}"></td></tr>
 
                     {% endfor %}
+
                 </tbody>
             </table>
         </div>

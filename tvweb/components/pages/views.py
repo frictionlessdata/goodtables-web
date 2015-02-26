@@ -57,19 +57,41 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
 
     def _process_report_data(self, report):
 
-        def flatten_results(report):
-            """Flatten results in a report for Web UI."""
-            raw_results = report['results']
+        def group_results(report):
+            """Group report results by row for Web UI."""
 
-            return raw_results
+            _rows = set([r['row_index'] for r in report['results'] if r['row_index'] is not None])
 
-        flat_results = flatten_results(report)
-        flat_result_count = len(flat_results)
+            def make_groups(results, rows):
+                groups = {}
 
-        if flat_result_count > 20:
-            result_detail_phrase = 'first {0}'.format(flat_result_count)
+                for row in rows:
+                    groups.update({
+                        row: {
+                            'row_index': row,
+                            'results': []
+                        }
+                    })
+
+                for index, result in enumerate(results):
+                    if result['row_index'] is not None:
+
+                        if index == 0:
+                            groups[result['row_index']]['result_context'] = result['result_context']
+
+                        groups[result['row_index']]['results'].append(result)
+
+                return groups
+
+            return [{k: v} for k, v in make_groups(report['results'], _rows).items()]
+
+        grouped_results = group_results(report)
+        result_count = len(grouped_results)
+
+        if result_count > 20:
+            result_detail_phrase = 'first {0}'.format(result_count)
         else:
-            result_detail_phrase = '{0}'.format(flat_result_count)
+            result_detail_phrase = '{0}'.format(result_count)
 
         processed = {
             'summary': report['summary'],
@@ -80,8 +102,8 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
             'bad_column_percent': int((report['summary']['bad_column_count'] / len(report['summary']['columns'])) * 100),
             'bad_row_percent': int((report['summary']['bad_row_count'] / report['summary']['total_row_count']) * 100),
             'bad_cell_count': 'NaN',
-            'flat_results': flat_results,
-            'flat_result_count': flat_result_count,
+            'grouped_results': grouped_results,
+            'result_count': result_count,
             'result_detail_phrase': result_detail_phrase
         }
 
