@@ -41,6 +41,9 @@ code {
 .bootstrap-select {
   width: 80px !important;
 }
+tr.result-detail {
+  font-size: 0.925em;
+}
 /* footer */
 #footer {
   background: #333333;

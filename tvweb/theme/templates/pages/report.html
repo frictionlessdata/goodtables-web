@@ -115,7 +115,7 @@
                             <strong>{{ loop.index }}.
                                      <span class="label label-info">{{ result.validator|title }}</span>
                                      {{ result.result_name }}
-                                     {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}&nbsp;
+                                     {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}
                             </strong>:&nbsp;
                             {{ result.result_message }}&nbsp;<a target="_blank" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a>
                             </p>
