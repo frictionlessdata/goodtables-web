@@ -77,7 +77,6 @@
         <p>
             {% trans %}Below we have a snapshot of the {{ result_detail_phrase }} errors found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
         </p>
-
         <div id="results-sample" class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -102,7 +101,7 @@
                                     {{ cell_vars.update({'class': 'bg-danger'}) }}
                                 {% endif %}
                             {% endfor %}
-                            <td class="{{ cell_vars.class }}">{{ cell }}</td>
+                        <td class="{{ cell_vars.class }}">{{ cell }}</td>
                         {% endfor %}
                         {% endfor %}
                     </tr>
@@ -112,8 +111,14 @@
                             <h4>{% trans %}Row results{% endtrans %}</h4>
                             {% for k, v in result_group.items() %}
                             {% for result in v.results %}
-                            <h5>{{ loop.index }}. {{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</h5>
-                            <p>{{ result.result_message }}<br /><a target="_blank" class="label label-info" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a></p>
+                            <p>
+                            <strong>{{ loop.index }}.
+                                     <span class="label label-info">{{ result.validator|title }}</span>
+                                     {{ result.result_name }}
+                                     {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}&nbsp;
+                            </strong>:&nbsp;
+                            {{ result.result_message }}&nbsp;<a target="_blank" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a>
+                            </p>
                             {% endfor %}
                             {% endfor %}
                         </td>

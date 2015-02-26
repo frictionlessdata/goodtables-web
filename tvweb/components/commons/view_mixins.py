@@ -16,8 +16,6 @@ class RunPipelineMixin(object):
 
         payload = utilities.clean_payload(utilities.get_runargs())
         data = {}
-        data['data'] = payload['data']
-        data['schema'] = payload['schema']
         data['success'] = False
         data['report'] =  app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']
 

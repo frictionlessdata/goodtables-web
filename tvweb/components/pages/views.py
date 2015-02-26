@@ -75,10 +75,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
 
                 for index, result in enumerate(results):
                     if result['row_index'] is not None:
-
-                        if index == 0:
-                            groups[result['row_index']]['result_context'] = result['result_context']
-
+                        groups[result['row_index']]['result_context'] = result['result_context']
                         groups[result['row_index']]['results'].append(result)
 
                 return groups
