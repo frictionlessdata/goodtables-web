@@ -6,12 +6,13 @@
 <section id="welcome" class="row">
     <div class="col-md-12">
         <h1>{{ name }}</h1>
-        <p>{{ name }} {% trans -%}is a free hosted service for validating tabular data. Add a data source (a CSV file), with an optional a schema, and click <strong>Validate</strong> to run the validation pipeline.{%- endtrans %}</p>
+        <p class="lead">{{ name }} {% trans -%}is a <span class="text-success">free hosted service</span> for validating tabular data. Add a data source (a CSV file), with an optional a schema, and click <strong>Validate</strong> to run the validation pipeline.{%- endtrans %}</p>
     </div>
 </section>
 
 <section id="validate" class="row">
     <div class="col-md-6">
+        <h2>Get started now</h2>
         {% call render_form(form, 'run_form', action='/reports',
         action_name='Validate', with_files=True) %}
 
