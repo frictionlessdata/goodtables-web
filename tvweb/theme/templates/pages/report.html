@@ -31,7 +31,7 @@
 
         {%- endif %}
 
-        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em> using this <mark>data</mark> and this <mark>schema</mark>.{% endtrans %}</p>
+        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em> using this <a href="{{ data }}" title=""><mark>data</mark></a> and this <a href="{{ schema }}" title=""><mark>schema</mark></a>.{% endtrans %}</p>
     </div>
 
     <div id="summary">
