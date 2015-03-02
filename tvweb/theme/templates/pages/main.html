@@ -3,70 +3,72 @@
 
 {% block content %}
 
-<section id="welcome" class="row">
-    <div class="col-md-12">
-        <h1>{{ name }}</h1>
-        <p class="lead">{{ name }} {% trans -%}is a <span class="text-success">free hosted service</span> for validating tabular data. Add a data source (a CSV file), with an optional a schema, and click <strong>Validate</strong> to run the validation pipeline.{%- endtrans %}</p>
-    </div>
-</section>
+<div class="banner">
 
-<section id="validate" class="row">
-    <div class="col-md-6">
-        <h2>Get started now</h2>
-        {% call render_form(form, 'run_form', action='/reports',
-        action_name='Validate', with_files=True) %}
-
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Add a data table</h4>
-            </div>
-            <div class="col-md-2">
-                <input class="data-field-toggle" type="checkbox" checked data-toggle="toggle"
-                       data-on="URL" data-off="File" data-onstyle="info" data-offstyle="warning">
-            </div>
-            <div class="col-md-8">
-                {{ render_field(form.data_url, with_label=False) }}
-                {{ render_field(form.data_file, with_label=False) }}
-            </div>
-            <div class="col-md-2">
-                {{ render_field(form.format, with_label=False) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Add a data schema</h4>
-            </div>
-            <div class="col-md-6">
-                {{ render_field(form.with_schema, with_label=False) }}
-            </div>
-        </div>
-
-        <div class="row form-wrap-schema-fields">
-            <div class="col-md-2">
-                <input class="schema-field-toggle" type="checkbox" checked data-toggle="toggle"
-                       data-on="URL" data-off="File" data-onstyle="info" data-offstyle="warning">
-            </div>
-            <div class="col-md-10">
-                {{ render_field(form.schema_url, with_label=False) }}
-                {{ render_field(form.schema_file, with_label=False) }}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Fail fast</h4>
-            </div>
-            <div class="col-md-6">
-                {{ render_field(form.fail_fast, with_label=False) }}
-            </div>
-        </div>
-        {% endcall %}
-    </div>
-</section>
-
-<hr />
-
+  <section id="welcome" class="row">
+      <div class="col-md-12">
+          <h1>{{ name }}</h1>
+          <p class="lead">{{ name }} {% trans -%}is a <span class="text-success">free hosted service</span> for validating tabular data. Add a data source (a CSV file), with an optional a schema, and click <strong>Validate</strong> to run the validation pipeline.{%- endtrans %}</p>
+      </div>
+  </section>
+  
+  <section id="validate" class="row">
+      <div class="col-md-6">
+          <h2>Get started now</h2>
+          {% call render_form(form, 'run_form', action='/reports',
+          action_name='Validate', with_files=True) %}
+  
+          <div class="row">
+              <div class="col-md-12">
+                  <h4>Add a data table</h4>
+              </div>
+              <div class="col-md-2">
+                  <input class="data-field-toggle" type="checkbox" checked data-toggle="toggle"
+                         data-on="URL" data-off="File" data-onstyle="info" data-offstyle="warning">
+              </div>
+              <div class="col-md-8">
+                  {{ render_field(form.data_url, with_label=False) }}
+                  {{ render_field(form.data_file, with_label=False) }}
+              </div>
+              <div class="col-md-2">
+                  {{ render_field(form.format, with_label=False) }}
+              </div>
+          </div>
+  
+          <div class="row">
+              <div class="col-md-6">
+                  <h4>Add a data schema</h4>
+              </div>
+              <div class="col-md-6">
+                  {{ render_field(form.with_schema, with_label=False) }}
+              </div>
+          </div>
+  
+          <div class="row form-wrap-schema-fields">
+              <div class="col-md-2">
+                  <input class="schema-field-toggle" type="checkbox" checked data-toggle="toggle"
+                         data-on="URL" data-off="File" data-onstyle="info" data-offstyle="warning">
+              </div>
+              <div class="col-md-10">
+                  {{ render_field(form.schema_url, with_label=False) }}
+                  {{ render_field(form.schema_file, with_label=False) }}
+              </div>
+          </div>
+  
+          <div class="row">
+              <div class="col-md-6">
+                  <h4>Fail fast</h4>
+              </div>
+              <div class="col-md-6">
+                  {{ render_field(form.fail_fast, with_label=False) }}
+              </div>
+          </div>
+          {% endcall %}
+      </div>
+  </section>
+  
+  <hr />
+</div>
 <section id="problem" class="row">
     <div class="col-md-12">
         <h2>{% trans %}Problem?{% endtrans %}</h2>

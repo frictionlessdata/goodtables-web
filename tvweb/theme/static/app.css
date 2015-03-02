@@ -42,6 +42,10 @@ thead td {
 #publishers {
   margin-bottom: 2em;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 html {
   position: relative;
   min-height: 100%;
@@ -67,6 +71,11 @@ body > .container {
 }
 .navbar-default .navbar-brand:hover {
   color: #7ab800;
+}
+.banner {
+  background-color: #eeefef;
+  margin: -10px -9999rem 10px -9999rem;
+  padding: 10px 9999rem;
 }
 code {
   font-size: 80%;
