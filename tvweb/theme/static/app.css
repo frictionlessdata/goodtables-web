@@ -1,3 +1,40 @@
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+a {
+  color: #7ab800;
+}
+a:focus,
+a:hover {
+  color: #588500;
+}
+.btn-success {
+  background-color: #7ab800;
+  border-color: #7ab800;
+}
+.btn-success.active,
+.btn-success.focus,
+.btn-success:active,
+.btn-success:focus,
+.btn-success:hover,
+.open > .dropdown-toggle.btn-success {
+  background-color: #588500;
+  border-color: #588500;
+}
+.text-success {
+  color: #7ab800;
+}
 thead td {
   text-transform: uppercase;
 }
@@ -10,15 +47,26 @@ html {
   min-height: 100%;
   background-color: #333333;
 }
+body {
+  font-family: 'Lato', sans-serif;
+}
 body > .container {
   padding: 60px 15px 0;
 }
 .container .text-muted {
   margin: 20px 0;
 }
-#footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+.navbar-default {
+  background-color: #eeefef;
+  border-color: #eeefef;
+}
+.navbar-default .navbar-brand {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #7ab800;
+}
+.navbar-default .navbar-brand:hover {
+  color: #7ab800;
 }
 code {
   font-size: 80%;
@@ -44,13 +92,17 @@ code {
 tr.result-detail {
   font-size: 0.925em;
 }
+.form-control:focus {
+  border-color: #7ab800;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(122, 184, 0, 0.6);
+}
 /* footer */
 #footer {
   background: #333333;
   width: 100%;
   position: relative;
   z-index: 99;
-  color: white;
+  color: #ffffff;
   margin-top: 20px;
 }
 #footer .container {
@@ -90,7 +142,7 @@ tr.result-detail {
   color: rgba(255, 255, 255, 0.6);
 }
 #footer .container a:hover {
-  color: white;
+  color: #ffffff;
 }
 #footer .container a[rel~="external"]:after {
   display: none;

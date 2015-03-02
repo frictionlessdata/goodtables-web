@@ -1,4 +1,39 @@
 @dark-gray: #333;
+@light-gray: #eeefef;
+@accent-main: #7ab800;
+@accent-dark: darken(@accent-main, 10%);
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+a {
+  color: @accent-main;
+}
+a:focus, a:hover {
+  color: @accent-dark;
+}
+
+
+.btn-success {
+  background-color: @accent-main;
+  border-color: @accent-main;
+}
+.btn-success.active,
+.btn-success.focus,
+.btn-success:active,
+.btn-success:focus,
+.btn-success:hover,
+.open > .dropdown-toggle.btn-success {
+  background-color: @accent-dark;
+  border-color: @accent-dark;
+}
+
+
+.text-success {
+  color: @accent-main;
+}
 
 
 thead td {text-transform: uppercase;}
@@ -13,6 +48,7 @@ html {
   background-color:@dark-gray;
 }
 body {
+  font-family: 'Lato', sans-serif;
 }
 
 body > .container {
@@ -22,10 +58,22 @@ body > .container {
   margin: 20px 0;
 }
 
-#footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+
+.navbar-default {
+  background-color: @light-gray;
+  border-color: @light-gray;
+
+  .navbar-brand {
+    font-weight:800;
+    text-transform:uppercase;
+    color:@accent-main;
+    
+    &:hover {
+      color:@accent-main;
+    }
+  }
 }
+
 
 code {
   font-size: 80%;
@@ -52,6 +100,11 @@ code {
 
 tr.result-detail {
   font-size: 0.925em;
+}
+
+.form-control:focus {
+  border-color: @accent-main;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px fade(@accent-main, 60%);
 }
 
 @import "_footer";
