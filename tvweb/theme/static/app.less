@@ -1,6 +1,8 @@
 @dark-gray: #333;
 @light-gray: #eeefef;
-@accent-main: #7ab800;
+@green: #7ab800;
+@red: #eb2128;
+@accent-main: @green;
 @accent-dark: darken(@accent-main, 10%);
 
 
@@ -13,6 +15,16 @@ a {
 }
 a:focus, a:hover {
   color: @accent-dark;
+}
+
+
+.btn-primary {
+  background-color: @dark-gray;
+  border-color: @dark-gray;
+}
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+  background-color: darken(@dark-gray, 10%);
+  border-color: darken(@dark-gray, 10%);
 }
 
 
@@ -31,8 +43,14 @@ a:focus, a:hover {
 }
 
 
-.text-success {
+.text-success,
+a.text-success:hover {
   color: @accent-main;
+}
+
+.text-danger,
+a.text-danger:hover {
+  color: @red;
 }
 
 

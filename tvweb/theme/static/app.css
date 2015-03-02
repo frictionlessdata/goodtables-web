@@ -19,6 +19,19 @@ a:focus,
 a:hover {
   color: #588500;
 }
+.btn-primary {
+  background-color: #333333;
+  border-color: #333333;
+}
+.btn-primary.active,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary {
+  background-color: #1a1a1a;
+  border-color: #1a1a1a;
+}
 .btn-success {
   background-color: #7ab800;
   border-color: #7ab800;
@@ -32,8 +45,13 @@ a:hover {
   background-color: #588500;
   border-color: #588500;
 }
-.text-success {
+.text-success,
+a.text-success:hover {
   color: #7ab800;
+}
+.text-danger,
+a.text-danger:hover {
+  color: #eb2128;
 }
 thead td {
   text-transform: uppercase;
