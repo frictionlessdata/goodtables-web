@@ -123,6 +123,9 @@ tr.result-detail {
 .url_file_selector {
   padding-top: 6px;
 }
+thead {
+  background-color: white;
+}
 /* footer */
 #footer {
   background: #333333;

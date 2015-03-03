@@ -38,11 +38,13 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         return {
             'form': self.form_class(),
             'report': None,
-            'permalinks': {}
+            'permalinks': {},
+            'url_state': ''
         }
 
     def get(self, **kwargs):
         data = self.get_data(**kwargs)
+
         if request.args:
             data.update(self.run_pipeline(with_permalinks=True))
             data.update(self._process_report_data(data['report']))
@@ -53,6 +55,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         if data['form'].validate_on_submit():
             data.update(self.run_pipeline(with_permalinks=True))
             data.update(self._process_report_data(data['report']))
+            data['url_state'] = data['permalinks']['html'].strip(request.url)
         return render_template(self.template, **data)
 
     def _process_report_data(self, report):

@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 
+{% block bodyjs %}
+<script>
+    var reportUrlState = {{ url_state|tojson|safe }};
+</script>
+{{ super() }}
+{% endblock bodyjs %}
+
 {% block content %}
 
 {% if report %}
@@ -9,8 +16,8 @@
     {% trans %}Report{% endtrans %}
     {% if permalinks %}
     <span class="pull-right">
-        <a class="btn btn-primary" href="{{ permalinks.json }}" title="">JSON Link</a>
-        <a class="btn btn-primary" href="{{ permalinks.html }}" title="">HTML Link</a>
+        <a class="btn btn-primary" href="{{ permalinks.json }}" title="">{% trans %}JSON Link{% endtrans %}</a>
+        <a class="btn btn-primary" href="{{ permalinks.html }}" title="">{% trans %}HTML Link{% endtrans %}</a>
     </span>
     {% endif %}
 </h1>
@@ -31,7 +38,7 @@
 
         {%- endif %}
 
-        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em> using this <a href="{{ data }}" title=""><mark>data</mark></a> and this <a href="{{ schema }}" title=""><mark>schema</mark></a>.{% endtrans %}</p>
+        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em> using this <a target="_blank" href="{{ data_link }}" title="{{ data_link }}"><mark>data</mark></a>{% endtrans %}{% if schema_link %} {% trans  %}and this <a href="{{ schema_link }}" title="{{ schema_link }}"><mark>schema</mark></a>.{% endtrans %}{% endif %}</p>
     </div>
 
     <div id="summary">
@@ -79,9 +86,9 @@
         </p>
         <div id="results-sample" class="table-responsive">
             <table class="table table-bordered">
-                <thead>
+                <thead style="position:sticky;">
                     <tr>
-                        <th>INDEX{#{{ header_index }}#}</th>
+                        <th>#</th>
                         {% for column in columns %}
                         <th>{{ column.name }} {#({{ column.index }})#}</th>
                         {% endfor %}
@@ -98,7 +105,7 @@
                             {% set cell_index = loop.index0 %}
                             {% for result in v.results %}
                                 {% if result.column_index and (cell_index == result.column_index) %}
-                                    {{ cell_vars.update({'class': 'bg-danger'}) }}
+                                    {% do cell_vars.update({'class': 'bg-danger'}) %}
                                 {% endif %}
                             {% endfor %}
                         <td class="{{ cell_vars.class }}">{{ cell }}</td>

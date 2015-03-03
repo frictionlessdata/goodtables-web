@@ -75,4 +75,19 @@ function formUX() {
 
 }
 
+function tableUX() {
+    // stick the result table header
+    $("#results-sample thead").stick_in_parent({"offset_top": 50});
+}
+
+function urlState() {
+    // put the GETable query onto the URL for copy-pasters ;)
+    if (reportUrlState) {
+        window.location.search = reportUrlState;
+    }
+
+}
+
 formUX();
+tableUX();
+urlState();
