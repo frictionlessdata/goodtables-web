@@ -12,5 +12,5 @@ from . import views
 
 blueprint = Blueprint('api', __name__)
 api = restful.Api(blueprint)
-api.add_resource(views.Main, '/api', endpoint=compat.to_builtin_str('main'))
+blueprint.add_url_rule('/api', view_func=views.Main.as_view(compat.to_builtin_str('main')))
 api.add_resource(views.Run, '/api/run', endpoint=compat.to_builtin_str('run'))

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="documentation" class="row">
+    <div class="col-md-12">
+        <h1>{% trans %}API Docs{% endtrans %}</h1>
+        <p>
+            {% trans %}The API is for use by developers, and exposes some additional parameters for running data against a validation pipeline.{% endtrans %}
+        </p>
+        <h4>{% trans %}Endpoints{% endtrans %}</h4>
+        <h5><code>/api</code> ({% trans %}API Index{% endtrans %})</h4>
+        <ul>
+            <li>{% trans %}A JSON object with an <code>endpoints</code> property that describes all API endpoints{% endtrans %}</li>
+        </ul>
+        <h5><code>/api/run</code> ({% trans %}Validation Runner{% endtrans %})</h4>
+        <ul>
+            <li><code>POST</code> to validate data</li>
+            <li><code>GET</code> to validate data</li>
+        </ul>
+        <p>
+            {% trans %}Both the <code>POST</code> and <code>GET</code> methods support the same parameters. These parameters are described below.{% endtrans %}
+        </p>
+        <h4>{% trans %}Configuration parameters{% endtrans %}</h4>
+        <p>
+            {% trans -%}The Web API supports a subset of all parameters supported by{% endtrans %} <a target="_blank" href="http://tabular-validator.readthedocs.org/en/latest/" title="{% trans %}Tabular Validator{% endtrans %}">{% trans %}Tabular Validator{% endtrans %}</a>
+        </p>
+        <ul>
+            <li><code>data</code>: (required) Any file, URL to a file, or string of data</li>
+            <li><code>schema</code>: (default. None) This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator</li>
+            <li><code>report_limit</code>: (default. 1000, max. 1000) An integer that sets a limit on the amount of report results a validator can generate. Validation will cease when this amount is reached</li>
+            <li><code>row_limit</code>: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.</li>
+            <li><code>fail_fast</code>: (default True) A boolean to set whether the run will fail on first error, or not.</li>
+            <li><code>format</code>: (default 'csv') 'csv' or 'excel' - the format of the file.</li>
+        </ul>
+    </div>
+</section>
+
+{% endblock content %}

@@ -8,24 +8,39 @@ import os
 import io
 import uuid
 from werkzeug.datastructures import FileStorage
-from flask import current_app as app, request, url_for
+from flask import (current_app as app, request, url_for, jsonify, views,
+                   render_template)
 from flask.ext import restful
 from flask.ext.restful import inputs, reqparse
 from ..commons import utilities
 from ..commons import view_mixins
 
 
-class Main(restful.Resource):
+class Main(views.MethodView):
 
-    """Index of all API endpoints."""
+    """Content-negotiated API Index.
+
+    Via browser, returns docs. Via XHR, returns JSON of endpoints.
+
+    """
+
+    template = 'pages/api.html'
+
+    def __init__(self):
+        self.xhr = request.is_xhr
 
     def get(self):
-        return {
-            'endpoints': {
-                'index': url_for('api.main'),
-                'run': url_for('api.run')
-            }
-        }
+
+        endpoints = {'index': url_for('api.main'), 'run': url_for('api.run')}
+
+        if self.xhr:
+            data = {}
+            data.update(endpoints)
+            response = jsonify(**data)
+        else:
+            response = render_template(self.template, endpoints=endpoints)
+
+        return response
 
 
 class Run(restful.Resource, view_mixins.RunPipelineMixin):
