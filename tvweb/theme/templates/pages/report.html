@@ -38,7 +38,7 @@
 
         {%- endif %}
 
-        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em> using this <a target="_blank" href="{{ data_link }}" title="{{ data_link }}"><mark>data</mark></a>{% endtrans %}{% if schema_link %} {% trans  %}and this <a href="{{ schema_link }}" title="{{ schema_link }}"><mark>schema</mark></a>.{% endtrans %}{% endif %}</p>
+        <p>{% trans %}These results were calculated on <em>{{ datetime }}</em>{% endtrans %}{% if not data_link %}.{% else %} {% trans %}using this <a target="_blank" href="{{ data_link }}" title="{{ data_link }}"><mark>data</mark></a>{% endtrans %}{% if schema_link %} {% trans  %}and this <a href="{{ schema_link }}" title="{{ schema_link }}"><mark>schema</mark></a>.{% endtrans %}{% endif %}{% endif %}</p>
     </div>
 
     <div id="summary">
