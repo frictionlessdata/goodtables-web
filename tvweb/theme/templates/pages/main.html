@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% from "macros/form.html" import render_form, render_field %}
 
+{% block bodyjs %}
+<script>
+    var reportUrlState;
+</script>
+{{ super() }}
+{% endblock bodyjs %}
+
 {% block content %}
 
 <div class="banner">

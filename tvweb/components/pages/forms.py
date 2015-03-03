@@ -40,16 +40,16 @@ data_url_args = {
     }
 }
 data_file_args = data_url_args.copy()
-data_file_args['validators'] = [OnlyIfNot('data_file'), validators.Optional()]
+data_file_args['validators'] = [OnlyIfNot('data_url'), validators.Optional()]
 schema_url_args = {
-    'validators': [validators.URL(), OnlyIfNot('data_file'), validators.Optional()],
+    'validators': [validators.URL(), OnlyIfNot('schema_file'), validators.Optional()],
     'description': {
         'placeholder': 'Add your schema source here.',
         'hint': ''
     }
 }
 schema_file_args = schema_url_args.copy()
-schema_file_args['validators'] = [OnlyIfNot('schema_file'), validators.Optional()]
+schema_file_args['validators'] = [OnlyIfNot('schema_url'), validators.Optional()]
 format_args = {
     'choices': [('csv', 'CSV'), ('excel', 'Excel')], #, ('json', 'JSON')],
     'description': {
