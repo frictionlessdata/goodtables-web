@@ -51,7 +51,7 @@ schema_url_args = {
 schema_file_args = schema_url_args.copy()
 schema_file_args['validators'] = [OnlyIfNot('schema_file'), validators.Optional()]
 format_args = {
-    'choices': [('csv', 'CSV'), ('excel', 'Excel'), ('json', 'JSON')],
+    'choices': [('csv', 'CSV'), ('excel', 'Excel')], #, ('json', 'JSON')],
     'description': {
         'placeholder': 'CSV',
         'hint': ''
@@ -63,6 +63,14 @@ with_schema_args = {
         'hint': ''
     }
 }
+schema_eg_args = {
+    'choices': [('', '-- Presets --'),('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/spend-publishing-schema.json', 'HMT Spend Publishing')],
+    'description': {
+        'placeholder': 'HMT Spend',
+        'hint': ''
+    }
+}
+
 fail_fast_args = {
     'label': 'Fail fast?',
     'description': {
@@ -78,4 +86,5 @@ class RunForm(Form):
     with_schema = fields.BooleanField(default=False, **with_schema_args)
     schema_url = fields.StringField(**schema_url_args)
     schema_file = fields.FileField(**schema_file_args)
+    schema_eg = fields.SelectField(**schema_eg_args)
     fail_fast = fields.BooleanField(default=True, **fail_fast_args)

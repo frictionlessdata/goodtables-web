@@ -113,9 +113,6 @@ code {
 .form-group-data_file {
   display: none;
 }
-.bootstrap-select {
-  width: 80px !important;
-}
 tr.result-detail {
   font-size: 0.925em;
 }
@@ -123,13 +120,16 @@ tr.result-detail {
   border-color: #7ab800;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(122, 184, 0, 0.6);
 }
+.url_file_selector {
+  padding-top: 6px;
+}
 /* footer */
 #footer {
   background: #333333;
   width: 100%;
   position: relative;
   z-index: 99;
-  color: #ffffff;
+  color: white;
   margin-top: 20px;
 }
 #footer .container {
@@ -169,7 +169,7 @@ tr.result-detail {
   color: rgba(255, 255, 255, 0.6);
 }
 #footer .container a:hover {
-  color: #ffffff;
+  color: white;
 }
 #footer .container a[rel~="external"]:after {
   display: none;

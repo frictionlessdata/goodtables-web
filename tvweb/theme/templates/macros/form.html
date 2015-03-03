@@ -90,7 +90,7 @@
         {{ field.label.text|safe }}
     </label>
     {% endif %}
-    <span class="checkbox">
+    <span class="checkbox checkbox-circle checkbox-success">
         {{ field(class_=class_, **kwargs) }}
         <label for="{{ field.name|safe }}" class="description">{% if field.description.placeholder %}{{field.description.placeholder|safe}}{% endif %}</label>
     </span>
@@ -158,7 +158,7 @@
 #}
 
 <button name="form_action" value="{{ value }}" type="{{ type }}"
-        class="btn btn-{{ class }} {{ extra_classes }}">
+        class="btn btn-{{ class }} btn-lg {{ extra_classes }}">
     {% trans %}{{ name }}{% endtrans %}
 </button>
 {%- endmacro %}
