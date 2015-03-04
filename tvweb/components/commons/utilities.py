@@ -99,7 +99,7 @@ def get_report_permalinks(payload):
             domain = app.config['TVWEB_URL']
             api_fragment = url_for('api.run')
             ui_fragment = url_for('pages.reports')
-            params = compat.urlencode({'data': payload['data'], 'schema': payload['schema'] or ''})
+            params = compat.urlencode({k: v for k, v in payload.items() if v})
             permalinks = {
                 'html': '{0}{1}?{2}'.format(domain, ui_fragment, params),
                 'json': '{0}{1}?{2}'.format(domain, api_fragment, params)
