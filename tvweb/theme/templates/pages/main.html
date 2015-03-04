@@ -64,11 +64,11 @@
           <hr />
 
           <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <h4>{% trans %}Add a data schema{% endtrans %}</h4>
               </div>
-              <div class="col-md-6">
-                  <span class="pull-right">{{ render_field(form.with_schema, with_label=False) }}</span>
+              <div class="col-md-8">
+                  <span>{{ render_field(form.with_schema, with_label=False) }}</span>
               </div>
               <div class="col-md-12">
                   <p class="help-block">{% trans %}Select to validate this data against a <a target="_blank" href="http://dataprotocols.org/json-table-schema/" title="Read more about JSON Table Schema">JSON Table Schema</a>.{% endtrans %}</p>
@@ -109,11 +109,11 @@
           <hr />
 
           <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <h4>{% trans %}Stop on first error{% endtrans %}</h4>
               </div>
-              <div class="col-md-6">
-                  <span class="pull-right">{{ render_field(form.fail_fast, with_label=False) }}</span>
+              <div class="col-md-8">
+                  <span>{{ render_field(form.fail_fast, with_label=False) }}</span>
               </div>
               <div class="col-md-12">
                   <p class="help-block">
