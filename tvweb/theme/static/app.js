@@ -83,12 +83,10 @@ function tableUX() {
 function urlState() {
     // put the GETable query onto the URL for copy-pasters ;)
     if (reportUrlState) {
-        console.log('YEP');
         if (history.pushState) {
             history.pushState({}, 'reports', 'reports' + reportUrlState);
         }
     }
-
 }
 
 formUX();
