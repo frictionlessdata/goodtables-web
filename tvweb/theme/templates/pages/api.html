@@ -30,6 +30,8 @@
             <li><code>report_limit</code>: (default. 1000, max. 1000) An integer that sets a limit on the amount of report results a validator can generate. Validation will cease when this amount is reached</li>
             <li><code>row_limit</code>: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.</li>
             <li><code>fail_fast</code>: (default True) A boolean to set whether the run will fail on first error, or not.</li>
+            <li><code>ignore_empty_rows</code>: (default False) A boolean to set whether empty rows should raise errors, or be ignored.</li>
+            <li><code>encoding</code>: (default None) A string that indicates the encoding of the data. Overrides automatic encoding detection.</li>
             <li><code>format</code>: (default 'csv') 'csv' or 'excel' - the format of the file.</li>
         </ul>
     </div>

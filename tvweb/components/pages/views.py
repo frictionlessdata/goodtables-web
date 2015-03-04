@@ -89,7 +89,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
 
             return [{k: v} for k, v in make_groups(report['results'], _rows).items()]
 
-        grouped_results = sorted(group_results(report), key=lambda result: list(result.keys())[0])
+        grouped_results = sorted(group_results(report), key=lambda result: list(result.keys())[0])[:20]
         result_count = len(grouped_results)
 
         if result_count > 20:

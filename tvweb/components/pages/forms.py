@@ -64,7 +64,11 @@ with_schema_args = {
     }
 }
 schema_eg_args = {
-    'choices': [('', '-- Presets --'),('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/spend-publishing-schema.json', 'HMT Spend Publishing')],
+    'choices': [
+        ('', '-- Presets --'),
+        ('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/spend-publishing-schema.json', 'HMT Spend Publishing'),
+        ('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/bis-modified.json', 'BIS Modified')
+    ],
     'description': {
         'placeholder': 'HMT Spend',
         'hint': ''
@@ -82,6 +86,13 @@ ignore_empty_rows_args = {
         'hint': ''
     }
 }
+encoding_args = {
+    'label': 'File encoding',
+    'choices': [('', '-- Auto --'), ('utf-8', 'UTF-8'), ('ascii', 'ASCII'), ('ISO-8859-2', 'ISO-8859-2')],
+    'description': {
+        'hint': ''
+    }
+}
 
 
 class RunForm(Form):
@@ -93,4 +104,5 @@ class RunForm(Form):
     schema_file = fields.FileField(**schema_file_args)
     schema_eg = fields.SelectField(**schema_eg_args)
     fail_fast = fields.BooleanField(default=True, **fail_fast_args)
+    encoding = fields.SelectField(**encoding_args)
     ignore_empty_rows = fields.BooleanField(default=False, **ignore_empty_rows_args)

@@ -8,4 +8,4 @@ click==3.3
 gunicorn==19.1.1
 requests==2.5.1
 pytz
-tabular-validator>=0.2.4
+tabular-validator>=0.2.8

@@ -60,6 +60,7 @@ def get_runargs():
     parser.add_argument('fail_fast', type=bool)
     parser.add_argument('ignore_empty_rows', type=bool)
     parser.add_argument('format')
+    parser.add_argument('encoding')
     return parser.parse_args()
 
 

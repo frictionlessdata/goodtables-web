@@ -108,7 +108,7 @@ code {
   height: 1.5em;
 }
 /* default form state */
-.form-wrap-schema-fields,
+.display-schema-fields,
 .form-group-schema_file,
 .form-group-data_file {
   display: none;
@@ -125,6 +125,18 @@ tr.result-detail {
 }
 thead {
   background-color: white;
+}
+.bootstrap-select {
+  width: 100% !important;
+}
+.logo-image {
+  padding-top: 10px;
+}
+.logo-image a {
+  text-decoration: none;
+}
+.logo-image img {
+  height: 30px;
 }
 /* footer */
 #footer {

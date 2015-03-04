@@ -1,6 +1,7 @@
 var $form = $('#run_form'),
     $withSchema = $('#with_schema'),
-    $schemaFields = $('.form-wrap-schema-fields'),
+    $schemaFields = $('.display-schema-fields'),
+    $hideSchemaFields = $('.hide-schema-fields'),
     $schemaUrlGroup = $('.form-group-schema_url'),
     $schemaUrlInput = $schemaUrlGroup.children('input'),
     $schemaFileGroup = $('.form-group-schema_file'),
@@ -24,10 +25,12 @@ function formUX() {
     $withSchema.on('click', function(){
         if ($withSchema.is(':checked')) {
             $schemaFields.show();
+            $hideSchemaFields.hide();
         } else {
             $schemaFileInput.val('');
             $schemaUrlInput.val('');
             $schemaFields.hide();
+            $hideSchemaFields.show();
         }
     });
 
