@@ -35,11 +35,12 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
     form_class = forms.RunForm
 
     def get_data(self, **kwargs):
+
         return {
             'form': self.form_class(),
             'report': None,
             'permalinks': {},
-            'url_state': ''
+            'url_state': '',
         }
 
     def get(self, **kwargs):
@@ -58,6 +59,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
             data.update(self._process_report_data(data['report']))
             if data['permalinks']:
                 data['url_state'] = data['permalinks']['html'].strip(request.url)
+
         return render_template(self.template, **data)
 
     def _process_report_data(self, report):
@@ -95,15 +97,27 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         else:
             result_detail_phrase = '{0}'.format(result_count)
 
+        bad_row_percent = 0
+        if report['summary']['bad_row_count']:
+            # minimum 1%
+            bad_row_percent = int((report['summary']['bad_row_count'] / report['summary']['total_row_count']) * 100) or 1
+
+        bad_column_percent = 0
+        if report['summary']['bad_column_count']:
+            # minimum 1%
+            bad_column_percent = int((report['summary']['bad_column_count'] / len(report['summary']['columns'])) * 100) or 1
+
+        bad_cell_count = 0
+
         processed = {
             'summary': report['summary'],
             'columns': report['summary']['columns'],
             'header_index': report['summary']['header_index'],
             'row_count': report['summary']['total_row_count'],
             'column_count': len(report['summary']['columns']),
-            'bad_column_percent': int((report['summary']['bad_column_count'] / len(report['summary']['columns'])) * 100),
-            'bad_row_percent': int((report['summary']['bad_row_count'] / report['summary']['total_row_count']) * 100),
-            'bad_cell_count': 'NaN',
+            'bad_column_percent': bad_column_percent,
+            'bad_row_percent': bad_row_percent,
+            'bad_cell_count': bad_cell_count,
             'grouped_results': grouped_results,
             'result_count': result_count,
             'result_detail_phrase': result_detail_phrase
