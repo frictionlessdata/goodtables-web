@@ -36,6 +36,7 @@ def get_pipeline(runargs=None):
     config = app.config['TVWEB_PIPELINE_DEFAULT_CONFIG']
     if runargs:
         config['options']['schema']['schema'] = runargs.pop('schema')
+        config['options']['structure']['ignore_empty_rows'] = runargs.pop('ignore_empty_rows')
         config.update(runargs)
     try:
         rv = pipeline.Pipeline(**config)
@@ -57,6 +58,7 @@ def get_runargs():
     parser.add_argument('report_limit', type=int, default=1000)
     parser.add_argument('row_limit', type=int, default=20000)
     parser.add_argument('fail_fast', type=bool)
+    parser.add_argument('ignore_empty_rows', type=bool)
     parser.add_argument('format')
     return parser.parse_args()
 

@@ -70,9 +70,14 @@ schema_eg_args = {
         'hint': ''
     }
 }
-
 fail_fast_args = {
     'label': 'Fail fast?',
+    'description': {
+        'hint': ''
+    }
+}
+ignore_empty_rows_args = {
+    'label': 'Ignore empty rows?',
     'description': {
         'hint': ''
     }
@@ -88,3 +93,4 @@ class RunForm(Form):
     schema_file = fields.FileField(**schema_file_args)
     schema_eg = fields.SelectField(**schema_eg_args)
     fail_fast = fields.BooleanField(default=True, **fail_fast_args)
+    ignore_empty_rows = fields.BooleanField(default=False, **ignore_empty_rows_args)
