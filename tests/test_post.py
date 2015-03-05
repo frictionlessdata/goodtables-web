@@ -8,7 +8,7 @@ import os
 import io
 import json
 from tests import base
-from tvweb import compat
+from web import compat
 
 
 class TestAPIPost(base.BaseTestCase):

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>
+    Help
+</h1>
+
+<section>
+    {% for result_type in result_types %}
+    <div>
+        <h2>
+            {{ result_type.name }}
+            <span class="pull-right">
+                <a class="btn btn-info" target="_blank" href="{{ result_type.edit_help }}">
+                    {% trans %}Edit this help entry{% endtrans %}
+                </a>
+            </span>
+        </h2>
+        <a name="{{ result_type.id }}"></a>
+        <div>
+            {{ result_type.help }}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock content %}

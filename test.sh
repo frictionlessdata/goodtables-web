@@ -1,2 +1,2 @@
 #!/bin/bash
-PYTHONPATH=. py.test --cov tvweb --cov-config .coveragerc
+PYTHONPATH=. py.test --cov web --cov-config .coveragerc

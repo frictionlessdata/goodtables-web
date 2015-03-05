@@ -22,7 +22,7 @@ def create_app(config):
     from .components import api, pages
     from .components.commons import context_processors, encoders
 
-    app_label = 'tvweb'
+    app_label = 'web'
 
     # Get the static and template folder for the passed theme
     static_folder = os.path.join('theme', 'static')

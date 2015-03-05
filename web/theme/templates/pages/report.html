@@ -81,7 +81,7 @@
     <div id="detail">
         <h2>{% trans %}Details{% endtrans %}</h2>
         <p>
-            {% trans %}Below we have a snapshot of the {{ result_detail_phrase }} errors found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
+            {% trans %}Below we have a <strong>sample of {{ result_detail_phrase }} errors</strong> found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
         </p>
         <div id="results-sample">
             {% set table_width = columns|length * 200 %}
@@ -123,7 +123,7 @@
                     <tr class="result-detail">
                         <td colspan="{{ column_count + 1 }}">
                             <div class="result-detail-content">
-                            <h4>{% trans %}Row results{% endtrans %}</h4>
+                            <h4>{% trans %}Findings{% endtrans %}</h4>
                             {% for k, v in result_group.items() %}
                             {% for result in v.results %}
                             <p>

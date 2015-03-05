@@ -4,8 +4,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tvweb import factory
-from tvweb.config import default
+from web import factory
+from web.config import default
 
 
 app = factory.create_app(default)

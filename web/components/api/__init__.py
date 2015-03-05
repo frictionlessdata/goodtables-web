@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 
 from flask import Blueprint
 from flask.ext import restful
-from tvweb import compat
+from web import compat
 from . import views
 
 

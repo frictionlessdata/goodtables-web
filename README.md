@@ -1,11 +1,11 @@
-# Tabular Validator Web
+# Good Tables Web
 
-[![Travis Build Status](https://travis-ci.org/okfn/tabular-validator-web.svg?branch=master)](https://travis-ci.org/okfn/tabular-validator-web)
-[![Coverage Status](https://coveralls.io/repos/okfn/tabular-validator-web/badge.svg)](https://coveralls.io/r/okfn/tabular-validator-web)
+[![Travis Build Status](https://travis-ci.org/okfn/goodtables-web.svg?branch=master)](https://travis-ci.org/okfn/goodtables-web)
+[![Coverage Status](https://coveralls.io/repos/okfn/goodtables-web/badge.svg)](https://coveralls.io/r/okfn/goodtables-web)
 
 A web API for validating data tables against a validation pipeline.
 
-This package is part of a suite of table validation tools, providing a lightweight web interface to [Tabular Validator](https://github.com/okfn/tabular-validator).
+This package is part of a suite of table validation tools, providing a lightweight web interface to [Good Tables](https://github.com/okfn/goodtables).
 
 ## Runtime support
 
@@ -36,7 +36,7 @@ Planned support for Python 2.7, 3.3 and 3.4. Some tests currently fail on 2.7. D
 
 ## Supported configuration parameters
 
-The API and UI support a subset of all parameters available in a [Tabular Validator](https://github.com/okfn/tabular-validator) pipeline. All possible arguments to a pipeline and individual validators can be found in the [Tabular Validator docs](http://tabular-validator.readthedocs.org/en/latest/).
+The API and UI support a subset of all parameters available in a [Good Tables](https://github.com/okfn/goodtables) pipeline. All possible arguments to a pipeline and individual validators can be found in the [Good Tables docs](http://goodtables.readthedocs.org/en/latest/).
 
 ### API
 
@@ -53,26 +53,26 @@ The UI is a simple form for validation data, with an option schema, from either 
 
 * One of `data_url` or `data_file`: This gets turned into the `data` argument to the pipeline.
 * One of `schema_url` or `schema_file`: This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator.
-* Additional defaults are passed into the pipeline constructor. You can see the defaults at [`tvweb.config.defaults.TVWEB_PIPELINE_DEFAULT_CONFIG`](https://github.com/okfn/tabular-validator-web/blob/master/tvweb/config/default.py)
+* Additional defaults are passed into the pipeline constructor. You can see the defaults at [`web.config.defaults.GOODTABLES_PIPELINE_DEFAULT_CONFIG`](https://github.com/okfn/goodtables-web/blob/master/web/config/default.py)
 
 ## Examples
 
 ### Data
 
-You can find example data [here](https://github.com/okfn/tabular-validator-web/tree/master/examples) and [here](https://github.com/okfn/tabular-validator/tree/master/examples).
+You can find example data [here](https://github.com/okfn/goodtables-web/tree/master/examples) and [here](https://github.com/okfn/goodtables/tree/master/examples).
 
-You can also use the CLI to run some basic checks. The CLI entry point is `tv` if you've installed from PyPI, otherwise `python main/cli.py`:
+You can also use the CLI to run some basic checks. The CLI entry point is `goodtables` if you've installed from PyPI, otherwise `python main/cli.py`:
 
 ```
-python main/cli.py examples http://tabulator.okfnlabs.org one
+python main/cli.py examples http://goodtables.okfnlabs.org one
 
-python main/cli.py examples http://tabulator.okfnlabs.org two
+python main/cli.py examples http://goodtables.okfnlabs.org two
 
-python main/cli.py examples http://tabulator.okfnlabs.org three
+python main/cli.py examples http://goodtables.okfnlabs.org three
 ```
 
 Similar requests can be made with cURL. For example:
 
 ```
-curl --data "data=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2ftabular-validator%2fmasteres%2fcontacts%2fpeople.csv&schema=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2ftabular-validator%2fmaster%2fexamples%2fcontacts%2fschema_valid.json" http://127.0.0.1:5000/api/run
+curl --data "data=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2fgoodtables%2fmasteres%2fcontacts%2fpeople.csv&schema=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2fgoodtables%2fmaster%2fexamples%2fcontacts%2fschema_valid.json" http://127.0.0.1:5000/api/run
 ```

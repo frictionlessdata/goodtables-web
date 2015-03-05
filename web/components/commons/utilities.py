@@ -12,9 +12,9 @@ import pytz
 from werkzeug.datastructures import FileStorage
 from flask import current_app as app, url_for
 from flask.ext.restful import reqparse
-from tabular_validator import pipeline
-from tabular_validator import exceptions
-from tvweb import compat
+from goodtables import pipeline
+from goodtables import exceptions
+from web import compat
 
 
 REMOTE_SCHEMES = ('http', 'https', 'ftp', 'ftps')
@@ -33,7 +33,7 @@ def get_datetime(date_only=False):
 
 def get_pipeline(runargs=None):
     """Get a pipeline as per config."""
-    config = app.config['TVWEB_PIPELINE_DEFAULT_CONFIG']
+    config = app.config['GOODTABLES_PIPELINE_DEFAULT_CONFIG']
     if runargs:
         config['options']['schema']['schema'] = runargs.pop('schema')
         config['options']['structure']['ignore_empty_rows'] = runargs.pop('ignore_empty_rows')
@@ -96,7 +96,7 @@ def get_report_permalinks(payload):
     if not isinstance(payload['data'], (io.IOBase, FileStorage)) and \
            compat.parse.urlparse(payload['data']).scheme in REMOTE_SCHEMES:
         if not hasattr(payload.get('schema'), 'filename'):
-            domain = app.config['TVWEB_URL']
+            domain = app.config['GOODTABLES_URL']
             api_fragment = url_for('api.run')
             ui_fragment = url_for('pages.reports')
             params = compat.urlencode({k: v for k, v in payload.items() if v})

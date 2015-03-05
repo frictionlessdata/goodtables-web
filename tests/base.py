@@ -7,8 +7,8 @@ from __future__ import unicode_literals
 import os
 import unittest
 from flask import url_for
-from tvweb import factory
-from tvweb.config import test as test_config
+from web import factory
+from web.config import test as test_config
 
 
 class BaseTestCase(unittest.TestCase):

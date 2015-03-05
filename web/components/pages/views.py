@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 
 from flask import (current_app as app, request, redirect, url_for, views,
                    render_template)
+from goodtables.utilities import helpers
 from ..commons import utilities
 from ..commons import view_mixins
 from . import forms
@@ -133,7 +134,10 @@ class Help(views.MethodView):
     template = 'pages/help.html'
 
     def get_data(self, **kwargs):
-        return {}
+
+        return {
+            'result_types': helpers.get_report_result_types()
+        }
 
     def get(self, **kwargs):
         return render_template(self.template, **self.get_data(**kwargs))

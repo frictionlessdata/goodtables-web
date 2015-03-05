@@ -17,7 +17,7 @@ class RunPipelineMixin(object):
         payload = utilities.clean_payload(utilities.get_runargs())
         data = {}
         data['success'] = False
-        data['report'] =  app.config['TVWEB_PIPELINE_BUILD_ERROR_RESPONSE']
+        data['report'] =  app.config['GOODTABLES_PIPELINE_BUILD_ERROR_RESPONSE']
 
         if with_permalinks:
             data['permalinks'] = utilities.get_report_permalinks(payload)

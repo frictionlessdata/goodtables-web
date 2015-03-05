@@ -5,8 +5,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from flask import Blueprint
+from web import compat
 from . import views
-from tvweb import compat
 
 
 blueprint = Blueprint('pages', __name__, url_prefix='')

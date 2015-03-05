@@ -9,14 +9,16 @@ import os
 
 DEBUG = True
 SECRET_KEY = 'j$p^=yen)f#0lbfg#+*ip^2ufca4@8z1l2$jugael#z+n@ksasas2323h32'
-TVWEB_NAME = 'Tabulator'
-TVWEB_SCHEME = os.environ.get('TVWEB_SCHEME', 'http://')
-TVWEB_DOMAIN = os.environ.get('TVWEB_DOMAIN', '127.0.0.1:5000')
-TVWEB_URL = '{0}{1}'.format(TVWEB_SCHEME, TVWEB_DOMAIN)
-TVWEB_SPONSOR = 'Open Knowledge'
-TVWEB_REPORT_ISSUE = 'https://github.com/okfn/tabular-validator-web/issues/new'
-TVWEB_PIPELINE_DEFAULT_CONFIG = {
-    'validators': ('structure', 'schema'),
+GOODTABLES_NAME = 'Good Tables'
+GOODTABLES_STATUS = "['alpha,']"
+GOODTABLES_SCHEME = os.environ.get('GOODTABLES_SCHEME', 'http://')
+GOODTABLES_DOMAIN = os.environ.get('GOODTABLES_DOMAIN', '127.0.0.1:5000')
+GOODTABLES_URL = '{0}{1}'.format(GOODTABLES_SCHEME, GOODTABLES_DOMAIN)
+GOODTABLES_SPONSOR = 'Open Knowledge'
+GOODTABLES_REPO = 'https://github.com/okfn/goodtables'
+GOODTABLES_ISSUES = 'https://github.com/okfn/goodtables-web/issues/new'
+GOODTABLES_PIPELINE_DEFAULT_CONFIG = {
+    'processors': ('structure', 'schema'),
     'data': None,
     'format': 'csv',
     'dialect': None,
@@ -29,7 +31,7 @@ TVWEB_PIPELINE_DEFAULT_CONFIG = {
     'fail_fast': False,
     'break_on_invalid_processor': False,
 }
-TVWEB_PIPELINE_BUILD_ERROR_RESPONSE = {
+GOODTABLES_PIPELINE_BUILD_ERROR_RESPONSE = {
     'success': False,
     'meta': {
         'message': ('Pipeline build error. One or more '
