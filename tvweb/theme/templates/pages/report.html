@@ -85,20 +85,20 @@
         </p>
         <div id="results-sample" class="table-responsive">
             <table class="table table-bordered">
-                <thead style="position:sticky;">
-                    <tr>
-                        <th>#</th>
+                <col width="48">
+                <tbody>
+
+                    {% for result_group in grouped_results %}
+                    <tr class="result-header-row">
+                        <th class="text-uppercase">{% trans %}Row{% endtrans %}</th>
                         {% for column in columns %}
                         <th>{{ column.name }} {#({{ column.index }})#}</th>
                         {% endfor %}
                     </tr>
-                </thead>
-                <tbody>
 
-                    {% for result_group in grouped_results %}
                     <tr class="result-row">
                         {% for k, v in result_group.items() %}
-                        <td>{{ k }}</td>
+                        <td class="result-row-index">{{ k }}</td>
                         {% for cell in v.result_context %}
                             {% set cell_vars = {'class': ''} %}
                             {% set cell_index = loop.index0 %}
@@ -114,6 +114,7 @@
 
                     <tr class="result-detail">
                         <td colspan="{{ column_count + 1 }}">
+                            <div class="result-detail-content">
                             <h4>{% trans %}Row results{% endtrans %}</h4>
                             {% for k, v in result_group.items() %}
                             {% for result in v.results %}
@@ -129,11 +130,9 @@
                             </p>
                             {% endfor %}
                             {% endfor %}
+                            </div>{# makes space #}
                         </td>
                     </tr>
-
-                    {# the tr spacing etc is not good semantic markup, but does the job #}
-                    <tr class="result-row-spacer"><td colspan="{{ column_count + 1 }}"></td></tr>
 
                     {% endfor %}
 
