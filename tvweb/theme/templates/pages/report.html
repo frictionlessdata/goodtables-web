@@ -83,9 +83,17 @@
         <p>
             {% trans %}Below we have a snapshot of the {{ result_detail_phrase }} errors found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
         </p>
-        <div id="results-sample" class="table-responsive">
+        <div id="results-sample">
+            {% set table_width = columns|length * 200 %}
             <table class="table table-bordered">
-                <col width="48">
+
+                <colgroup>
+                    <col width="48">
+                    {% for column in columns %}
+                    <col width="200">
+                    {% endfor %}
+                <colgroup>
+
                 <tbody>
 
                     {% for result_group in grouped_results %}

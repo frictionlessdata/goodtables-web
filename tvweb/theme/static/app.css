@@ -146,6 +146,9 @@ thead {
   padding-bottom: 24px;
   padding-left: 48px;
 }
+table {
+  width: auto;
+}
 /* footer */
 #footer {
   background: #333333;
