@@ -130,7 +130,7 @@
                                 <strong>{{ loop.index }}.
                                     {% set _level = result.result_level %}
                                     <span class="text-uppercase label label-{% if _level == 'info' %}info{% elif _level == "warning" %}warning{% else %}danger{% endif %}">{{ result.result_level }}</span>
-                                     <span class="label label-primary">{{ result.validator|title }}</span>
+                                     <span class="label label-primary">{{ result.processor|title }}</span>
                                      {{ result.result_name }}
                                      {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}
                             </strong>:&nbsp;
