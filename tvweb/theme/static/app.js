@@ -79,8 +79,7 @@ function formUX() {
 }
 
 function tableUX() {
-    // stick the result table header
-    $("#results-sample thead").stick_in_parent({"offset_top": 50});
+
 }
 
 function urlState() {
