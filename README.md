@@ -22,12 +22,12 @@ Planned support for Python 2.7, 3.3 and 3.4. Some tests currently fail on 2.7. D
 
 ### `/` (Home)
 
-* A home page with some orientation to what is going on
-* A form to submit data for validation manually *WIP*
+* A web form for manually adding data for validation
 
 ### `/api` (API Index)
 
-* A JSON object with an `endpoints` property that describes the available endpoints
+* Via XHR, a JSON object with an `endpoints` property that describes the available endpoints
+* Via browser, a documentation page for the API
 
 ### `api/run` (Task Runner)
 
@@ -36,7 +36,9 @@ Planned support for Python 2.7, 3.3 and 3.4. Some tests currently fail on 2.7. D
 
 ## Supported configuration parameters
 
-The API and UI support a subset of all parameters available in a [Good Tables](https://github.com/okfn/goodtables) pipeline. All possible arguments to a pipeline and individual validators can be found in the [Good Tables docs](http://goodtables.readthedocs.org/en/latest/).
+The API and UI support a subset of all parameters available in a [Good Tables](https://github.com/okfn/goodtables) pipeline.
+
+All possible arguments to a pipeline and individual processors can be found in the [Good Tables docs](http://goodtables.readthedocs.org/en/latest/).
 
 ### API
 
@@ -46,33 +48,45 @@ The API and UI support a subset of all parameters available in a [Good Tables](h
 * `row_limit`: (default. 20000, max. 30000) An integer that sets a limit on the amount of rows that will be processed. Iteration over the data will stop at this amount.
 * `fail_fast`: (default True) A boolean to set whether the run will fail on first error, or not.
 * `format`: (default 'csv') 'csv' or 'excel' - the format of the file.
+* `ignore_empty_rows`: (default False) A boolean to set whether empty rows should raise errors, or be ignored.
+* `encoding`: (default None) A string that indicates the encoding of the data. Overrides automatic encoding detection.
+
+#### Example
+
+```
+# make a request
+curl http://goodtables.okfnlabs.org/api/run --data "data=https://raw.githubusercontent.com/okfn/goodtables/master/examples/row_limit_structure.csv&schema=https://raw.githubusercontent.com/okfn/goodtables/master/examples/test_schema.json"
+
+# the response will be like
+{
+    "report": {
+        "summary": {
+            "bad_row_count": 1,
+            "total_row_count": 10,
+            ...
+        },
+        "results": [
+            {
+            "result_id": "structure_001", # the ID of this result type
+            "result_level": "error", # the severity of this result type (info/warning/error)
+            "result_message": "Row 1 is defective: there are more cells than headers", # a message that describes the result
+            "result_name": "Defective Row", # a human-readable title for this result
+            "result_context": ['38', 'John', '', ''], # the row values from which this result triggered
+            "row_index": 1, # the idnex of the row
+            "row_name": "", # If the row has an id field, this is displayed, otherwise empty
+            "column_index": 4, # the index of the column
+            "column_name": "" # the name of the column (the header), if applicable
+            },
+            ...
+        ]
+    }
+}
+```
 
 ### UI
 
-The UI is a simple form for validation data, with an option schema, from either an URL or an uploaded file.
+The UI is a simple form to add data, with an option schema, from either URLs or uploaded files.
 
-* One of `data_url` or `data_file`: This gets turned into the `data` argument to the pipeline.
-* One of `schema_url` or `schema_file`: This is a convenience for the `options['schema']['schema']` argument that is passed to the schema validator.
-* Additional defaults are passed into the pipeline constructor. You can see the defaults at [`web.config.defaults.GOODTABLES_PIPELINE_DEFAULT_CONFIG`](https://github.com/okfn/goodtables-web/blob/master/web/config/default.py)
+#### Example
 
-## Examples
-
-### Data
-
-You can find example data [here](https://github.com/okfn/goodtables-web/tree/master/examples) and [here](https://github.com/okfn/goodtables/tree/master/examples).
-
-You can also use the CLI to run some basic checks. The CLI entry point is `goodtables` if you've installed from PyPI, otherwise `python main/cli.py`:
-
-```
-python main/cli.py examples http://goodtables.okfnlabs.org one
-
-python main/cli.py examples http://goodtables.okfnlabs.org two
-
-python main/cli.py examples http://goodtables.okfnlabs.org three
-```
-
-Similar requests can be made with cURL. For example:
-
-```
-curl --data "data=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2fgoodtables%2fmasteres%2fcontacts%2fpeople.csv&schema=https%3a%2f%2fraw.githubusercontent.com%2fokfn%2fgoodtables%2fmaster%2fexamples%2fcontacts%2fschema_valid.json" http://127.0.0.1:5000/api/run
-```
+<img src="https://dl.dropboxusercontent.com/u/13029373/okfn/ui.gif" />

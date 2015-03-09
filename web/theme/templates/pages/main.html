@@ -15,7 +15,7 @@
   <section id="welcome" class="row">
       <div class="col-md-12 text-center">
           <h1 class="text-uppercase">{{ name }}</h1>
-          <p class="lead">{{ name }} {% trans -%}is a free hosted service for validating tabular data.{%- endtrans %}</p>
+          <p class="lead">{{ name }} {% trans -%}is a free hosted service for validating tabular data.{%- endtrans %} <a href="#documentation" title="{% trans %}Fund out more{% endtrans %}">{% trans %}Find out more{% endtrans %}</a></p>
       </div>
   </section>
 
@@ -179,15 +179,18 @@
 <section id="documentation" class="row">
     <div class="col-md-12">
         <h2>{% trans %}Documentation{% endtrans %}</h2>
+        <h3>{% trans %}How it works{% endtrans %}</h3>
         <p>
-            {% trans %}See{% endtrans %} <a href="{{ url_for('api.main') }}" title="{% trans %}API docs{% endtrans %}">{% trans %}here{% endtrans %}</a> {% trans %}for the API docs{% endtrans %}.
+            {% trans %}Work through the above form, which at a minimum just requires that you upload, or provide a link to, a data source. When you click "Validate", the data source will be analysed and a report will be generated describing the validity of the file as a source of tabular data.{% endtrans %} {% trans %}See{% endtrans %} <a href="{{ url_for('api.main') }}" title="{% trans %}API docs{% endtrans %}">{% trans %}here{% endtrans %}</a> {% trans %}for the API docs{% endtrans %}.
         </p>
-        <p>
-            {% trans -%}Use the form above to validate data, with an optional schema. When the validation is complete, you'll recieve a report indicating whether the data is valid, with some detailed information on what exactly is wrong, and how you can fix it.{%- endtrans %}
-        </p>
-        <p>
-            {% trans -%}If you are validating data via a URL that is publicly accessible on the web, your report will also feature some links that can be used to share the report results with others.{%- endtrans %}
-        </p>
+        <h3>{% trans %}See it in action{% endtrans %}</h3>
+        <div class="col-md-12">
+            <iframe width="853" height="480" src="https://www.youtube.com/embed/f1bTx6Zaotk" frameborder="0" allowfullscreen></iframe>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-md-12">
+            <iframe width="853" height="480" src="https://www.youtube.com/embed/hblUuIjobrc" frameborder="0" allowfullscreen></iframe>
+        </div>
 </section>
 
 {% endblock content %}
