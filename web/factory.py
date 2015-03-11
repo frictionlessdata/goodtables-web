@@ -19,6 +19,7 @@ def create_app(config):
     from flask import Flask
     from flask.ext.babel import Babel
     from flask.ext.cors import CORS
+    from flask.ext.markdown import Markdown
     from .components import api, pages
     from .components.commons import context_processors, encoders
 
@@ -40,6 +41,7 @@ def create_app(config):
     # Set app core services
     trans.init_app(app)
     cors.init_app(app)
+    Markdown(app)
 
     # Register routable components
     app.register_blueprint(api.blueprint)
