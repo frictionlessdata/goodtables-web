@@ -146,8 +146,11 @@ thead {
   padding-bottom: 24px;
   padding-left: 48px;
 }
-table {
-  width: auto;
+.pricing-nav {
+  color: #245269 !important;
+}
+.pricing-nav:hover {
+  text-decoration: underline !important;
 }
 /* footer */
 #footer {
