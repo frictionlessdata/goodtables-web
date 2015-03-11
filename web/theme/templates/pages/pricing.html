@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1 class="text-uppercase text-center">
+            {% trans %}Pricing & Support{% endtrans %}
+        </h1>
+        <p>&nbsp;</p>
+        <p class="lead text-center">
+            {% trans %}The Good Tables API is completely free to use. However, it comes with no service guarantee, and we reserve the right to limit use at our discretion (especially if we receive large volumes from a single source).{% endtrans %}
+        </p>
+        <p>&nbsp;</p>
+        <h2>{% trans %}API Pricing{% endtrans %}</h2>
+        <p>
+            {% trans %}If you want to use the API as part of your business workflow we can provide specific plans guaranteeing reliability and support for large or small volumes of queries. <a target="_blank" href="http://services.okfn.org/contact/">Please get in touch through Open Knowledge Services</a> to find our more (quote &quot;Good Tables&quot;” in your message).{% endtrans %}
+        </p>
+        <p>
+            <a target="_blank" class="btn btn-lg btn-success" href="http://services.okfn.org/contact/">{% trans %}Talk to us about pricing{% endtrans %}</a>
+        </p>
+        <p>&nbsp;</p>
+        <h2>{% trans %}Support{% endtrans %}</h2>
+        <p>
+            {% trans %}We can provide support in your use of the service or the underlying libraries. This could include, for example, the development of schemas targeting your type of data, advice and development support for integrating the library or API into your data workflow, and more. <a href="http://services.okfn.org/contact/">Please get in touch through Open Knowledge Services</a> to find our more (quote &quot;Good Tables&quot; in your message).{% endtrans %}
+        </p>
+        <p>
+            <a target="_blank" class="btn btn-lg btn-success" href="http://services.okfn.org/contact/">{% trans %}Talk to us about support{% endtrans %}</a>
+        </p>
+
+        <p>
+
+        </p>
+    </div>
+    <div class="col-md-2"></div>
+</section>
+
+{% endblock content %}

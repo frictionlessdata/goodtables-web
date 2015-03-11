@@ -141,3 +141,17 @@ class Help(views.MethodView):
 
     def get(self, **kwargs):
         return render_template(self.template, **self.get_data(**kwargs))
+
+
+class Pricing(views.MethodView):
+
+    """Return a Pricing page."""
+
+    template = 'pages/pricing.html'
+
+    def get_data(self, **kwargs):
+
+        return {}
+
+    def get(self, **kwargs):
+        return render_template(self.template, **self.get_data(**kwargs))
