@@ -17,6 +17,7 @@ def inject_app_data():
         'domain': app.config['GOODTABLES_URL'],
         'sponsor': app.config['GOODTABLES_SPONSOR'],
         'repo': app.config['GOODTABLES_REPO'],
+        'help_repo': app.config['GOODTABLES_HELP_REPO'],
         'new_issue': app.config['GOODTABLES_ISSUES'],
         'datetime': now.strftime('%a %b %d at %I:%M %p'),
         'year': now.year,

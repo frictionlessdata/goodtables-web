@@ -4,31 +4,29 @@
 {% block content %}
 
 <h1>
-    Help
+    {% trans %}Help{% endtrans %}
 </h1>
 
 <section>
     {% for result_type in result_types %}
+    {% set help_file = ['pages/help/%s.md'|format(result_type.id), 'pages/help/na.md'] %}
+    {% set help_edit = '%s/%s.md'|format(help_repo, result_type.id) %}
     <div>
         <a name="{{ result_type.id }}"></a>
 
         <h2>
             {{ result_type.name }}
             <span class="pull-right">
-                <a class="btn btn-info" target="_blank" href="{{ result_type.help_edit }}">
-                    {% trans %}Make this help better!{% endtrans %}
+                <a class="btn btn-info" target="_blank" href="{{ help_edit }}" title="{% trans type=result_type.name %}Improve our help docs for {{ type }}. It's easy!{% endtrans %}">
+                    {% trans %}Improve this help{% endtrans %}
                 </a>
             </span>
         </h2>
 
         <div>
-            {% if result_type.help %}
-            {{ result_type.help }}
-            {% else %}
-            <p>
-                {% trans %}Sadly, we don't have a help section for this Report finding yet. Would you like to help? <a target="_blank" href="">Get started here</a>{% endtrans %}
-            </p>
-            {% endif %}
+            {% filter markdown -%}
+            {% include help_file %}
+            {%- endfilter %}
         </div>
 
     </div>
