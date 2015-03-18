@@ -8,5 +8,5 @@ wtforms==2.0.2
 click==3.3
 gunicorn==19.1.1
 requests==2.5.1
+goodtables>=0.4.2
 pytz
-goodtables>=0.3.6
