@@ -86,6 +86,12 @@ ignore_empty_rows_args = {
         'hint': ''
     }
 }
+ignore_duplicate_rows_args = {
+    'label': 'Ignore duplicate rows?',
+    'description': {
+        'hint': ''
+    }
+}
 encoding_args = {
     'label': 'File encoding',
     'choices': [('', '-- Auto --'), ('utf-8', 'UTF-8'), ('ascii', 'ASCII'), ('ISO-8859-2', 'ISO-8859-2')],
@@ -106,3 +112,4 @@ class RunForm(Form):
     fail_fast = fields.BooleanField(default=True, **fail_fast_args)
     encoding = fields.SelectField(**encoding_args)
     ignore_empty_rows = fields.BooleanField(default=False, **ignore_empty_rows_args)
+    ignore_duplicate_rows = fields.BooleanField(default=False, **ignore_duplicate_rows_args)

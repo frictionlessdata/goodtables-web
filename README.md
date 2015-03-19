@@ -49,6 +49,7 @@ All possible arguments to a pipeline and individual processors can be found in t
 * `fail_fast`: (default True) A boolean to set whether the run will fail on first error, or not.
 * `format`: (default 'csv') 'csv' or 'excel' - the format of the file.
 * `ignore_empty_rows`: (default False) A boolean to set whether empty rows should raise errors, or be ignored.
+* `ignore_duplicate_rows`: (default False) A boolean to set whether duplicate rows should raise errors, or be ignored.
 * `encoding`: (default None) A string that indicates the encoding of the data. Overrides automatic encoding detection.
 
 #### Example
