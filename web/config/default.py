@@ -17,7 +17,7 @@ GOODTABLES_URL = '{0}{1}'.format(GOODTABLES_SCHEME, GOODTABLES_DOMAIN)
 GOODTABLES_SPONSOR = 'Open Knowledge'
 GOODTABLES_REPO = 'https://github.com/okfn/goodtables'
 GOODTABLES_ISSUES = 'https://github.com/okfn/goodtables-web/issues/new'
-GOODTABLES_HELP_REPO = 'https://github.com/okfn/goodtables-web/blob/master/web/theme/templates/pages/help'
+GOODTABLES_HELP_REPO = 'https://github.com/okfn/goodtables-web/edit/master/web/theme/templates/pages/help'
 GOODTABLES_PIPELINE_DEFAULT_CONFIG = {
     'processors': ('structure', 'schema'),
     'data': None,
