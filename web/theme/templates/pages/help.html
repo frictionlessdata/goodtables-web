@@ -8,7 +8,6 @@
 </h1>
 
 <section>
-    https://github.com/okfn/goodtables-web/edit/master/web/theme/templates/pages/help/schema_003.md
     {% for result_type in result_types %}
     {% set help_file = ['pages/help/%s.md'|format(result_type.id), 'pages/help/na.md'] %}
     {% set help_edit = '%s/%s.md'|format(help_repo, result_type.id) %}
