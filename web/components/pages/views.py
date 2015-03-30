@@ -99,23 +99,23 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
             result_detail_phrase = '{0}'.format(result_count)
 
         bad_row_percent = 0
-        if report['summary']['bad_row_count']:
+        if report['meta']['bad_row_count']:
             # minimum 1%
-            bad_row_percent = int((report['summary']['bad_row_count'] / report['summary']['total_row_count']) * 100) or 1
+            bad_row_percent = int((report['meta']['bad_row_count'] / report['meta']['row_count']) * 100) or 1
 
         bad_column_percent = 0
-        if report['summary']['bad_column_count']:
+        if report['meta']['bad_column_count']:
             # minimum 1%
-            bad_column_percent = int((report['summary']['bad_column_count'] / len(report['summary']['columns'])) * 100) or 1
+            bad_column_percent = int((report['meta']['bad_column_count'] / len(report['meta']['columns'])) * 100) or 1
 
         bad_cell_count = 0
 
         processed = {
-            'summary': report['summary'],
-            'columns': report['summary']['columns'],
-            'header_index': report['summary']['header_index'],
-            'row_count': report['summary']['total_row_count'],
-            'column_count': len(report['summary']['columns']),
+            'summary': report['meta'],
+            'columns': report['meta']['columns'],
+            'header_index': report['meta']['header_index'],
+            'row_count': report['meta']['row_count'],
+            'column_count': len(report['meta']['columns']),
             'bad_column_percent': bad_column_percent,
             'bad_row_percent': bad_row_percent,
             'bad_cell_count': bad_cell_count,
