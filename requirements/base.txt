@@ -4,9 +4,11 @@ flask-babel==0.9
 flask-wtf==0.11
 flask-cors==1.10.3
 flask-markdown==0.3
+flask-assets==0.10
 wtforms==2.0.2
 click==3.3
 gunicorn==19.1.1
 requests==2.5.1
-goodtables>=0.4.7
+goodtables>=0.5.2
+pyscss==1.3.4
 pytz

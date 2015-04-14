@@ -8,3 +8,5 @@ __pycache__/
 *.py[cod]
 .coverage
 shippable/*
+bower_components/
+.sass-cache/

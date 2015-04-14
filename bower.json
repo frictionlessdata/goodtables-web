@@ -1,0 +1,21 @@
+{
+    "name": "goodtables-static",
+    "version": "0.0.1-alpha",
+    "authors": [
+        "Open Knowledge <info@okfn.org>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap-sass": "~3.3.3",
+        "lato": "~0.2.2",
+        "jquery": "*",
+        "modernizer": "*"
+  }
+}
