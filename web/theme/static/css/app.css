@@ -1,62 +1,62 @@
 @charset "UTF-8";
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-black.eot");
-  src: local("Lato Black"), local("Lato-Black"), url("../../../../bower_components/lato/font/lato-black.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-black.woff") format("woff"), url("../../../../bower_components/lato/font/lato-black.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-black.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-black.eot");
+  src: local("Lato Black"), local("Lato-Black"), url("/static/vendor/lato/font/lato-black.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-black.woff") format("woff"), url("/static/vendor/lato/font/lato-black.ttf") format("truetype"), url("/static/vendor/lato/font/lato-black.svg#lato") format("svg");
   font-weight: 900;
   font-style: normal; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-blackitalic.eot");
-  src: local("Lato Black Italic"), local("Lato-BlackItalic"), url("../../../../bower_components/lato/font/lato-blackitalic.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-blackitalic.woff") format("woff"), url("../../../../bower_components/lato/font/lato-blackitalic.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-blackitalic.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-blackitalic.eot");
+  src: local("Lato Black Italic"), local("Lato-BlackItalic"), url("/static/vendor/lato/font/lato-blackitalic.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-blackitalic.woff") format("woff"), url("/static/vendor/lato/font/lato-blackitalic.ttf") format("truetype"), url("/static/vendor/lato/font/lato-blackitalic.svg#lato") format("svg");
   font-weight: 900;
   font-style: italic; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-bold.eot");
-  src: local("Lato Bold"), local("Lato-Bold"), url("../../../../bower_components/lato/font/lato-bold.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-bold.woff") format("woff"), url("../../../../bower_components/lato/font/lato-bold.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-bold.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-bold.eot");
+  src: local("Lato Bold"), local("Lato-Bold"), url("/static/vendor/lato/font/lato-bold.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-bold.woff") format("woff"), url("/static/vendor/lato/font/lato-bold.ttf") format("truetype"), url("/static/vendor/lato/font/lato-bold.svg#lato") format("svg");
   font-weight: 700;
   font-style: normal; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-bolditalic.eot");
-  src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url("../../../../bower_components/lato/font/lato-bolditalic.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-bolditalic.woff") format("woff"), url("../../../../bower_components/lato/font/lato-bolditalic.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-bolditalic.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-bolditalic.eot");
+  src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url("/static/vendor/lato/font/lato-bolditalic.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-bolditalic.woff") format("woff"), url("/static/vendor/lato/font/lato-bolditalic.ttf") format("truetype"), url("/static/vendor/lato/font/lato-bolditalic.svg#lato") format("svg");
   font-weight: 700;
   font-style: italic; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-regular.eot");
-  src: local("Lato Regular"), local("Lato-Regular"), url("../../../../bower_components/lato/font/lato-regular.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-regular.woff") format("woff"), url("../../../../bower_components/lato/font/lato-regular.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-regular.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-regular.eot");
+  src: local("Lato Regular"), local("Lato-Regular"), url("/static/vendor/lato/font/lato-regular.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-regular.woff") format("woff"), url("/static/vendor/lato/font/lato-regular.ttf") format("truetype"), url("/static/vendor/lato/font/lato-regular.svg#lato") format("svg");
   font-weight: 400;
   font-style: normal; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-italic.eot");
-  src: local("Lato Italic"), local("Lato-Italic"), url("../../../../bower_components/lato/font/lato-italic.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-italic.woff") format("woff"), url("../../../../bower_components/lato/font/lato-italic.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-italic.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-italic.eot");
+  src: local("Lato Italic"), local("Lato-Italic"), url("/static/vendor/lato/font/lato-italic.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-italic.woff") format("woff"), url("/static/vendor/lato/font/lato-italic.ttf") format("truetype"), url("/static/vendor/lato/font/lato-italic.svg#lato") format("svg");
   font-weight: 400;
   font-style: italic; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-light.eot");
-  src: local("Lato Light"), local("Lato-Light"), url("../../../../bower_components/lato/font/lato-light.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-light.woff") format("woff"), url("../../../../bower_components/lato/font/lato-light.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-light.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-light.eot");
+  src: local("Lato Light"), local("Lato-Light"), url("/static/vendor/lato/font/lato-light.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-light.woff") format("woff"), url("/static/vendor/lato/font/lato-light.ttf") format("truetype"), url("/static/vendor/lato/font/lato-light.svg#lato") format("svg");
   font-weight: 300;
   font-style: normal; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-lightitalic.eot");
-  src: local("Lato Light Italic"), local("Lato-LightItalic"), url("../../../../bower_components/lato/font/lato-lightitalic.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-lightitalic.woff") format("woff"), url("../../../../bower_components/lato/font/lato-lightitalic.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-lightitalic.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-lightitalic.eot");
+  src: local("Lato Light Italic"), local("Lato-LightItalic"), url("/static/vendor/lato/font/lato-lightitalic.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-lightitalic.woff") format("woff"), url("/static/vendor/lato/font/lato-lightitalic.ttf") format("truetype"), url("/static/vendor/lato/font/lato-lightitalic.svg#lato") format("svg");
   font-weight: 300;
   font-style: italic; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-hairline.eot");
-  src: local("Lato Hairline"), local("Lato-Hairline"), url("../../../../bower_components/lato/font/lato-hairline.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-hairline.woff") format("woff"), url("../../../../bower_components/lato/font/lato-hairline.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-hairline.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-hairline.eot");
+  src: local("Lato Hairline"), local("Lato-Hairline"), url("/static/vendor/lato/font/lato-hairline.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-hairline.woff") format("woff"), url("/static/vendor/lato/font/lato-hairline.ttf") format("truetype"), url("/static/vendor/lato/font/lato-hairline.svg#lato") format("svg");
   font-weight: 200;
   font-style: normal; }
 @font-face {
   font-family: 'Lato';
-  src: url("../../../../bower_components/lato/font/lato-hairlineitalic.eot");
-  src: local("Lato Hairline Italic"), local("Lato-HairlineItalic"), url("../../../../bower_components/lato/font/lato-hairlineitalic.eot?#iefix") format("embedded-opentype"), url("../../../../bower_components/lato/font/lato-hairlineitalic.woff") format("woff"), url("../../../../bower_components/lato/font/lato-hairlineitalic.ttf") format("truetype"), url("../../../../bower_components/lato/font/lato-hairlineitalic.svg#lato") format("svg");
+  src: url("/static/vendor/lato/font/lato-hairlineitalic.eot");
+  src: local("Lato Hairline Italic"), local("Lato-HairlineItalic"), url("/static/vendor/lato/font/lato-hairlineitalic.eot?#iefix") format("embedded-opentype"), url("/static/vendor/lato/font/lato-hairlineitalic.woff") format("woff"), url("/static/vendor/lato/font/lato-hairlineitalic.ttf") format("truetype"), url("/static/vendor/lato/font/lato-hairlineitalic.svg#lato") format("svg");
   font-weight: 200;
   font-style: italic; }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -5746,9 +5746,9 @@ table.table thead tr th {
 html {
   background-color: #333333; }
 
-.counter, .dashboard .overview li {
+.counter {
   margin-top: 20px; }
-  .counter .value > span, .dashboard .overview li .value > span {
+  .counter .value > span {
     background-color: #333333;
     font-weight: bold;
     font-size: 114px;
@@ -5762,7 +5762,7 @@ html {
     border-radius: 1px;
     position: relative;
     color: #fff; }
-    .counter .value > span:after, .dashboard .overview li .value > span:after {
+    .counter .value > span:after {
       content: '';
       width: 80px;
       height: 2px;
@@ -5771,7 +5771,7 @@ html {
       top: 50%;
       margin-top: -1px;
       background-color: #fff; }
-  .counter .label, .dashboard .overview li .label {
+  .counter .label {
     color: #333333;
     font-size: 20px;
     font-weight: normal;
@@ -5779,14 +5779,14 @@ html {
     margin-top: 15px;
     display: block;
     padding: 0; }
-  .counter.inverse, .jumbotron.inverse .counter, .navbar.navbar-inverse + div .jumbotron:first-child .counter, .jumbotron.inverse .dashboard .overview li, .dashboard .overview .jumbotron.inverse li, .navbar.navbar-inverse + div .jumbotron:first-child .dashboard .overview li, .dashboard .overview .navbar.navbar-inverse + div .jumbotron:first-child li, .dashboard .overview li.inverse {
+  .counter.inverse, .jumbotron.inverse .counter, .navbar.navbar-inverse + div .jumbotron:first-child .counter {
     background-color: #FF0004; }
-    .counter.inverse .value > span, .jumbotron.inverse .counter .value > span, .navbar.navbar-inverse + div .jumbotron:first-child .counter .value > span, .jumbotron.inverse .dashboard .overview li .value > span, .dashboard .overview .jumbotron.inverse li .value > span, .navbar.navbar-inverse + div .jumbotron:first-child .dashboard .overview li .value > span, .dashboard .overview .navbar.navbar-inverse + div .jumbotron:first-child li .value > span, .dashboard .overview li.inverse .value > span {
+    .counter.inverse .value > span, .jumbotron.inverse .counter .value > span, .navbar.navbar-inverse + div .jumbotron:first-child .counter .value > span {
       background-color: #fff;
       color: #699f00; }
-      .counter.inverse .value > span:after, .jumbotron.inverse .counter .value > span:after, .navbar.navbar-inverse + div .jumbotron:first-child .counter .value > span:after, .jumbotron.inverse .dashboard .overview li .value > span:after, .dashboard .overview .jumbotron.inverse li .value > span:after, .navbar.navbar-inverse + div .jumbotron:first-child .dashboard .overview li .value > span:after, .dashboard .overview .navbar.navbar-inverse + div .jumbotron:first-child li .value > span:after, .dashboard .overview li.inverse .value > span:after {
+      .counter.inverse .value > span:after, .jumbotron.inverse .counter .value > span:after, .navbar.navbar-inverse + div .jumbotron:first-child .counter .value > span:after {
         background-color: #699f00; }
-    .counter.inverse .label, .jumbotron.inverse .counter .label, .navbar.navbar-inverse + div .jumbotron:first-child .counter .label, .jumbotron.inverse .dashboard .overview li .label, .dashboard .overview .jumbotron.inverse li .label, .navbar.navbar-inverse + div .jumbotron:first-child .dashboard .overview li .label, .dashboard .overview .navbar.navbar-inverse + div .jumbotron:first-child li .label, .dashboard .overview li.inverse .label {
+    .counter.inverse .label, .jumbotron.inverse .counter .label, .navbar.navbar-inverse + div .jumbotron:first-child .counter .label {
       color: #fff; }
 
 h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pricing-panel > div:first-child > h2, h3.panel-heading, .pricing-panel > div:first-child > h3, h4.panel-heading, .pricing-panel > div:first-child > h4, h5.panel-heading, .pricing-panel > div:first-child > h5, h6.panel-heading, .pricing-panel > div:first-child > h6 {
@@ -6129,7 +6129,6 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     font-size: 12px;
     color: rgba(255, 255, 255, 0.4); }
 
-/* Replace the below with your custom CSS */
 .goodtables form.well {
   padding: 29px;
   margin-left: -30px;
@@ -6276,125 +6275,5 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     .goodtables .result.panel .pricing-panel > div:first-child > h6 + div table .result-row-index,
     .goodtables .pricing-panel > div.result:first-child .pricing-panel > div:first-child > h6 + div table .result-row-index {
       background-color: #eeeeee; }
-
-.dashboard .overview {
-  margin-left: -15px;
-  margin-right: -15px;
-  padding: 0; }
-  .dashboard .overview:before, .dashboard .overview:after {
-    content: " ";
-    display: table; }
-  .dashboard .overview:after {
-    clear: both; }
-  .dashboard .overview li {
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    display: block;
-    text-align: center; }
-    @media (min-width: 992px) {
-      .dashboard .overview li {
-        float: left;
-        width: 25%; } }
-    .dashboard .overview li .value {
-      display: block; }
-.dashboard .line-chart {
-  padding-bottom: 30px; }
-  .dashboard .line-chart .intro {
-    margin-left: -15px;
-    margin-right: -15px;
-    position: relative; }
-    .dashboard .line-chart .intro:before, .dashboard .line-chart .intro:after {
-      content: " ";
-      display: table; }
-    .dashboard .line-chart .intro:after {
-      clear: both; }
-    .dashboard .line-chart .intro .text {
-      position: relative;
-      min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px; }
-      @media (min-width: 992px) {
-        .dashboard .line-chart .intro .text {
-          float: left;
-          width: 66.66667%; } }
-    .dashboard .line-chart .intro .more {
-      position: relative;
-      min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px; }
-      @media (min-width: 992px) {
-        .dashboard .line-chart .intro .more {
-          float: left;
-          width: 33.33333%; } }
-      @media (min-width: 992px) {
-        .dashboard .line-chart .intro .more {
-          text-align: right;
-          position: absolute;
-          bottom: 20px;
-          right: 0; } }
-.dashboard .publishers {
-  background-color: #eeeeee;
-  padding-top: 30px; }
-  .dashboard .publishers .intro {
-    margin-left: -15px;
-    margin-right: -15px;
-    padding-bottom: 10px;
-    position: relative; }
-    .dashboard .publishers .intro:before, .dashboard .publishers .intro:after {
-      content: " ";
-      display: table; }
-    .dashboard .publishers .intro:after {
-      clear: both; }
-    .dashboard .publishers .intro .text {
-      position: relative;
-      min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px; }
-      @media (min-width: 992px) {
-        .dashboard .publishers .intro .text {
-          float: left;
-          width: 66.66667%; } }
-    .dashboard .publishers .intro .more {
-      position: relative;
-      min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px; }
-      @media (min-width: 992px) {
-        .dashboard .publishers .intro .more {
-          float: left;
-          width: 33.33333%; } }
-      @media (min-width: 992px) {
-        .dashboard .publishers .intro .more {
-          text-align: right;
-          position: absolute;
-          bottom: 20px;
-          right: 0; } }
-  .dashboard .publishers table {
-    background-color: #fff;
-    margin-bottom: 0;
-    overflow: hidden;
-    border-radius: 4px 4px 0 0; }
-    .dashboard .publishers table > thead > tr > th:first-child {
-      border-radius: 4px 0 0 0; }
-    .dashboard .publishers table > thead > tr > th:last-child {
-      border-radius: 0 4px 0 0; }
-    .dashboard .publishers table > tbody > tr > td, .dashboard .publishers table > tbody > tr > th {
-      background-color: transparent; }
-    .dashboard .publishers table .score {
-      text-align: center; }
-    .dashboard .publishers table tr.success .score {
-      background-color: #8acd00;
-      color: #fff; }
-    .dashboard .publishers table tr.warning .score {
-      background-color: #E9D046; }
-    .dashboard .publishers table tr.danger .score {
-      background-color: #cd0000;
-      color: #fff; }
-    .dashboard .publishers table .glyphicon {
-      color: #eeeeee; }
-    .dashboard .publishers table a .glyphicon {
-      color: #333333; }
 
 /*# sourceMappingURL=app.css.map */
