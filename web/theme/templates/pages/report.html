@@ -26,6 +26,14 @@
 
     <div id="bottom-line">
 
+      {% if not success and error %}
+      <h2><span class="text-danger">{{ error }}</span></h2>
+      <p class="lead">
+        {% trans %}It seems that something was wrong with the input sources. Check that your data and schema sources are of the correct type, and try again.{% endtrans %}
+      </p>
+
+      {% else %}
+      
         {% if success -%}
 
         <h2><span class="text-success">{% trans %}Well done! The data source is valid.{% endtrans %}</span></h2>
@@ -147,6 +155,7 @@
                 </tbody>
             </table>
         </div>
+        {% endif %}
     </div>
 
     {% endif %}

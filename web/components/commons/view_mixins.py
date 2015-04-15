@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 import os
 from werkzeug.datastructures import FileStorage
 from flask import current_app as app
+from goodtables.pipeline import Pipeline
 from . import utilities
 
 
@@ -30,7 +31,7 @@ class RunPipelineMixin(object):
 
         # build and run a validation pipeline
         pipeline = utilities.get_pipeline(payload)
-        if pipeline:
+        if isinstance(pipeline, Pipeline):
             success, report = pipeline.run()
             data.update({'success': success, 'report': report.generate()})
 

@@ -34,10 +34,10 @@ GOODTABLES_PIPELINE_DEFAULT_CONFIG = {
 }
 GOODTABLES_PIPELINE_BUILD_ERROR_RESPONSE = {
     'success': False,
-    'meta': {
-        'message': ('Pipeline build error. One or more '
-                    'pipeline parameters was invalid.')
-    }
+    'error': ('Pipeline build error. One or more '
+              'pipeline parameters was invalid.'),
+    'meta': {},
+    'results': []
 }
 CONFIG_DIR = os.path.abspath(os.path.dirname(__file__))
 CODE_DIR = os.path.abspath(os.path.dirname(CONFIG_DIR))

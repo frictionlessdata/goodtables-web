@@ -109,7 +109,7 @@ class RunForm(Form):
     schema_url = fields.StringField(**schema_url_args)
     schema_file = fields.FileField(**schema_file_args)
     schema_eg = fields.SelectField(**schema_eg_args)
-    fail_fast = fields.BooleanField(default=True, **fail_fast_args)
+    fail_fast = fields.BooleanField(default=False, **fail_fast_args)
     encoding = fields.SelectField(**encoding_args)
     ignore_empty_rows = fields.BooleanField(default=False, **ignore_empty_rows_args)
     ignore_duplicate_rows = fields.BooleanField(default=False, **ignore_duplicate_rows_args)
