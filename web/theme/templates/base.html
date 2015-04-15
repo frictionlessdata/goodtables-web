@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
       {#{% endassets %}#}
       <script src="{{ url_for('static', filename='vendor/modernizr.custom.44554.js') }}"></script>
+      <script src="{{ url_for('static', filename='vendor/jquery.min.js') }}"></script>
     </head>
     <body>
 
@@ -117,7 +118,6 @@
         {% endblock footer %}
 
         {% block bodyjs %}
-        <script src="{{ url_for('static', filename='vendor/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/jquery.squirrel.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/bootstrap.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/app.js') }}"></script>

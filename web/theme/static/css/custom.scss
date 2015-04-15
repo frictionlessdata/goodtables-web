@@ -1,7 +1,3 @@
-.form-group-schema_file, .form-group-data_file {
-  display: none;
-}
-
 .goodtables {
   form {
     &.well {
@@ -152,4 +148,8 @@
       }
     }
   }
+}
+
+.form-group-schema_file, .form-group-data_file {
+  display: none;
 }

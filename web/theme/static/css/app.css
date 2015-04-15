@@ -6129,9 +6129,6 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     font-size: 12px;
     color: rgba(255, 255, 255, 0.4); }
 
-.form-group-schema_file, .form-group-data_file {
-  display: none; }
-
 .goodtables form.well {
   padding: 29px;
   margin-left: -30px;
@@ -6278,5 +6275,8 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     .goodtables .result.panel .pricing-panel > div:first-child > h6 + div table .result-row-index,
     .goodtables .pricing-panel > div.result:first-child .pricing-panel > div:first-child > h6 + div table .result-row-index {
       background-color: #eeeeee; }
+
+.form-group-schema_file, .form-group-data_file {
+  display: none; }
 
 /*# sourceMappingURL=app.css.map */

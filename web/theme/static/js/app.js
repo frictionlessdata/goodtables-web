@@ -21,19 +21,6 @@ var $form = $('#run_form'),
 
 function formUX() {
 
-    // toggle display of schema forms
-    $withSchema.on('click', function(){
-        if ($withSchema.is(':checked')) {
-            $schemaFields.show();
-            $hideSchemaFields.hide();
-        } else {
-            $schemaFileInput.val('');
-            $schemaUrlInput.val('');
-            $schemaFields.hide();
-            $hideSchemaFields.show();
-        }
-    });
-
     // toggle data fields
     $dataFieldRadio.on('change', function() {
         if ($dataFieldUrl.is(':checked')) {
@@ -59,8 +46,7 @@ function formUX() {
 
         if ($schemaFieldFile.is(':checked')) {
             $schemaUrlInput.val('');
-            console.log('here');
-            $schemaEg.selectpicker('val', '');
+            $schemaEg.val('');
             $schemaUrlGroup.hide();
             $schemaFileGroup.show();
         }
