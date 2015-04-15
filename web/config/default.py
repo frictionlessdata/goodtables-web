@@ -10,7 +10,7 @@ import os
 DEBUG = True
 SECRET_KEY = 'j$p^=yen)f#0lbfg#+*ip^2ufca4@8z1l2$jugael#z+n@ksasas2323h32'
 GOODTABLES_NAME = 'Good Tables'
-GOODTABLES_STATUS = "['alpha,']"
+GOODTABLES_STATUS = "Beta"
 GOODTABLES_SCHEME = os.environ.get('GOODTABLES_SCHEME', 'http://')
 GOODTABLES_DOMAIN = os.environ.get('GOODTABLES_DOMAIN', '127.0.0.1:5000')
 GOODTABLES_URL = '{0}{1}'.format(GOODTABLES_SCHEME, GOODTABLES_DOMAIN)

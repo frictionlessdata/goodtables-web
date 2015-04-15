@@ -16,6 +16,7 @@
         "bootstrap-sass": "~3.3.3",
         "lato": "~0.2.2",
         "jquery": "*",
-        "modernizer": "*"
+        "modernizer": "*",
+        "squirrel.js": "0.1.0"
   }
 }

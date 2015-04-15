@@ -6129,6 +6129,9 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     font-size: 12px;
     color: rgba(255, 255, 255, 0.4); }
 
+.form-group-schema_file, .form-group-data_file {
+  display: none; }
+
 .goodtables form.well {
   padding: 29px;
   margin-left: -30px;
