@@ -1,40 +1,52 @@
 {% extends 'base.html' %}
 
+{% block heading %}
+{% trans%}Pricing & Support{% endtrans %}
+{% endblock heading %}
+
+{% block subheading %}
+{% trans %}Pricing for business use and technical support.{% endtrans %}
+{% endblock subheading %}
 
 {% block content %}
+<div class="three-pricing-panels pricing-panels">
 
-<section class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h1 class="text-uppercase text-center">
-            {% trans %}Pricing & Support{% endtrans %}
-        </h1>
-        <p>&nbsp;</p>
-        <p class="lead text-center">
-            {% trans %}The Good Tables API is completely free to use. However, it comes with no service guarantee, and we reserve the right to limit use at our discretion (especially if we receive large volumes from a single source).{% endtrans %}
-        </p>
-        <p>&nbsp;</p>
-        <h2>{% trans %}API Pricing{% endtrans %}</h2>
-        <p>
-            {% trans %}If you want to use the API as part of your business workflow we can provide specific plans guaranteeing reliability and support for large or small volumes of queries. <a target="_blank" href="http://services.okfn.org/contact/">Please get in touch through Open Knowledge Services</a> to find our more (quote &quot;Good Tables&quot;” in your message).{% endtrans %}
-        </p>
-        <p>
-            <a target="_blank" class="btn btn-lg btn-success" href="http://services.okfn.org/contact/">{% trans %}Talk to us about pricing{% endtrans %}</a>
-        </p>
-        <p>&nbsp;</p>
-        <h2>{% trans %}Support{% endtrans %}</h2>
-        <p>
-            {% trans %}We can provide support in your use of the service or the underlying libraries. This could include, for example, the development of schemas targeting your type of data, advice and development support for integrating the library or API into your data workflow, and more. <a href="http://services.okfn.org/contact/">Please get in touch through Open Knowledge Services</a> to find our more (quote &quot;Good Tables&quot; in your message).{% endtrans %}
-        </p>
-        <p>
-            <a target="_blank" class="btn btn-lg btn-success" href="http://services.okfn.org/contact/">{% trans %}Talk to us about support{% endtrans %}</a>
-        </p>
-
-        <p>
-
-        </p>
+  <div class="pricing-panel">
+    <div>
+      <h3>{% trans %}Basic Usage{% endtrans %}</h3>
+      <div>
+        <p>{% trans %}The Good Tables API is completely free to use. However, it comes with no service guarantee, and we reserve the right to limit use at our discretion (especially if we receive large volumes from a single source).{% endtrans %}</p>
+      </div>
+      <footer>
+        <a class="btn btn-primary btn-block btn-lg disabled">{% trans %}FREE{% endtrans %}</a>
+      </footer>
     </div>
-    <div class="col-md-2"></div>
-</section>
+  </div>
+
+  <div class="pricing-panel">
+    <div>
+      <h3>{% trans %}API Pricing{% endtrans %}</h3>
+      <div>
+        <p>{% trans %}If you want to use the API as part of your business workflow we can provide specific plans guaranteeing reliability and support for large or small volumes of queries. Please get in touch through Open Knowledge Services to find our more (quote "Good Tables" in your message).{% endtrans %}</p>
+      </div>
+      <footer>
+        <a href="http://services.okfn.org/contact/" class="btn btn-primary btn-block btn-lg" role="button">{% trans %}Talk to us about pricing{% endtrans %}</a>
+      </footer>
+    </div>
+  </div>
+      
+  <div class="pricing-panel">
+    <div>
+      <h3>{% trans %}Support{% endtrans %}</h3>
+      <div>
+        <p>{% trans %}We can provide support in your use of the service or the underlying libraries. This could include, for example, the development of schemas targeting your type of data, advice and development support for integrating the library or API into your data workflow, and more. Please get in touch through Open Knowledge Services to find our more (quote "Good Tables" in your message).{% endtrans %}</p>
+      </div>
+      <footer>
+        <a href="http://services.okfn.org/contact/" class="btn btn-primary btn-block btn-lg" role="button">{% trans %}Talk to us about pricing{% endtrans %}</a>
+      </footer>
+    </div>
+  </div>
+
+</div>
 
 {% endblock content %}

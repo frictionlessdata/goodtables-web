@@ -64,71 +64,73 @@
       </nav>
       {% endblock header %}
 
-        {% block main %}
+      {% block main %}
+                    
+      <div class="jumbotron">
         <div class="container">
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        {% block content %}
-                        {% endblock content %}
-                    </div>
-                </div>
-            </div>
+          <h1>{% block heading %}{% endblock heading %}</h1>
+          <p>{% block subheading %}{% endblock subheading %}</p>
         </div>
-        {% endblock main %}
+      </div>
 
-        {% block footer %}
-        <footer class="site-footer">
-          <div class="container">
-            <a class="footer-logo" href="https://okfn.org/">
-              <img src="https://bytebucket.org/okfn/assets.okfn.org/raw/88b24904b8ecded5e6d530739743162d1c5b3d93/p/okfn/img/okfn-logo-landscape-white.png" alt="Open Knowledge">
-            </a>
+      <div class="container">
+        {% block content %}
+        {% endblock content %}
+      </div>
+      {% endblock main %}
 
-            <div class="footer-links">
-              <ul>
-                <li><a href="https://okfn.org/privacy-policy/">Privacy policy</a></li>
-                <li><a href="https://okfn.org/ip-policy/">IP policy</a></li>
-                <li><a href="https://okfn.org/cookie-policy/">Cookie policy</a></li>
-                <li><a href="https://okfn.org/terms-of-use/">Terms of use</a></li>
-              </ul>
+      {% block footer %}
+      <footer class="site-footer">
+        <div class="container">
+          <a class="footer-logo" href="https://okfn.org/">
+            <img src="https://bytebucket.org/okfn/assets.okfn.org/raw/88b24904b8ecded5e6d530739743162d1c5b3d93/p/okfn/img/okfn-logo-landscape-white.png" alt="Open Knowledge">
+          </a>
 
-              <ul class="footer-social">
-                <li><a href="https://facebook.com/OKFNetwork">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
-                </a></li>
-                <li>
-                  <a href="https://twitter.com/okfn">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/user/openknowledgefdn">
-                    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
-                  </a>
-                </li>
-              </ul>
-            </div>
-    
-            <hr>
-
-            <p>Open Knowledge Foundation is incorporated in England and Wales as a company Limited by guarantee. Company no. 05133759. Registered address: St. John’s Innovation Centre, Cowley Road, Cambridge, CB4 0WS, UK. VAT Registration no. GB 984404989.</p>
+          <div class="footer-links">
+            <ul>
+              <li><a href="https://okfn.org/privacy-policy/">Privacy policy</a></li>
+              <li><a href="https://okfn.org/ip-policy/">IP policy</a></li>
+              <li><a href="https://okfn.org/cookie-policy/">Cookie policy</a></li>
+              <li><a href="https://okfn.org/terms-of-use/">Terms of use</a></li>
+            </ul>
             
+            <ul class="footer-social">
+              <li><a href="https://facebook.com/OKFNetwork">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+              </a></li>
+              <li>
+                <a href="https://twitter.com/okfn">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/openknowledgefdn">
+                  <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+                </a>
+              </li>
+            </ul>
           </div>
-        </footer>
-        {% endblock footer %}
+          
+          <hr />
 
-        {% block bodyjs %}
-        <script src="{{ url_for('static', filename='vendor/jquery.squirrel.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-        <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                                  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         ga('create', '{{ ga_key }}', 'auto');
-         ga('send', 'pageview');
-        </script>
-        {% endblock bodyjs %}
+          <p>Open Knowledge Foundation is incorporated in England and Wales as a company Limited by guarantee. Company no. 05133759. Registered address: St. John’s Innovation Centre, Cowley Road, Cambridge, CB4 0WS, UK. VAT Registration no. GB 984404989.</p>
+            
+        </div>
+      </footer>
+      {% endblock footer %}
+
+      {% block bodyjs %}
+      <script src="{{ url_for('static', filename='vendor/jquery.squirrel.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='vendor/bootstrap.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '{{ ga_key }}', 'auto');
+        ga('send', 'pageview');
+      </script>
+      {% endblock bodyjs %}
     </body>
 </html>
