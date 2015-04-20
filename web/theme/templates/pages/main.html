@@ -28,7 +28,7 @@
 
           <div class="row">
               <div class="col-md-8">
-                  <h4>{% trans %}Add a data table{% endtrans %}</h4>
+                  <h4>{% trans %}Add a data table (required){% endtrans %}</h4>
               </div>
 
               <div class="col-md-2">
@@ -75,17 +75,14 @@
           <hr />
 
           <div class="row">
-              <div class="col-md-4">
-                  <h4>{% trans %}Add a data schema{% endtrans %}</h4>
-              </div>
-              <div class="col-md-4">
-                  <span>{{ render_field(form.with_schema, with_label=False) }}</span>
+              <div class="col-md-8">
+                  <h4>{% trans %}Add a data schema (optional){% endtrans %}</h4>
               </div>
               <div class="col-md-2">
-                  <h4 class="display-schema-fields">{% trans %}Schema presets{% endtrans %}</h4>
+                  <h4>{% trans %}Schema presets{% endtrans %}</h4>
               </div>
               <div class="col-md-2">&nbsp;</div>
-              <div class="col-md-12 hide-schema-fields">
+              <div class="col-md-12">
                   <p class="help-block">{% trans %}Select to validate this data against a JSON Table Schema (<a target="_blank" href="http://dataprotocols.org/json-table-schema/" title="Read more about JSON Table Schema">What's that?</a>).{% endtrans %}</p>
               </div>
           </div>

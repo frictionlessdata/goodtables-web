@@ -57,12 +57,6 @@ format_args = {
         'hint': ''
     }
 }
-with_schema_args = {
-    'label': 'Add a schema?',
-    'description': {
-        'hint': ''
-    }
-}
 schema_eg_args = {
     'choices': [
         ('', '-- Presets --'),
@@ -105,7 +99,6 @@ class RunForm(Form):
     data_url = fields.StringField(**data_url_args)
     data_file = fields.FileField(**data_file_args)
     format = fields.SelectField(**format_args)
-    with_schema = fields.BooleanField(default=False, **with_schema_args)
     schema_url = fields.StringField(**schema_url_args)
     schema_file = fields.FileField(**schema_file_args)
     schema_eg = fields.SelectField(**schema_eg_args)

@@ -10,7 +10,13 @@ from flask import current_app as app
 
 
 def inject_app_data():
+
     now = datetime.datetime.now()
+    ui = {
+        'glyphicon': 'ok',
+        'navbar': ''
+    }
+
     return {
         'name': app.config['GOODTABLES_NAME'],
         'status': app.config['GOODTABLES_STATUS'],
@@ -21,5 +27,6 @@ def inject_app_data():
         'new_issue': app.config['GOODTABLES_ISSUES'],
         'datetime': now.strftime('%a %b %d at %I:%M %p'),
         'year': now.year,
-        'ga_key': os.environ.get('GOOGLE_ANALYTICS_KEY', '')
+        'ga_key': os.environ.get('GOOGLE_ANALYTICS_KEY', ''),
+        'ui': ui
     }

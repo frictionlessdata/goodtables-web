@@ -20,6 +20,7 @@ def create_app(config):
     from flask.ext.babel import Babel
     from flask.ext.cors import CORS
     from flask.ext.markdown import Markdown
+#    from flask.ext.assets import Environment, Bundle
     from .components import api, pages
     from .components.commons import context_processors, encoders
 
@@ -34,6 +35,7 @@ def create_app(config):
                 static_folder=static_folder, static_url_path='/static')
     trans = Babel()
     cors = CORS()
+#    assets = Environment()
 
     # Configure the app with defaults
     app.config.from_object(config)
@@ -41,6 +43,7 @@ def create_app(config):
     # Set app core services
     trans.init_app(app)
     cors.init_app(app)
+#    assets.init_app(app)
     Markdown(app)
 
     # Register routable components
@@ -55,5 +58,9 @@ def create_app(config):
 
     # Set custom encoders
     app.json_encoder = encoders.JSONEncoder
+
+    # Register webassets bundles
+#    sass = Bundle('css/base.scss', filters='pyscss', output='css/base.css')
+#    assets.register('sass', sass)
 
     return app
