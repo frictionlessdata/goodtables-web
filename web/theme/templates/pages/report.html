@@ -8,167 +8,139 @@
 {{ super() }}
 {% endblock bodyjs %}
 
-{% block content %}
+
+{% block heading %}
 
 {% if report %}
 
-<h1>
-    {% trans %}Report{% endtrans %}
-    {% if permalinks %}
-    <span class="pull-right">
-        <a class="btn btn-primary" href="{{ permalinks.json }}" title="">{% trans %}JSON Link{% endtrans %}</a>
-        <a class="btn btn-primary" href="{{ permalinks.html }}" title="">{% trans %}HTML Link{% endtrans %}</a>
-    </span>
-    {% endif %}
-</h1>
+{% if not success and error %}
+{{ error }}
 
+{% else %}
+
+{% if success %}
+{% trans %}Well done! The data source is valid.{% endtrans %}
+{% else %}
+{% trans %}Oops. the data source is not valid.{% endtrans %}
+{% endif %}
+
+{% endif %}
+
+{% else %}
+{% trans %}Oops. There is no report data to display{% endtrans %}
+{% endif %}
+
+{% endblock heading %}
+
+{% block subheading %}
+
+{% if report %}
+
+{% if not success and error %}
+{% trans %}It seems that something was wrong with the input sources. Check that your data and schema sources are of the correct type, and try again.{% endtrans %}
+
+{% else %}
+
+{% if success %}
+{% trans %}We processed a total of <strong>{{ row_count }}</strong> rows. Column-wise, we found <strong>{{ column_count }}</strong> columns. It's all good!{% endtrans %}
+{% else %}
+{% trans %}We processed a total of <strong>{{ row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data. Let's have a look at the details.{% endtrans %}
+{% endif %}
+
+{% endif %}
+
+{% if permalinks %}
+<a class="btn btn-info" href="{{ permalinks.json }}" title="">{% trans %}JSON Link{% endtrans %}</a>
+<a class="btn btn-info" href="{{ permalinks.html }}" title="">{% trans %}HTML Link{% endtrans %}</a>
+{% endif %}
+
+{% else %}
+<a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+
+{% endif %}
+
+{% endblock subheading %}
+
+{% block content %}
+
+{% if report and not success %}
 <section id="report">
+  <div id="detail">
+    <h2>{% trans %}Details{% endtrans %}</h2>
+    <p>
+      {% trans %}Below we have a <strong>sample of {{ result_detail_phrase }} errors</strong> found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
+    </p>
+    <div id="results-sample">
+      {% set table_width = columns|length * 200 %}
+      <table class="table table-bordered">
+        
+        <colgroup>
+          <col width="48">
+          {% for column in columns %}
+          <col width="200">
+          {% endfor %}
+        <colgroup>
+          
+          <tbody>
 
-    <div id="bottom-line">
-
-      {% if not success and error %}
-      <h2><span class="text-danger">{{ error }}</span></h2>
-      <p class="lead">
-        {% trans %}It seems that something was wrong with the input sources. Check that your data and schema sources are of the correct type, and try again.{% endtrans %}
-      </p>
-
-      {% else %}
-      
-        {% if success -%}
-
-        <h2><span class="text-success">{% trans %}Well done! The data source is valid.{% endtrans %}</span></h2>
-        <p class="lead">{% trans %}You can find a brief summary of the data source below.{% endtrans %}</p>
-
-        {%- else -%}
-
-        <h2><span class="text-danger">{% trans %}Oops. the data source is not valid.{% endtrans %}</span></h2>
-        <p class="lead">{% trans %}That's ok! Let's see what we can do about that using the info we collected along the way.{% endtrans %}</p>
-
-        {%- endif %}
-
-        <p>
-            {% trans %}These results were calculated on{% endtrans %} <em>{{ datetime }}</em>.
-        </p>
-
-    </div>
-
-    <div id="summary">
-
-        <h2>{% trans %}Summary{% endtrans %}</h2>
-
-        {% if success %}
-
-        <p class="lead">
-            {% trans %}We processed a total of <strong>{{ row_count }}</strong> rows. Column-wise, we found <strong>{{ column_count }}</strong> columns. It's all good!{% endtrans %}
-        </p>
-
-        {% else %}
-
-        <p class="lead">
-            {% trans %}We processed a total of <strong>{{ row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data. Let's have a look at the details.{% endtrans %}
-        </p>
-
-        {% endif %}
-
-    </div>
-
-    {% if success %}
-
-    {% if permalinks %}
-    <div id="positive-action">
-        <p>
-            {% trans %}Let others share in your success!{% endtrans %}
-        </p>
-        <a class="btn btn-primary" href="{{ permalinks.json }}" title="">JSON Link</a>
-        <a class="btn btn-primary" href="{{ permalinks.html }}" title="">HTML Link</a>
+            {% for result_group in grouped_results %}
+            <tr class="result-header-row">
+              <th class="text-uppercase">{% trans %}Row{% endtrans %}</th>
+              {% for column in columns %}
+              <th>{{ column.name }} {#({{ column.index }})#}</th>
+              {% endfor %}
+            </tr>
+            
+            <tr class="result-row">
+              {% for k, v in result_group.items() %}
+              <td class="result-row-index">{{ k }}</td>
+              {% for cell in v.result_context %}
+              {% set cell_vars = {'class': ''} %}
+              {% set cell_index = loop.index0 %}
+              {% for result in v.results %}
+              {% if result.column_index and (cell_index == result.column_index) %}
+              {% do cell_vars.update({'class': 'bg-danger'}) %}
+              {% endif %}
+              {% endfor %}
+              <td class="{{ cell_vars.class }}">{{ cell }}</td>
+              {% endfor %}
+              {% endfor %}
+            </tr>
+            
+            <tr class="result-detail">
+              <td colspan="{{ column_count + 1 }}">
+                <div class="result-detail-content">
+                  <h4>{% trans %}Findings{% endtrans %}</h4>
+                  {% for k, v in result_group.items() %}
+                  {% for result in v.results %}
+                  <p>
+                    <strong>{{ loop.index }}.
+                      {% set _level = result.result_level %}
+                      <span class="text-uppercase label label-{% if _level == 'info' %}info{% elif _level == "warning" %}warning{% else %}danger{% endif %}">{{ result.result_level }}</span>
+                      <span class="label label-primary">{{ result.processor|title }}</span>
+                      {{ result.result_name }}
+                      {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}
+                    </strong>:&nbsp;
+                    {{ result.result_message }}&nbsp;<a target="_blank" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a>
+                  </p>
+                  {% endfor %}
+                  {% endfor %}
+                </div>{# makes space #}
+              </td>
+            </tr>
+            
+            {% endfor %}
+            
+          </tbody>
+      </table>
     </div>
     {% endif %}
+  </div>
 
-    {% else %}
-
-    <div id="detail">
-        <h2>{% trans %}Details{% endtrans %}</h2>
-        <p>
-            {% trans %}Below we have a <strong>sample of {{ result_detail_phrase }} errors</strong> found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
-        </p>
-        <div id="results-sample">
-            {% set table_width = columns|length * 200 %}
-            <table class="table table-bordered">
-
-                <colgroup>
-                    <col width="48">
-                    {% for column in columns %}
-                    <col width="200">
-                    {% endfor %}
-                <colgroup>
-
-                <tbody>
-
-                    {% for result_group in grouped_results %}
-                    <tr class="result-header-row">
-                        <th class="text-uppercase">{% trans %}Row{% endtrans %}</th>
-                        {% for column in columns %}
-                        <th>{{ column.name }} {#({{ column.index }})#}</th>
-                        {% endfor %}
-                    </tr>
-
-                    <tr class="result-row">
-                        {% for k, v in result_group.items() %}
-                        <td class="result-row-index">{{ k }}</td>
-                        {% for cell in v.result_context %}
-                            {% set cell_vars = {'class': ''} %}
-                            {% set cell_index = loop.index0 %}
-                            {% for result in v.results %}
-                                {% if result.column_index and (cell_index == result.column_index) %}
-                                    {% do cell_vars.update({'class': 'bg-danger'}) %}
-                                {% endif %}
-                            {% endfor %}
-                        <td class="{{ cell_vars.class }}">{{ cell }}</td>
-                        {% endfor %}
-                        {% endfor %}
-                    </tr>
-
-                    <tr class="result-detail">
-                        <td colspan="{{ column_count + 1 }}">
-                            <div class="result-detail-content">
-                            <h4>{% trans %}Findings{% endtrans %}</h4>
-                            {% for k, v in result_group.items() %}
-                            {% for result in v.results %}
-                            <p>
-                                <strong>{{ loop.index }}.
-                                    {% set _level = result.result_level %}
-                                    <span class="text-uppercase label label-{% if _level == 'info' %}info{% elif _level == "warning" %}warning{% else %}danger{% endif %}">{{ result.result_level }}</span>
-                                     <span class="label label-primary">{{ result.processor|title }}</span>
-                                     {{ result.result_name }}
-                                     {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}
-                            </strong>:&nbsp;
-                            {{ result.result_message }}&nbsp;<a target="_blank" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans%}More information on{% endtrans%} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a>
-                            </p>
-                            {% endfor %}
-                            {% endfor %}
-                            </div>{# makes space #}
-                        </td>
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
-    </div>
-
-    {% endif %}
+  <p>
+    {% trans %}These results were calculated on{% endtrans %} <em>{{ datetime }}</em>.
+  </p>
 
 </section>
-{% else %}
-<h1>
-    {% trans %}Oops{% endtrans %}.
-</h1>
-<p>
-    {% trans %}There is no report data to display{% endtrans %}.
-    <a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
-</p>
-{% endif %}
 
 {% endblock content %}
