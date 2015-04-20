@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
+{% block heading %}
+{% trans %}API{% endtrans %}
+{% endblock heading %}
+
+{% block subheading %}
+{{ name }} {% trans -%}provides a full API to process and validate tabular data.{% endtrans %}
+{% endblock subheading %}
+
 {% block content %}
 <section id="documentation" class="row">
-    <div class="col-md-12">
-        <h1>{% trans %}API Docs{% endtrans %}</h1>
-        <h3>{% trans %}Example{% endtrans %}</h3>
-        <pre><code>
+  <p>{% trans %}Let's start with an example. Scroll down for the methods supported by the API.{% endtrans %}</p>
+  <pre><code>
 # make a request
 curl http://goodtables.okfnlabs.org/api/run --data "data=https://raw.githubusercontent.com/okfn/goodtables/master/examples/row_limit_structure.csv&schema=https://raw.githubusercontent.com/okfn/goodtables/master/examples/test_schema.json"
 

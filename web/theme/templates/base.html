@@ -44,19 +44,22 @@
           <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li {% if url_for('api.main') in request.url %}class="active"{% endif %}>
-                <a href="{{ url_for('api.main') }}" title="{{ gettext('JSON API') }}">{{ gettext('JSON API') }}</a>
+                <a href="{{ url_for('api.main') }}" title="{{ gettext('API') }}">{{ gettext('API') }}</a>
+              </li>
+              <li {% if url_for('pages.docs') in request.url %}class="active"{% endif %}>
+                <a href="{{ url_for('pages.docs') }}" title="{{ gettext('Docs') }}">{{ gettext('Docs') }}</a>
+              </li>
+              <li {% if url_for('pages.pricing') in request.url %}class="active"{% endif %}>
+                <a href="{{ url_for('pages.pricing') }}" title="{% trans %}Pricing{% endtrans %}">{% trans %}Pricing{% endtrans %}</a>
               </li>
               <li>
-                <a target="_blank" href="{{ repo }}" title="{{ gettext('Python library') }}">{{ gettext('Python library') }}</a>
+                <a target="_blank" href="{{ new_issue }}" title="{{ gettext('Report a bug') }}">{{ gettext('Bugs') }}</a>
               </li>
               <li>
-                <a target="_blank" href="{{ new_issue }}" title="{{ gettext('Report problem') }}">{{ gettext('Report problem') }}</a>
+                <a target="_blank" href="{{ repo }}" title="{{ gettext('CLI/Lib') }}">{{ gettext('CLI/Lib') }}</a>
               </li>
               <li>
                 <a target="_blank" href="http://okfnlabs.org/blog/2015/02/20/introducing-goodtables.html">{% trans %}Read more{% endtrans %}</a>
-              </li>
-              <li {% if url_for('pages.pricing') in request.url %}class="active"{% endif %}>
-                <a href="{{ url_for('pages.pricing') }}" title="{% trans %}Pricing & Support{% endtrans %}">{% trans %}Pricing & Support{% endtrans %}</a>
               </li>
             </ul>
           </div><!--/.nav-collapse -->

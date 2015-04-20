@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
+{% block heading %}
+{% trans %}Help{% endtrans %}
+{% endblock heading %}
+
+{% block subheading %}
+{{ name }} {% trans -%}can find all sorts of issues in your tabular data. This help page provides advice on how to deal with such issues.{% endtrans %}</a>
+{% endblock subheading %}
+
 
 {% block content %}
-
-<h1>
-    {% trans %}Help{% endtrans %}
-</h1>
 
 <section>
     {% for result_type in result_types %}
