@@ -17,6 +17,6 @@
         "lato": "~0.2.2",
         "jquery": "*",
         "modernizer": "*",
-        "squirrel.js": "0.1.0"
+        "squirrel.js": "0.1.1"
   }
 }
