@@ -189,9 +189,15 @@
 
 <section id="documentation" class="row">
   <div class="col-md-12">
-    <h2>{% trans %}Need help?{% endtrans %}</h2>
+    <h2>{% trans %}What is Good Tables?{% endtrans %}</h2>
     <p>
-      {% trans %}Work through the form, which at a minimum just requires that you upload, or provide a link to, a data source. When you click "Validate", the data source will be analysed and a report will be generated describing the validity of the file as a source of tabular data.{% endtrans %} {% trans %}See{% endtrans %} <a href="{{ url_for('api.main') }}" title="{% trans %}API docs{% endtrans %}">{% trans %}here{% endtrans %}</a> {% trans %}for the API docs{% endtrans %}.
+      {% trans %}Good Tables is a free online service that helps you find out if your tabular data is actually good to use - it can check for structural problems (blank rows and columns) as well as ensure that data fits a specific schema.{% endtrans %}
+    </p>
+    <p>
+      {% trans %}Tabular data in CSV and Excel formats is one the most common forms of data available on the web - especially if looking at <a href="http://okfn.org/opendata/">open data</a>. Unfortunately, much of that data is messy with blank and incorrect rows, and unexpected values for some fields. (For example, date columns that do not feature well-formed dates. <a href="http://okfnlabs.org/bad-data/">See here for more examples of "bad data"</a>.){% endtrans %}
+    </p>
+    <p>
+      {% trans %}That’s where Good Tables comes in: it checks your data for you, giving you quick and simple feedback on where your tabular data may not yet be quite perfect.{% endtrans %}
     </p>
     <h3>{% trans %}See it in action{% endtrans %}</h3>
     <div class="col-md-12">
