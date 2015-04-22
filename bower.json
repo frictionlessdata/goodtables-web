@@ -15,8 +15,7 @@
     "dependencies": {
         "bootstrap-sass": "~3.3.3",
         "lato": "~0.2.2",
-        "jquery": "*",
-        "modernizer": "*",
+        "jquery": "1.11.2",
         "squirrel.js": "0.1.1"
   }
 }
