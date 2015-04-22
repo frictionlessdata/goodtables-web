@@ -156,17 +156,3 @@ class Pricing(views.MethodView):
 
     def get(self, **kwargs):
         return render_template(self.template, **self.get_data(**kwargs))
-
-
-class Docs(views.MethodView):
-
-    """Return a Docs page."""
-
-    template = 'pages/docs.html'
-
-    def get_data(self, **kwargs):
-
-        return {}
-
-    def get(self, **kwargs):
-        return render_template(self.template, **self.get_data(**kwargs))

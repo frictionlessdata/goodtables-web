@@ -187,15 +187,21 @@
     </div>
 </section>
 
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      {% trans %}Need help?{% endtrans %}
+<section id="documentation" class="row">
+  <div class="col-md-12">
+    <h2>{% trans %}Need help?{% endtrans %}</h2>
+    <p>
+      {% trans %}Work through the form, which at a minimum just requires that you upload, or provide a link to, a data source. When you click "Validate", the data source will be analysed and a report will be generated describing the validity of the file as a source of tabular data.{% endtrans %} {% trans %}See{% endtrans %} <a href="{{ url_for('api.main') }}" title="{% trans %}API docs{% endtrans %}">{% trans %}here{% endtrans %}</a> {% trans %}for the API docs{% endtrans %}.
+    </p>
+    <h3>{% trans %}See it in action{% endtrans %}</h3>
+    <div class="col-md-12">
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/f1bTx6Zaotk" frameborder="0" allowfullscreen></iframe>
+      <p>&nbsp;</p>
     </div>
-    <div class="panel-body">
-      {% trans %}Need some help? Check out our amazing documentation{% endtrans %} <a href="{{ url_for('pages.docs') }}">{% trans %}here{% endtrans %}</a>.
+    <div class="col-md-12">
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/hblUuIjobrc" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
-</div>
-  
+</section>
+
 {% endblock content %}
