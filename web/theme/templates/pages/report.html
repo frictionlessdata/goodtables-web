@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 
 
-{% block bodyjs %}
-<script>
-    var reportUrlState = {{ url_state|tojson|safe }};
-</script>
-{{ super() }}
-{% endblock bodyjs %}
-
-
 {% block heading %}
 
 {% if report %}
@@ -69,7 +61,7 @@
   <p>
     {% trans %}Below we have a <strong>sample of {{ result_detail_phrase }} errors</strong> found when validating the data. Use this to identify problems, fix them in the source, and then upload the data to validate again!{% endtrans %}
   </p>
-  
+
   {% for result_group in grouped_results %}
   <div class="result panel panel-default">
     <div class="panel-heading">

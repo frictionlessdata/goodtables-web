@@ -16,7 +16,9 @@ var $form = $('#run_form'),
     $schemaFieldRadio = $('.schema-field-url, .schema-field-file'),
     $schemaFieldUrl = $('.schema-field-url'),
     $schemaFieldFile = $('.schema-field-file'),
-    $schemaEg = $('#schema_eg');
+    $schemaEg = $('#schema_eg'),
+    $runForm = $('#run_form'),
+    getableReportParams = '#data_url, #schema_url, #encoding, #format, #fail_fast, #ignore_empty_rows, #ignore_duplicate_rows';
 
 
 function formUX() {
@@ -64,28 +66,26 @@ function formUX() {
 
 }
 
-function tableUX() {
+function dynamicFormAction() {
 
-}
+    $runForm.submit(function(){
+        var baseAction = $runForm.attr('action'),
+            params = '?' + $(this).find(getableReportParams).serialize(),
+            dynamicAction = baseAction + params;
+        $runForm.attr('action', dynamicAction);
+    });
 
-function urlState() {
-    // put the GETable query onto the URL for copy-pasters ;)
-    if (reportUrlState) {
-        if (history.pushState) {
-            history.pushState({}, 'reports', 'reports' + reportUrlState);
-        }
-    }
 }
 
 (function($) {
   // disable ribbon clickthrough
-  if ( $(document).width() > 767) { 
+  if ( $(document).width() > 767) {
     $('.navbar .open-knowledge').click(function(e) {e.preventDefault();
   }); }
-  
+
   // default class
   $('.navbar .open-knowledge').addClass('collapsed');
-  
+
 })(jQuery);
 
 
@@ -103,5 +103,4 @@ function urlState() {
 $('.pricing-panels').equalize({children: '.pricing-panel > div > div', equalize: 'outerHeight'});
 
 formUX();
-tableUX();
-urlState();
+dynamicFormAction();

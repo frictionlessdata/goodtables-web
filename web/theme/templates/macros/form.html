@@ -267,16 +267,9 @@
                 $form_action = $('#{{ form_identifier }} :submit');
 
             {% if as_xhr %}
-            $form_action.on('click', function(event) {
-                event.preventDefault();
-                MacroFormPreSubmitProcessor(${{ form_identifier }});
-                MacroFormHandler(${{ form_identifier }}, event.target);
-            });
+
             {% else %}
-            ${{ form_identifier }}.submit(function(event) {
-                MacroFormPreSubmitProcessor(${{ form_identifier }});
-                return true;
-            });
+
             {% endif %}
         </script>
 

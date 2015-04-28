@@ -1,12 +1,6 @@
 {% extends 'base.html' %}
 {% from "macros/form.html" import render_form, render_field %}
 
-{% block bodyjs %}
-<script>
-    var reportUrlState;
-</script>
-{{ super() }}
-{% endblock bodyjs %}
 
 {% block heading %}
 {{ name }}
@@ -26,22 +20,22 @@
       <h2>{% trans %}Let's get started{% endtrans %}</h2>
       {% call render_form(form, 'run_form', action='/reports',
       action_name='Validate', with_files=True) %}
-      
+
       <div class="row">
         <div class="col-md-8">
           <h4>{% trans %}Add a data table (required){% endtrans %}</h4>
         </div>
-        
+
         <div class="col-md-2">
           <h4>{% trans %}File format{% endtrans %}</h4>
         </div>
-        
+
         <div class="col-md-2">
           <h4>{% trans %}Encoding{% endtrans %}</h4>
         </div>
-        
+
         <div class="col-md-2 url_file_selector">
-          
+
           <div class="radio-inline">
             <input type="radio" name="data-field" id="data-field-1" class="data-field-url" value="option1" checked>
             <label for="data-field-1">
@@ -54,7 +48,7 @@
               {% trans %}File{% endtrans %}
             </label>
           </div>
-          
+
         </div>
         <div class="col-md-6">
           {{ render_field(form.data_url, with_label=False) }}
@@ -72,9 +66,9 @@
           </p>
         </div>
       </div>
-      
+
       <hr />
-      
+
       <div class="row">
         <div class="col-md-8">
           <h4>{% trans %}Add a data schema (optional){% endtrans %}</h4>
@@ -87,10 +81,10 @@
           <p class="help-block">{% trans %}Select to validate this data against a JSON Table Schema (<a target="_blank" href="http://dataprotocols.org/json-table-schema/" title="Read more about JSON Table Schema">What's that?</a>).{% endtrans %}</p>
         </div>
       </div>
-      
+
       <div class="row display-schema-fields">
         <div class="col-md-2 url_file_selector">
-          
+
           <div class="radio-inline">
             <input type="radio" name="schema-field" id="schema-field-1" class="schema-field-url" value="option1" checked>
             <label for="schema-field-1">
@@ -103,7 +97,7 @@
               {% trans %}File{% endtrans %}
             </label>
           </div>
-          
+
         </div>
         <div class="col-md-6">
           {{ render_field(form.schema_url, with_label=False) }}
@@ -119,9 +113,9 @@
           </p>
         </div>
       </div>
-      
+
       <hr />
-      
+
       <div class="row">
         <div class="col-md-4">
           <h4>{% trans %}Stop on first error{% endtrans %}</h4>
@@ -135,7 +129,7 @@
           </p>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-4">
           <h4>{% trans %}Ignore empty rows{% endtrans %}</h4>
@@ -149,7 +143,7 @@
           </p>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-4">
           <h4>{% trans %}Ignore duplicate rows{% endtrans %}</h4>
@@ -163,14 +157,14 @@
           </p>
         </div>
       </div>
-      
+
       <hr />
-      
+
       {% endcall %}
     </div>
     <div class="col-md-1"></div>
   </section>
-  
+
   <hr />
 </div>
 
