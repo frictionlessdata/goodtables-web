@@ -36,7 +36,7 @@
 {% if success %}
 {% trans %}We processed a total of <strong>{{ row_count }}</strong> rows. Column-wise, we found <strong>{{ column_count }}</strong> columns. It's all good!{% endtrans %}
 {% else %}
-{% trans %}We processed a total of <strong>{{ row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data. Let's have a look at the details.{% endtrans %}
+{% trans %}We processed a total of <strong>{{ row_count }}</strong> rows, of which <strong>{{ bad_row_percent }}%</strong> were found to have invalid data.{% endtrans %}
 {% endif %}
 
 {% endif %}
