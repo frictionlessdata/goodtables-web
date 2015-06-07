@@ -66,6 +66,15 @@ def get_runargs():
     return parser.parse_args()
 
 
+def get_data_urls():
+    """Get valid args from request."""
+    parser = reqparse.RequestParser()
+    location = ['json', 'values', 'form', 'args', 'files']
+    parser.add_argument('data_url', location=location)
+    parser.add_argument('schema_url', location=location)
+    return parser.parse_args()
+
+
 def clean_payload(payload):
     payload['data'] = resolve_payload_item('data', payload)
     payload['schema'] = resolve_payload_item('schema', payload)

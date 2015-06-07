@@ -48,6 +48,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         if request.args:
             data.update(self.run_pipeline(with_permalinks=True))
             data.update(self._process_report_data(data['report']))
+
         return render_template(self.template, **data)
 
     def post(self, **kwargs):
@@ -63,22 +64,14 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
 
     def _process_report_data(self, report):
 
-        result_count = len(report['results'])
+        grouped_results = report['results'][:20]
+
+        result_count = len(grouped_results)
 
         if result_count > 20:
             result_detail_phrase = 'first {0}'.format(result_count)
         else:
             result_detail_phrase = '{0}'.format(result_count)
-
-        bad_row_percent = 0
-        if report['meta'].get('bad_row_count'):
-            # minimum 1%
-            bad_row_percent = int((report['meta']['bad_row_count'] / report['meta']['row_count']) * 100) or 1
-
-        bad_column_percent = 0
-        if report['meta'].get('bad_column_count'):
-            # minimum 1%
-            bad_column_percent = int((report['meta']['bad_column_count'] / len(report['meta']['columns'])) * 100) or 1
 
         bad_cell_count = 0
 
@@ -90,10 +83,8 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
             'header_index': report['meta'].get('header_index'),
             'row_count': report['meta'].get('row_count'),
             'column_count': len(report['meta'].get('columns', [])),
-            'bad_column_percent': bad_column_percent,
-            'bad_row_percent': bad_row_percent,
             'bad_cell_count': bad_cell_count,
-            'grouped_results': report['results'],
+            'grouped_results': grouped_results,
             'result_count': result_count,
             'result_detail_phrase': result_detail_phrase
         }

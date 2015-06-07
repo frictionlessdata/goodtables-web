@@ -17,14 +17,12 @@ class RunPipelineMixin(object):
 
         payload = utilities.clean_payload(utilities.get_runargs())
         data = {}
+        data['sources'] = utilities.get_data_urls()
         data['success'] = False
         data['report'] = app.config['GOODTABLES_PIPELINE_BUILD_ERROR_RESPONSE']
 
         if with_permalinks:
             data['permalinks'] = utilities.get_report_permalinks(payload)
-
-        # the workspace for all job-related data files
-        workspace = os.path.join(app.config['TMP_DIR'])
 
         if isinstance(payload['data'], FileStorage):
             payload['data'] = payload['data'].stream
