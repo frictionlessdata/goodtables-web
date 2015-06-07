@@ -75,7 +75,7 @@
         <li>
           <span class="text-uppercase label label-{% if _level == 'info' %}info{% elif _level == "warning" %}warning{% else %}danger{% endif %}">{{ result.result_level }}</span>
           <span class="label label-info">{{ result.processor|title }}</span>
-          <strong>{{ result.result_name }} {% if result.column_index %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</strong>:&nbsp;
+          <strong>{{ result.result_name }} {% if result.column_index and columns[result.column_index].name %}(<em>{{ columns[result.column_index].name }}</em>){% endif %}</strong>:&nbsp;
           {{ result.result_message }}&nbsp;<a target="_blank" href="{{ url_for('pages.help', _anchor=result.result_id) }}" title="{% trans %}More information on{% endtrans %} {{ result.result_name }}">{% trans %}Read more{% endtrans %}</a>
         </li>
         {% endfor %}
@@ -89,7 +89,7 @@
 
         {# if 0, then we have errors in the header #}
         {% if k == 0 %}
-        {% set is_header = True%}
+        {% set is_header = True %}
         {% endif %}
 
         {% if is_header %}
