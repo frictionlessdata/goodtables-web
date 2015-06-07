@@ -30,7 +30,13 @@ class RunPipelineMixin(object):
             payload['data'] = payload['data'].stream
 
         # build and run a validation pipeline
-        pipeline = utilities.get_pipeline(payload)
+        try:
+            pipeline = utilities.get_pipeline(payload)
+        except Exception as e:
+            pipeline = None
+            data['report']['error_title'] = e.__class__.__name__
+            data['report']['error_message'] = e.msg
+
         if isinstance(pipeline, Pipeline):
             success, report = pipeline.run()
             data.update({'success': success, 'report': report.generate()})

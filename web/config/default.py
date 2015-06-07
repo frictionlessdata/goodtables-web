@@ -27,15 +27,14 @@ GOODTABLES_PIPELINE_DEFAULT_CONFIG = {
         'structure': {},
         'schema': {}
     },
-    'workspace': None,
-    'dry_run': True,
+    'report_type': 'grouped',
     'fail_fast': False,
     'break_on_invalid_processor': False,
 }
 GOODTABLES_PIPELINE_BUILD_ERROR_RESPONSE = {
     'success': False,
-    'error': ('Pipeline build error. One or more '
-              'pipeline parameters was invalid.'),
+    'error_title': 'Pipeline Build Error',
+    'error_message': 'One or more parameters was invalid.',
     'meta': {},
     'results': []
 }

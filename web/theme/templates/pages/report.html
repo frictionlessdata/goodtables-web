@@ -5,8 +5,8 @@
 
 {% if report %}
 
-{% if not success and error %}
-{{ error }}
+{% if not success and error_title %}
+{{ error_title }}
 
 {% else %}
 
@@ -28,9 +28,8 @@
 
 {% if report %}
 
-{% if not success and error %}
-{% trans %}It seems that something was wrong with the input sources. Check that your data and schema sources are of the correct type, and try again.{% endtrans %}
-
+{% if not success and error_message %}
+{{ error_message }}
 {% else %}
 
 {% if success %}

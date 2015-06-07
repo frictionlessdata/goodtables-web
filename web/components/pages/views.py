@@ -4,10 +4,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from flask import (current_app as app, request, redirect, url_for, views,
-                   render_template)
+from flask import request, views, render_template
 from goodtables.utilities import helpers
-from ..commons import utilities
 from ..commons import view_mixins
 from . import forms
 
@@ -65,33 +63,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
 
     def _process_report_data(self, report):
 
-        def group_results(report):
-            """Group report results by row for Web UI."""
-
-            _rows = set([r['row_index'] for r in report['results'] if r['row_index'] is not None])
-
-            def make_groups(results, rows):
-                groups = {}
-
-                for row in rows:
-                    groups.update({
-                        row: {
-                            'row_index': row,
-                            'results': []
-                        }
-                    })
-
-                for index, result in enumerate(results):
-                    if result['row_index'] is not None:
-                        groups[result['row_index']]['result_context'] = result['result_context']
-                        groups[result['row_index']]['results'].append(result)
-
-                return groups
-
-            return [{k: v} for k, v in make_groups(report['results'], _rows).items()]
-
-        grouped_results = sorted(group_results(report), key=lambda result: list(result.keys())[0])[:20]
-        result_count = len(grouped_results)
+        result_count = len(report['results'])
 
         if result_count > 20:
             result_detail_phrase = 'first {0}'.format(result_count)
@@ -111,7 +83,8 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
         bad_cell_count = 0
 
         processed = {
-            'error': report.get('error'),
+            'error_title': report.get('error_title'),
+            'error_message': report.get('error_message'),
             'meta': report['meta'],
             'columns': report['meta'].get('columns', []),
             'header_index': report['meta'].get('header_index'),
@@ -120,7 +93,7 @@ class Report(views.MethodView, view_mixins.RunPipelineMixin):
             'bad_column_percent': bad_column_percent,
             'bad_row_percent': bad_row_percent,
             'bad_cell_count': bad_cell_count,
-            'grouped_results': grouped_results,
+            'grouped_results': report['results'],
             'result_count': result_count,
             'result_detail_phrase': result_detail_phrase
         }
