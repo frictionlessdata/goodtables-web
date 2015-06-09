@@ -61,7 +61,7 @@ def get_runargs():
     parser.add_argument('ignore_duplicate_rows', type=bool)
     parser.add_argument('format')
     parser.add_argument('encoding')
-    parser.add_argument('report_type')
+    parser.add_argument('report_type', default='grouped')
     return parser.parse_args()
 
 

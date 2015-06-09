@@ -93,6 +93,10 @@ encoding_args = {
         'hint': ''
     }
 }
+report_type_args = {
+    'label': 'Report type',
+    'default': 'grouped'
+}
 
 
 class RunForm(Form):
@@ -104,5 +108,6 @@ class RunForm(Form):
     schema_eg = fields.SelectField(**schema_eg_args)
     fail_fast = fields.BooleanField(default=False, **fail_fast_args)
     encoding = fields.SelectField(**encoding_args)
+    report_type = fields.HiddenField(**report_type_args)
     ignore_empty_rows = fields.BooleanField(default=False, **ignore_empty_rows_args)
     ignore_duplicate_rows = fields.BooleanField(default=False, **ignore_duplicate_rows_args)
