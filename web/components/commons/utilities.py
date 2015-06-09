@@ -4,10 +4,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os
 import io
 import datetime
-import json
 import pytz
 from werkzeug.datastructures import FileStorage
 from flask import current_app as app, url_for
@@ -63,6 +61,7 @@ def get_runargs():
     parser.add_argument('ignore_duplicate_rows', type=bool)
     parser.add_argument('format')
     parser.add_argument('encoding')
+    parser.add_argument('report_type')
     return parser.parse_args()
 
 
