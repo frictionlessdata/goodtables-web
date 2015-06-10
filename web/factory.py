@@ -34,7 +34,7 @@ def create_app(config):
     app = Flask(app_label, template_folder=template_folder,
                 static_folder=static_folder, static_url_path='/static')
     trans = Babel()
-    cors = CORS()
+    cors = CORS(resources=r'/api/*', allow_headers='Content-Type')
 #    assets = Environment()
 
     # Configure the app with defaults
