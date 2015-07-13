@@ -102,5 +102,10 @@ function dynamicFormAction() {
 
 $('.pricing-panels').equalize({children: '.pricing-panel > div > div', equalize: 'outerHeight'});
 
+$('.set-example-url').on('click',function(event){
+  event.preventDefault();
+  $('#data_url').val($(this).data('example-url'));
+});
+
 formUX();
 dynamicFormAction();
