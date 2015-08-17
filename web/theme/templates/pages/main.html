@@ -63,9 +63,17 @@
         <div class="col-md-12">
           <p class="help-block">
             {% trans %}Choose URL or File to add a data source by your preferred method.{% endtrans %}
-            (<a class="set-example-url" data-example-url="https://raw.githubusercontent.com/okfn/goodtables-web/master/examples/invalid-on-bis-modified-schema.csv" href="#">Example CSV 1</a>,
-            <a class="set-example-url" data-example-url="https://raw.githubusercontent.com/okfn/goodtables-web/master/examples/invalid-on-structure.csv" href="#">Example CSV 2</a>)
-          </p>
+	  </p>
+	  <div class="help-block">
+	    <p>Want to see an example? Click on one of the two options below followed by the green 'Validate' button.</p>
+	    <ul>
+	      <li>
+		<a class="set-example-url" data-example-url="https://raw.githubusercontent.com/okfn/goodtables-web/master/examples/invalid-on-structure.csv" href="#">Example: Invalid Structure</a>
+	      </li>
+	      <li>
+		<a class="set-example-url" data-set-schema="https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/bis-modified.json" data-example-url="https://raw.githubusercontent.com/okfn/goodtables-web/master/examples/invalid-on-bis-modified-schema.csv" href="#">Example: Invalid Schema</a> (also sets a test schema to validate against)
+	      </li>
+          </div>
         </div>
       </div>
 

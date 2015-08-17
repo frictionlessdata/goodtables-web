@@ -104,7 +104,16 @@ $('.pricing-panels').equalize({children: '.pricing-panel > div > div', equalize:
 
 $('.set-example-url').on('click',function(event){
   event.preventDefault();
-  $('#data_url').val($(this).data('example-url'));
+  $('#data_url').fadeOut(100).val($(this).data('example-url')).fadeIn(100); 
+  if ($(this).data('set-schema')) {
+    $("#data-field-1").prop("checked", true).change();
+    $("#schema_eg").val($(this).data('set-schema')).change();
+    $("#schema_url").fadeOut(100).fadeIn(100);
+  } else {
+    $("#data-field-1").prop("checked", true).change();
+    $("#schema_eg").val("").change();
+    $("#schema_url").fadeOut(100).fadeIn(100);
+  }
 });
 
 formUX();
