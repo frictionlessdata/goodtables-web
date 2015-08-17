@@ -116,5 +116,13 @@ $('.set-example-url').on('click',function(event){
   }
 });
 
+$('.toggle-preview').on('click',function(event){
+  event.preventDefault();
+  var target = $(this).data('preview');
+  $("." + target).toggle();
+});
+
+$('.csv-preview').hide();
+
 formUX();
 dynamicFormAction();
