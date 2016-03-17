@@ -1,7 +1,7 @@
 # Good Tables Web
 
-[![Travis Build Status](https://travis-ci.org/okfn/goodtables-web.svg?branch=master)](https://travis-ci.org/okfn/goodtables-web)
-[![Coverage Status](https://coveralls.io/repos/okfn/goodtables-web/badge.svg)](https://coveralls.io/r/okfn/goodtables-web)
+[![Travis Build Status](https://travis-ci.org/frictionlessdata/goodtables.io.svg?branch=master)](https://travis-ci.org/frictionlessdata/goodtables.io)
+[![Coverage Status](https://coveralls.io/repos/frictionlessdata/goodtables.io/badge.svg)](https://coveralls.io/r/frictionlessdata/goodtables.io)
 
 A web API for validating data tables against a validation pipeline.
 
