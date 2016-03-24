@@ -9,6 +9,7 @@ from werkzeug.datastructures import FileStorage
 from flask import current_app as app
 from goodtables.pipeline import Pipeline
 from . import utilities
+from ... import compat
 
 
 class RunPipelineMixin(object):
@@ -33,7 +34,7 @@ class RunPipelineMixin(object):
         except Exception as e:
             pipeline = None
             data['report']['error_title'] = e.__class__.__name__
-            data['report']['error_message'] = e.msg
+            data['report']['error_message'] = compat.str(e)
 
         if isinstance(pipeline, Pipeline):
             success, report = pipeline.run()

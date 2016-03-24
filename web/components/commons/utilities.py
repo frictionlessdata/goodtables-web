@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 import io
 import datetime
 import pytz
+import codecs
 from werkzeug.datastructures import FileStorage
 from flask import current_app as app, url_for
 from flask.ext.restful import reqparse
@@ -52,6 +53,7 @@ def get_runargs():
     parser.add_argument('schema', location=location)
     parser.add_argument('data_url', location=location)
     parser.add_argument('schema_url', location=location)
+    parser.add_argument('data_base64', location=location)
     parser.add_argument('data_file', type=FileStorage, location=location)
     parser.add_argument('schema_file', type=FileStorage, location=location)
     parser.add_argument('report_limit', type=int, default=1000)
@@ -78,6 +80,7 @@ def clean_payload(payload):
     payload['data'] = resolve_payload_item('data', payload)
     payload['schema'] = resolve_payload_item('schema', payload)
     del payload['data_url']
+    del payload['data_base64']
     del payload['data_file']
     del payload['schema_url']
     del payload['schema_file']
@@ -88,10 +91,13 @@ def resolve_payload_item(key, payload):
     """Resolve data or schema from request."""
     as_file = '{0}_file'.format(key)
     as_url = '{0}_url'.format(key)
+    as_base64 = '{0}_base64'.format(key)
     if payload.get(key):
         return payload[key]
     if payload.get(as_url):
         return payload[as_url]
+    elif payload.get(as_base64):
+        return codecs.decode(payload[as_base64].encode('utf8'), 'base64')
     elif payload.get(as_file):
         if key.startswith('data'):
             return payload[as_file].stream
