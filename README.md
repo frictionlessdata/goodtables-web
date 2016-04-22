@@ -14,9 +14,11 @@ Planned support for Python 2.7, 3.3 and 3.4. Some tests currently fail on 2.7. D
 ## Quickstart
 
 * Clone the repository into a virtual environment
-* Install dependencies: `pip install -r requirements/local.txt`
+* Install dependencies: `pip install -r requirements.txt`
 * Run a server: `python main.py`
-* Run the tests: `./test.sh`
+* Run the tests: 
+  * `pip install -r requirements/test.txt && pip install -r requirements/local.txt`
+  * `./test.sh`
 
 ## What we've got
 
