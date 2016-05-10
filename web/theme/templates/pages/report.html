@@ -40,6 +40,10 @@
 
 {% block subheading %}
 
+{% trans %}
+  This might be caused by the lack of cookies. Please enable cookies for this website and try again.
+{% endtrans %}
+
 {% if report %}
 
 <p>
@@ -49,7 +53,7 @@
   {% endif %}
   {% if sources.data_url %}
   <strong>Data File Preview</strong>: <a class="toggle-preview" data-preview="csv-preview" data-url="http://datapipes.okfnlabs.org/csv/head%C2%A0-n%C2%A01000/html?url={{ sources.data_url }}">Show/Hide</a> / {{ sources.data_url }}
-  <iframe class="csv-preview" style="width: 100%; height: 200px; display: inline-block;" src="http://datapipes.okfnlabs.org/csv/head%C2%A0-n%C2%A01000/html?url={{ sources.data_url }}"></iframe>    
+  <iframe class="csv-preview" style="width: 100%; height: 200px; display: inline-block;" src="http://datapipes.okfnlabs.org/csv/head%C2%A0-n%C2%A01000/html?url={{ sources.data_url }}"></iframe>
   {% endif %}
 </p>
 
@@ -62,7 +66,9 @@
 {% endif %}
 
 {% else %}
-<a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+<p>
+  <a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+</p>
 
 {% endif %}
 
