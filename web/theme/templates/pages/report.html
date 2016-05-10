@@ -41,9 +41,7 @@
 {% block subheading %}
 
 {% trans %}
-<p>
   This might be caused by the lack of cookies. Please enable cookies for this website and try again.
-</p>
 {% endtrans %}
 
 {% if report %}
@@ -68,7 +66,9 @@
 {% endif %}
 
 {% else %}
-<a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+<p>
+  <a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
+</p>
 
 {% endif %}
 
