@@ -40,10 +40,6 @@
 
 {% block subheading %}
 
-{% trans %}
-  This might be caused by the lack of cookies. Please enable cookies for this website and try again.
-{% endtrans %}
-
 {% if report %}
 
 <p>
@@ -66,6 +62,11 @@
 {% endif %}
 
 {% else %}
+
+<p>
+  This might be caused by the lack of cookies. Please enable cookies for this website and try again.
+</p>
+
 <p>
   <a href="{{ url_for('pages.main') }}" title="{% trans%}Submit some data to validate{% endtrans%}">{% trans %}Submit some data to validate{% endtrans %}.</a>
 </p>
