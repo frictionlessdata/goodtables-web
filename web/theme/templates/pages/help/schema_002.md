@@ -4,3 +4,4 @@ A key [concept](http://specs.frictionlessdata.io/json-table-schema/#concepts) is
 
 Things you can try:
 - Check your data is not missing a comma, or has an extra comma, between the fields in this row. 
+- Check that your schema defines the correct number of fields for your data.
