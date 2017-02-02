@@ -9,9 +9,9 @@
       <base href="/">
       <link rel="canonical" href="{{ request.url }}">
       {#{% assets "sass" %}#}
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="//a.okfn.org/html/oki/panel/assets/css/frontend.css"/>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
       {#{% endassets %}#}
       <script src="{{ url_for('static', filename='vendor/modernizr.custom.44554.js') }}"></script>
       <script src="{{ url_for('static', filename='vendor/jquery.min.js') }}"></script>
@@ -20,12 +20,12 @@
       <![endif]-->
     </head>
     <body>
-
-      <div class="fixed-ok-panel"><div id="ok-panel" class="closed"><iframe src="//a.okfn.org/html/oki/panel/panel.html" scrolling="no"></iframe></div><a class="ok-ribbon" href="https://okfn.org/"><img src="//a.okfn.org/html/oki/panel/assets/images/oki-ribbon.png" alt="Open Knowledge"></a></div>
+      <div id="ok-panel" class="closed"><div class="container"><iframe src="//a.okfn.org/html/oki/panel/panel.html" scrolling="no"></iframe></div></div>
 
       {% block header %}
       <nav class="navbar{% if ui.navbar == 'inverse' %} navbar-inverse{% elif ui.navbar == 'default' %} navbar-default{% endif %} navbar-static-top">
         <div class="container">
+          <div id="ok-panel-wrapper"><a class="white ok-ribbon" href="//okfn.org/"><img src="//a.okfn.org/html/oki/panel/assets/images/oki-ribbon.png" alt="Open Knowledge"></a></div>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>

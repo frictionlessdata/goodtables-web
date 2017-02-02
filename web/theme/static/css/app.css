@@ -6291,6 +6291,22 @@ h1.panel-heading, .pricing-panel > div:first-child > h1, h2.panel-heading, .pric
     font-size: 12px;
     color: rgba(255, 255, 255, 0.4); }
 
+.navbar .container #ok-panel-wrapper .ok-ribbon {
+  margin-left: -20px;
+  margin-right: -20px; }
+  @media only screen and (min-width: 576px) {
+    .navbar .container #ok-panel-wrapper .ok-ribbon {
+      margin-left: 0;
+      margin-right: 0;
+      position: absolute; } }
+.navbar .container #ok-panel-wrapper + .navbar-header .navbar-toggle {
+  float: left;
+  margin-left: 15px;
+  margin-right: 0; }
+@media (min-width: 992px) {
+  .navbar .container #ok-panel-wrapper + .navbar-header + #navbar .navbar-nav {
+    margin-right: 150px; } }
+
 form.well {
   padding: 29px;
   margin-left: -30px;

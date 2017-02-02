@@ -64,5 +64,42 @@ $icon-font-path: '/static/vendor/fonts/bootstrap/';
 $base-spacing: 15px;
 @import "theme-layout";
 
+// HACK: (@rufuspollock) 2017-02-02 - see https://github.com/frictionlessdata/goodtables-web/issues/63 
+// Solution to oki-panel location issue. Problem is that current oki theme here is out of date
+// In particular, out of sync with oki panel
+.navbar {
+  .container {
+    //ribbon
+    #ok-panel-wrapper {
+      .ok-ribbon {
+        margin-left:-20px;
+        margin-right:-20px;
+
+        @media only screen and (min-width : 576px) {
+          margin-left:0;
+          margin-right:0;
+          position:absolute;
+        }
+      }
+
+      & + .navbar-header {
+        .navbar-toggle {
+          float:left;
+          margin-left:$base-spacing;
+          margin-right:0;
+        }
+
+        & + #navbar {
+          .navbar-nav {
+            @media (min-width: $grid-float-breakpoint) {
+              margin-right:150px;
+            }
+          }
+        }
+      }
+    }
+	}
+}
+
 // Custom
 @import "custom";
