@@ -60,8 +60,8 @@ format_args = {
 schema_eg_args = {
     'choices': [
         ('', '-- Presets --'),
-        ('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/spend-publishing-schema.json', 'HMT Spend Publishing'),
-        ('https://raw.githubusercontent.com/okfn/tabular-validator/master/examples/hmt/bis-modified.json', 'BIS Modified')
+        ('https://raw.githubusercontent.com/frictionlessdata/goodtables-py/master/data/hmt/spend-publishing-schema.json', 'HMT Spend Publishing'),
+        ('https://raw.githubusercontent.com/frictionlessdata/goodtables-py/master/data/hmt/bis-modified.json', 'BIS Modified')
     ],
     'description': {
         'placeholder': 'HMT Spend',
