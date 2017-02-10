@@ -15,8 +15,8 @@ class BaseTestCase(unittest.TestCase):
 
     """Common stuff for tests."""
 
-    http_data = ('https://raw.githubusercontent.com/okfn/'
-                 'tabular-validator/master/examples/')
+    http_data = ('https://raw.githubusercontent.com/frictionlessdata/'
+                 'goodtables-py/master/data')
     local_data = os.path.abspath(os.path.join(
         os.path.dirname(os.path.dirname(__file__)), 'examples'))
 
