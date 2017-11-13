@@ -1,4 +1,4 @@
-The data does not match the [field type and format](http://specs.frictionlessdata.io/json-table-schema/#field-types-and-formats) you have specified in the JSON Table Schema.
+The data does not match the [field type and format](http://specs.frictionlessdata.io/table-schema/#field-types-and-formats) you have specified in the JSON Table Schema.
 
 Things you can try:
 - Correct the data to match the field type and format. 
